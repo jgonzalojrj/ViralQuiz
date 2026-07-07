@@ -1,4 +1,4 @@
-import { expandedKnowledgeTriviaSeeds, type TriviaSeed } from "./trivia";
+import { advancedQuizDraftsBySection, expandedKnowledgeTriviaSeeds, type TriviaSeed } from "./trivia";
 
 export type QuizOption = {
   id: string;
@@ -53,6 +53,8 @@ type QuizDraft = {
   subject: string;
   difficulty?: QuizDifficulty;
 };
+
+type AdvancedSectionId = keyof typeof advancedQuizDraftsBySection;
 
 const personalPrompts = [
   "Cuando algo cambia de golpe, tu primera reaccion suele ser...",
@@ -738,6 +740,17 @@ function makeQuiz(draft: QuizDraft, accent: string): Quiz {
   };
 }
 
+function advancedDrafts(sectionId: AdvancedSectionId): QuizDraft[] {
+  return advancedQuizDraftsBySection[sectionId].map(({ slug, title, tagline, subject, difficulty }) => ({
+    slug,
+    title,
+    tagline,
+    kind: "trivia",
+    subject,
+    difficulty
+  }));
+}
+
 const sectionDrafts: Array<Omit<QuizSection, "quizzes"> & { quizzes: QuizDraft[] }> = [
   {
     id: "inteligencia-mente",
@@ -800,7 +813,8 @@ const sectionDrafts: Array<Omit<QuizSection, "quizzes"> & { quizzes: QuizDraft[]
       { slug: "adivina-deporte-pista", title: "Adivina el deporte por la pista", tagline: "Lee la pista y piensa rapido.", kind: "trivia", subject: "deportes por pistas" },
       { slug: "reglas-deportivas", title: "Test de reglas deportivas", tagline: "Normas que cambian por completo una jugada.", kind: "trivia", subject: "reglas deportivas" },
       { slug: "historia-futbol", title: "Test de historia del futbol", tagline: "Copas, epocas y momentos famosos.", kind: "trivia", subject: "historia del futbol" },
-      { slug: "jugadores-famosos", title: "Test de jugadores famosos", tagline: "Trayectorias, iconos y nombres que suenan.", kind: "trivia", subject: "jugadores famosos" }
+      { slug: "jugadores-famosos", title: "Test de jugadores famosos", tagline: "Trayectorias, iconos y nombres que suenan.", kind: "trivia", subject: "jugadores famosos" },
+      ...advancedDrafts("deportes")
     ]
   },
   {
@@ -818,7 +832,8 @@ const sectionDrafts: Array<Omit<QuizSection, "quizzes"> & { quizzes: QuizDraft[]
       { slug: "cultura-general-espana", title: "Cultura general Espana", tagline: "Arte, lugares, historia y referencias de aqui.", kind: "trivia", subject: "cultura general de Espana" },
       { slug: "cultura-general-europa", title: "Cultura general Europa", tagline: "Capitales, rios, arte y datos europeos.", kind: "trivia", subject: "cultura general europea" },
       { slug: "cultura-general-mundo", title: "Cultura general mundo", tagline: "Un viaje rapido por datos del planeta.", kind: "trivia", subject: "cultura general del mundo" },
-      { slug: "todo-el-mundo-deberia-saber", title: "Preguntas que todo el mundo deberia saber", tagline: "Basicos utiles que conviene tener frescos.", kind: "trivia", subject: "conocimientos basicos" }
+      { slug: "todo-el-mundo-deberia-saber", title: "Preguntas que todo el mundo deberia saber", tagline: "Basicos utiles que conviene tener frescos.", kind: "trivia", subject: "conocimientos basicos" },
+      ...advancedDrafts("cultura-general")
     ]
   },
   {
@@ -835,7 +850,8 @@ const sectionDrafts: Array<Omit<QuizSection, "quizzes"> & { quizzes: QuizDraft[]
       { slug: "mapas-continentes", title: "Mapas y continentes", tagline: "Hemisferios, oceanos y ubicacion global.", kind: "trivia", subject: "mapas y continentes" },
       { slug: "rios-montanas-oceanos", title: "Rios, montanas y oceanos", tagline: "Geografia fisica sin rodeos.", kind: "trivia", subject: "rios, montanas y oceanos" },
       { slug: "geografia-espana", title: "Geografia de Espana", tagline: "Rios, islas, ciudades y comunidades.", kind: "trivia", subject: "geografia de Espana" },
-      { slug: "geografia-extrema", title: "Geografia extrema", tagline: "Datos menos obvios para gente de mapa fino.", kind: "trivia", subject: "geografia extrema" }
+      { slug: "geografia-extrema", title: "Geografia extrema", tagline: "Datos menos obvios para gente de mapa fino.", kind: "trivia", subject: "geografia extrema" },
+      ...advancedDrafts("geografia")
     ]
   },
   {
@@ -851,7 +867,8 @@ const sectionDrafts: Array<Omit<QuizSection, "quizzes"> & { quizzes: QuizDraft[]
       { slug: "segunda-guerra-mundial", title: "Segunda Guerra Mundial", tagline: "Frentes, batallas y fechas fundamentales.", kind: "trivia", subject: "Segunda Guerra Mundial" },
       { slug: "civilizaciones-antiguas", title: "Civilizaciones antiguas", tagline: "Egipto, Roma, Grecia, America y Mesopotamia.", kind: "trivia", subject: "civilizaciones antiguas" },
       { slug: "reyes-imperios-conquistas", title: "Reyes, imperios y conquistas", tagline: "Gobernantes, expansiones y nombres grandes.", kind: "trivia", subject: "reyes, imperios y conquistas" },
-      { slug: "historia-extrema", title: "Historia nivel extremo", tagline: "Tratados, batallas y detalles para nota.", kind: "trivia", subject: "historia extrema" }
+      { slug: "historia-extrema", title: "Historia nivel extremo", tagline: "Tratados, batallas y detalles para nota.", kind: "trivia", subject: "historia extrema" },
+      ...advancedDrafts("historia")
     ]
   },
   {
@@ -867,8 +884,16 @@ const sectionDrafts: Array<Omit<QuizSection, "quizzes"> & { quizzes: QuizDraft[]
       { slug: "astronomia", title: "Astronomia", tagline: "Planetas, estrellas, lunas y espacio.", kind: "trivia", subject: "astronomia" },
       { slug: "cuerpo-humano", title: "Cuerpo humano", tagline: "Organos, huesos y funciones esenciales.", kind: "trivia", subject: "cuerpo humano" },
       { slug: "animales", title: "Animales", tagline: "Especies, rasgos y curiosidades naturales.", kind: "trivia", subject: "animales" },
-      { slug: "inventos-descubrimientos", title: "Inventos y descubrimientos", tagline: "Ideas, hallazgos y personas que cambiaron cosas.", kind: "trivia", subject: "inventos y descubrimientos" }
+      { slug: "inventos-descubrimientos", title: "Inventos y descubrimientos", tagline: "Ideas, hallazgos y personas que cambiaron cosas.", kind: "trivia", subject: "inventos y descubrimientos" },
+      ...advancedDrafts("ciencia")
     ]
+  },
+  {
+    id: "tecnologia",
+    title: "Tecnologia",
+    description: "Internet, ciberseguridad, hardware, software e historia digital.",
+    accent: "#4f8cff",
+    quizzes: advancedDrafts("tecnologia")
   },
   {
     id: "musica",
@@ -880,7 +905,8 @@ const sectionDrafts: Array<Omit<QuizSection, "quizzes"> & { quizzes: QuizDraft[]
       { slug: "musica-basico", title: "Musica basico", tagline: "Hits, artistas y grupos muy reconocibles.", kind: "trivia", subject: "musica basica" },
       { slug: "musica-dificil", title: "Musica dificil", tagline: "Albumes, escenas y nombres para melomanos.", kind: "trivia", subject: "musica dificil" },
       { slug: "reggaeton", title: "Reggaeton", tagline: "Artistas, himnos y cultura urbana latina.", kind: "trivia", subject: "reggaeton" },
-      { slug: "adivina-cancion-pista", title: "Adivina la cancion por la pista", tagline: "Lee la pista, piensa en ritmo y responde.", kind: "trivia", subject: "canciones por pistas" }
+      { slug: "adivina-cancion-pista", title: "Adivina la cancion por la pista", tagline: "Lee la pista, piensa en ritmo y responde.", kind: "trivia", subject: "canciones por pistas" },
+      ...advancedDrafts("musica")
     ]
   },
   {
@@ -893,7 +919,8 @@ const sectionDrafts: Array<Omit<QuizSection, "quizzes"> & { quizzes: QuizDraft[]
       { slug: "cine-basico", title: "Cine basico", tagline: "Peliculas y personajes que casi todos ubican.", kind: "trivia", subject: "cine basico" },
       { slug: "cine-dificil", title: "Cine dificil", tagline: "Directores, clasicos y cinefilia con detalle.", kind: "trivia", subject: "cine dificil" },
       { slug: "series-famosas", title: "Series famosas", tagline: "Personajes, cafeterias, familias y tronos.", kind: "trivia", subject: "series famosas" },
-      { slug: "personajes-pantalla", title: "Personajes famosos", tagline: "Reconoce iconos de peliculas y series por pistas.", kind: "trivia", subject: "personajes de cine y series" }
+      { slug: "personajes-pantalla", title: "Personajes famosos", tagline: "Reconoce iconos de peliculas y series por pistas.", kind: "trivia", subject: "personajes de cine y series" },
+      ...advancedDrafts("cine-series")
     ]
   },
   {
@@ -904,8 +931,30 @@ const sectionDrafts: Array<Omit<QuizSection, "quizzes"> & { quizzes: QuizDraft[]
     quizzes: [
       { slug: "videojuegos-basicos", title: "Videojuegos basicos", tagline: "Personajes y sagas faciles de reconocer.", kind: "trivia", subject: "videojuegos basicos" },
       { slug: "videojuegos-dificiles", title: "Videojuegos dificiles", tagline: "Estudios, juegos de culto y detalles finos.", kind: "trivia", subject: "videojuegos dificiles" },
-      { slug: "pokemon", title: "Pokemon", tagline: "Pokedex, regiones, tipos y clasicos de la saga.", kind: "trivia", subject: "Pokemon" }
+      { slug: "pokemon", title: "Pokemon", tagline: "Pokedex, regiones, tipos y clasicos de la saga.", kind: "trivia", subject: "Pokemon" },
+      ...advancedDrafts("gaming")
     ]
+  },
+  {
+    id: "naturaleza-animales",
+    title: "Naturaleza y animales",
+    description: "Animales raros, oceanos, dinosaurios y biologia natural.",
+    accent: "#2f9e44",
+    quizzes: advancedDrafts("naturaleza-animales")
+  },
+  {
+    id: "comida",
+    title: "Comida",
+    description: "Gastronomia mundial, ingredientes, postres y tecnicas.",
+    accent: "#d77b28",
+    quizzes: advancedDrafts("comida")
+  },
+  {
+    id: "idiomas",
+    title: "Idiomas",
+    description: "Etimologia, ortografia, traducciones y lenguas del mundo.",
+    accent: "#8f5cf4",
+    quizzes: advancedDrafts("idiomas")
   },
   {
     id: "retos-rapidos",
