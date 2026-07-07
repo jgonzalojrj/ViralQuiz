@@ -816,7 +816,7 @@ function pack(
   return { slug, title, tagline, subject, difficulty, pool, offset };
 }
 
-function balancedPacks(difficulty: AdvancedDifficulty, pool: string, specs: BalancedDraftSpec[]): AdvancedQuizDraft[] {
+function balancedPacks(difficulty: AdvancedDifficulty, pool: keyof typeof advancedPools, specs: BalancedDraftSpec[]): AdvancedQuizDraft[] {
   return specs.map((spec, index) => pack(spec.slug, spec.title, spec.tagline, spec.subject, difficulty, pool, index * 7));
 }
 
