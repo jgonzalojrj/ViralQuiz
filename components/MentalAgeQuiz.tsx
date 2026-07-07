@@ -45,7 +45,6 @@ export function MentalAgeQuiz() {
             <span>Edad mental</span>
             <strong>{result.age}</strong>
           </div>
-          <div className="result-card-title">{result.title}</div>
           <div className="result-ribbon">ViralQuiz</div>
         </div>
         <div className="result-copy">
@@ -53,9 +52,9 @@ export function MentalAgeQuiz() {
           <h1>{result.title}</h1>
           <p>{result.summary}</p>
           <div className="result-tags" aria-label="Resumen del resultado">
-            <span>Resultado instantaneo</span>
+            <span>Visual</span>
             <span>Compartible</span>
-            <span>2 min</span>
+            <span>1 min</span>
           </div>
           <button className="button" type="button" onClick={restart}>
             Repetir test
@@ -79,7 +78,6 @@ export function MentalAgeQuiz() {
       <div className="question-block">
         <p className="section-kicker">Test de edad mental</p>
         <h1>{currentQuestion.prompt}</h1>
-        <p>Elige la opcion que mas se parezca a ti ahora mismo.</p>
       </div>
 
       <div className="answer-grid">
