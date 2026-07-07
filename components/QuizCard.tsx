@@ -7,8 +7,6 @@ type QuizCardProps = {
 };
 
 export function QuizCard({ quiz, featured = false }: QuizCardProps) {
-  const isAvailable = quiz.status === "available";
-
   return (
     <article className={`quiz-card ${featured ? "quiz-card-featured" : ""}`}>
       <div className="quiz-card-art" aria-hidden="true">
@@ -17,19 +15,15 @@ export function QuizCard({ quiz, featured = false }: QuizCardProps) {
         <span />
       </div>
       <div>
-        <p className="quiz-card-kicker">{isAvailable ? "Disponible" : "Proximamente"}</p>
+        <p className="quiz-card-kicker">{quiz.kind === "trivia" ? "Trivia" : quiz.kind === "challenge" ? "Reto" : "Personal"}</p>
         <h3>{quiz.title}</h3>
         <p>{quiz.tagline}</p>
       </div>
       <div className="quiz-card-footer">
         <span className="quiz-duration">{quiz.duration}</span>
-        {isAvailable ? (
-          <Link className="button button-small" href={quiz.href}>
-            Empezar
-          </Link>
-        ) : (
-          <span className="pill">En cola</span>
-        )}
+        <Link className="button button-small" href={quiz.href}>
+          Empezar
+        </Link>
       </div>
     </article>
   );
