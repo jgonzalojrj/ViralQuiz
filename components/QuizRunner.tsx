@@ -52,12 +52,13 @@ export function QuizRunner({ quiz }: QuizRunnerProps) {
     const resultEyebrow = isTrivia ? "Marcador final" : quiz.kind === "challenge" ? "Tu reto" : "Tu resultado";
     const reasonTitle = isTrivia ? "Lectura del marcador" : "Por que te ha salido esto";
     const tags = isTrivia
-      ? ["Quiz", `${totalScore} de ${quiz.questions.length}`, "Compartible"]
-      : [quiz.kind === "challenge" ? "Reto rapido" : "Tu estilo", "Orientativo", quiz.duration];
+      ? [`${totalScore} aciertos`, result.scoreLabel, "Listo para compartir"]
+      : [result.scoreLabel, quiz.kind === "challenge" ? "Reto rapido" : "Tu estilo", quiz.duration];
 
     return (
       <section className={`test-shell result-shell result-${quiz.kind}`} aria-live="polite">
         <div className="result-card" style={{ "--result-accent": result.accent } as CSSVariableProperties}>
+          <div className="result-card-mark">{resultEyebrow}</div>
           <div className="result-visual">
             <span>{visualLabel}</span>
             <strong>{scoreLabel}</strong>
@@ -79,9 +80,11 @@ export function QuizRunner({ quiz }: QuizRunnerProps) {
             ))}
           </div>
           <p className="test-note">{quiz.note}</p>
-          <button className="button" type="button" onClick={restart}>
-            Repetir test
-          </button>
+          <div className="result-actions">
+            <button className="button" type="button" onClick={restart}>
+              Repetir test
+            </button>
+          </div>
         </div>
       </section>
     );

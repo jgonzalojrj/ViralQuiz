@@ -763,24 +763,30 @@ button {
 
 .result-shell {
   display: grid;
-  width: min(620px, calc(100% - 32px));
-  min-height: min(760px, calc(100svh - 110px));
+  grid-template-columns: minmax(0, 1fr);
+  width: min(650px, calc(100% - 32px));
+  min-height: min(820px, calc(100svh - 104px));
   place-items: center;
   align-content: center;
-  gap: clamp(18px, 3vw, 26px);
-  margin: clamp(16px, 4svh, 44px) auto;
-  padding: clamp(20px, 4vw, 36px);
+  justify-items: center;
+  gap: clamp(16px, 2.8vw, 24px);
+  margin: clamp(14px, 3.5svh, 38px) auto;
+  padding: clamp(22px, 4vw, 40px);
+  overflow: hidden;
   text-align: center;
 }
 
 .result-card {
   position: relative;
   display: grid;
+  grid-template-rows: auto 1fr auto;
   place-items: center;
-  width: min(360px, 100%);
-  min-height: clamp(300px, 50vw, 360px);
+  width: min(374px, 100%);
+  min-height: clamp(320px, 52vw, 390px);
   margin: 0 auto;
+  padding: 16px;
   overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.72);
   border-radius: 8px;
   background:
     radial-gradient(circle at 24% 18%, color-mix(in srgb, var(--result-accent) 38%, white), transparent 32%),
@@ -790,6 +796,24 @@ button {
     0 24px 70px rgba(21, 25, 29, 0.16),
     inset 0 1px 0 rgba(255, 255, 255, 0.84);
   animation: resultPop 420ms ease both;
+}
+
+.result-card-mark {
+  position: relative;
+  z-index: 1;
+  display: inline-grid;
+  min-height: 30px;
+  place-items: center;
+  padding: 7px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.76);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  color: color-mix(in srgb, var(--result-accent) 76%, var(--ink));
+  font-size: 0.78rem;
+  font-weight: 950;
+  line-height: 1;
+  text-transform: uppercase;
+  box-shadow: 0 10px 26px rgba(21, 25, 29, 0.08);
 }
 
 .result-card::before,
@@ -821,11 +845,12 @@ button {
   position: relative;
   z-index: 1;
   display: grid;
+  align-self: center;
   place-items: center;
-  width: min(214px, 70%);
+  width: min(212px, 68%);
   aspect-ratio: 1;
   padding: 16px;
-  border: 10px solid color-mix(in srgb, var(--result-accent) 34%, white);
+  border: 9px solid color-mix(in srgb, var(--result-accent) 34%, white);
   border-radius: 50%;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.68)),
@@ -858,9 +883,9 @@ button {
 }
 
 .result-ribbon {
-  position: absolute;
-  right: 16px;
-  bottom: 16px;
+  position: relative;
+  right: auto;
+  bottom: auto;
   z-index: 1;
   min-height: 34px;
   padding: 8px 12px;
@@ -875,16 +900,21 @@ button {
 .result-copy {
   display: grid;
   justify-items: center;
-  width: min(520px, 100%);
-  gap: 10px;
+  width: min(540px, 100%);
+  gap: 12px;
   margin: 0 auto;
   text-align: center;
+}
+
+.result-copy h1 {
+  max-width: 520px;
+  margin-top: 0;
 }
 
 .result-copy p:not(.section-kicker) {
   max-width: 480px;
   margin: 0;
-  color: var(--muted);
+  color: #62584d;
   font-size: 1.04rem;
   line-height: 1.55;
 }
@@ -899,15 +929,16 @@ button {
 
 .result-reason {
   display: grid;
-  width: min(450px, 100%);
-  gap: 6px;
-  margin: 4px auto 0;
-  padding: 14px 16px;
+  width: min(470px, 100%);
+  gap: 8px;
+  margin: 2px auto 0;
+  padding: 16px 18px;
   border: 1px solid color-mix(in srgb, var(--result-accent) 22%, #eadfd2);
   border-radius: 8px;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.52)),
     color-mix(in srgb, var(--result-accent) 7%, #fff8ef);
+  box-shadow: 0 14px 34px rgba(21, 25, 29, 0.07);
   text-align: center;
 }
 
@@ -943,6 +974,18 @@ button {
 .result-tags span {
   background: color-mix(in srgb, var(--result-accent) 11%, #f5efe7);
   color: #6d5f50;
+}
+
+.result-actions {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 2px;
+}
+
+.result-actions .button {
+  justify-content: center;
+  min-width: min(220px, 100%);
 }
 
 @keyframes resultPop {
@@ -1056,25 +1099,43 @@ button {
     width: min(100% - 28px, 520px);
     min-height: calc(100svh - 94px);
     margin: 14px auto 24px;
-    padding: 16px;
+    padding: 15px;
     gap: 16px;
   }
 
   .result-card {
-    width: min(100%, 304px);
-    min-height: 266px;
+    width: min(100%, 312px);
+    min-height: 308px;
+    padding: 14px;
   }
 
   .result-visual {
-    width: min(190px, 72%);
+    width: min(184px, 70%);
   }
 
   .result-visual strong {
-    font-size: 3rem;
+    font-size: 2.88rem;
+  }
+
+  .result-copy {
+    gap: 10px;
+  }
+
+  .result-copy p:not(.section-kicker) {
+    font-size: 0.98rem;
+  }
+
+  .result-copy .result-subtitle {
+    font-size: 1.02rem;
   }
 
   .result-reason {
     padding: 12px 13px;
+  }
+
+  .result-actions,
+  .result-actions .button {
+    width: 100%;
   }
 }
 
