@@ -708,9 +708,16 @@ const sectionDrafts: Array<Omit<QuizSection, "quizzes"> & { quizzes: QuizDraft[]
     accent: "#f4b63f",
     quizzes: [
       { slug: "conocimientos-futbol", title: "Test de conocimientos de futbol", tagline: "Reglas, historia y cultura futbolera.", kind: "trivia", subject: "futbol" },
+      { slug: "futbol-basico", title: "Futbol basico", tagline: "Reglas y datos que todo aficionado reconoce.", kind: "trivia", subject: "futbol basico" },
+      { slug: "futbol-dificil", title: "Futbol dificil", tagline: "Historia, torneos y detalles para quien sabe.", kind: "trivia", subject: "futbol dificil" },
+      { slug: "futbol-extremo", title: "Futbol extremo", tagline: "Preguntas muy especificas de cultura futbolera.", kind: "trivia", subject: "futbol extremo" },
       { slug: "conocimientos-baloncesto", title: "Test de conocimientos de baloncesto", tagline: "Cancha, reglas y jugadores clave.", kind: "trivia", subject: "baloncesto" },
+      { slug: "baloncesto-basico", title: "Baloncesto basico", tagline: "Puntos, pista y reglas faciles.", kind: "trivia", subject: "baloncesto basico" },
+      { slug: "baloncesto-dificil", title: "Baloncesto dificil", tagline: "MVPs, campeones y jugadores historicos.", kind: "trivia", subject: "baloncesto dificil" },
       { slug: "conocimientos-tenis", title: "Test de conocimientos de tenis", tagline: "Puntos, torneos y golpes basicos.", kind: "trivia", subject: "tenis" },
       { slug: "conocimientos-formula-1", title: "Test de conocimientos de Formula 1", tagline: "Circuitos, estrategia y velocidad.", kind: "trivia", subject: "Formula 1" },
+      { slug: "formula-1-basico", title: "Formula 1 basico", tagline: "Banderas, boxes y conceptos clave.", kind: "trivia", subject: "Formula 1 basica" },
+      { slug: "formula-1-dificil", title: "Formula 1 dificil", tagline: "Campeones, escuderias y carreras historicas.", kind: "trivia", subject: "Formula 1 dificil" },
       { slug: "adivina-deporte-pista", title: "Adivina el deporte por la pista", tagline: "Lee la pista y piensa rapido.", kind: "trivia", subject: "deportes por pistas" },
       { slug: "reglas-deportivas", title: "Test de reglas deportivas", tagline: "Normas que cambian por completo una jugada.", kind: "trivia", subject: "reglas deportivas" },
       { slug: "historia-futbol", title: "Test de historia del futbol", tagline: "Copas, epocas y momentos famosos.", kind: "trivia", subject: "historia del futbol" },
@@ -791,6 +798,9 @@ const sectionDrafts: Array<Omit<QuizSection, "quizzes"> & { quizzes: QuizDraft[]
     accent: "#e24ca7",
     quizzes: [
       { slug: "cultura-musical", title: "Test de cultura musical", tagline: "Artistas, estilos y memoria de canciones.", kind: "trivia", subject: "musica" },
+      { slug: "musica-basico", title: "Musica basico", tagline: "Hits, artistas y grupos muy reconocibles.", kind: "trivia", subject: "musica basica" },
+      { slug: "musica-dificil", title: "Musica dificil", tagline: "Albumes, escenas y nombres para melomanos.", kind: "trivia", subject: "musica dificil" },
+      { slug: "reggaeton", title: "Reggaeton", tagline: "Artistas, himnos y cultura urbana latina.", kind: "trivia", subject: "reggaeton" },
       { slug: "adivina-cancion-pista", title: "Adivina la cancion por la pista", tagline: "Lee la pista, piensa en ritmo y responde.", kind: "trivia", subject: "canciones por pistas" }
     ]
   },
@@ -801,7 +811,21 @@ const sectionDrafts: Array<Omit<QuizSection, "quizzes"> & { quizzes: QuizDraft[]
     accent: "#3d7cff",
     quizzes: [
       { slug: "cine-series", title: "Test de cine y series", tagline: "Un repaso rapido por historias, escenas y fandom.", kind: "trivia", subject: "cine y series" },
+      { slug: "cine-basico", title: "Cine basico", tagline: "Peliculas y personajes que casi todos ubican.", kind: "trivia", subject: "cine basico" },
+      { slug: "cine-dificil", title: "Cine dificil", tagline: "Directores, clasicos y cinefilia con detalle.", kind: "trivia", subject: "cine dificil" },
+      { slug: "series-famosas", title: "Series famosas", tagline: "Personajes, cafeterias, familias y tronos.", kind: "trivia", subject: "series famosas" },
       { slug: "personajes-pantalla", title: "Personajes famosos", tagline: "Reconoce iconos de peliculas y series por pistas.", kind: "trivia", subject: "personajes de cine y series" }
+    ]
+  },
+  {
+    id: "gaming",
+    title: "Gaming",
+    description: "Videojuegos, sagas, personajes y cultura gamer.",
+    accent: "#6c7cff",
+    quizzes: [
+      { slug: "videojuegos-basicos", title: "Videojuegos basicos", tagline: "Personajes y sagas faciles de reconocer.", kind: "trivia", subject: "videojuegos basicos" },
+      { slug: "videojuegos-dificiles", title: "Videojuegos dificiles", tagline: "Estudios, juegos de culto y detalles finos.", kind: "trivia", subject: "videojuegos dificiles" },
+      { slug: "pokemon", title: "Pokemon", tagline: "Pokedex, regiones, tipos y clasicos de la saga.", kind: "trivia", subject: "Pokemon" }
     ]
   },
   {
