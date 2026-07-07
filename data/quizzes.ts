@@ -201,49 +201,13 @@ const mentalAgeResults: QuizResult[] = [
   }
 ];
 
-const triviaPrompts = [
-  "Cual seria la forma mas fiable de comprobar un dato sobre {subject}?",
-  "En {subject}, que detalle suele decidir si alguien entiende bien el tema?",
-  "Si una pregunta de {subject} incluye una excepcion, conviene...",
-  "Que respuesta encaja mejor con un test de conocimientos de {subject}?",
-  "Cuando dudas entre dos opciones sobre {subject}, lo mas sensato es...",
-  "Un buen reto de {subject} deberia medir...",
-  "Si aparece una norma basica de {subject}, normalmente importa...",
-  "Que pista suele ayudar mas en una pregunta de {subject}?",
-  "En una trivia de {subject}, un error frecuente es...",
-  "Para reconocer a una figura famosa de {subject}, mirarias primero...",
-  "Si la pregunta habla de historia de {subject}, conviene fijarse en...",
-  "Una pregunta dificil de {subject} suele mezclar...",
-  "Que opcion parece mas propia de alguien que domina {subject}?",
-  "Antes de responder una pregunta rapida de {subject}, ayuda...",
-  "Un resultado alto en {subject} significa que..."
-];
-
-const triviaOptions = [
-  ["Recordar una frase viral", "Contrastar reglas, fechas o contexto", "Elegir la respuesta mas llamativa", "Responder por intuicion"],
-  ["El color de la equipacion", "La norma o el contexto", "El nombre mas famoso", "La opcion mas larga"],
-  ["Leerla dos veces", "Ignorarla", "Elegir al azar", "Buscar la opcion graciosa"],
-  ["Una respuesta concreta", "Un estado de animo", "Un color favorito", "Una preferencia personal"],
-  ["Descartar lo imposible", "Quedarte con la primera", "Elegir la mas popular", "Cambiar sin pensar"],
-  ["Memoria y criterio", "Solo personalidad", "Solo suerte", "Solo velocidad"],
-  ["Porque cambia la respuesta", "Porque queda bonito", "Porque siempre es igual", "Porque no afecta"],
-  ["Fecha, regla o pista tecnica", "El tono de la frase", "El emoji imaginario", "La opcion mas corta"],
-  ["Confundir fama con precision", "Leer demasiado", "Saber la regla", "Recordar el contexto"],
-  ["Trayectoria, logro o estilo", "El peinado", "La ciudad al azar", "La respuesta mas nueva"],
-  ["Epoca y competicion", "Tu equipo favorito", "El color mas fuerte", "La palabra mas rara"],
-  ["Regla, contexto y memoria", "Solo opiniones", "Solo preferencias", "Solo estetica"],
-  ["Distingue detalles pequenos", "Contesta siempre lo mismo", "Evita toda dificultad", "Elige lo que suena mejor"],
-  ["Separar pista y respuesta", "Correr sin leer", "Mirar solo la primera palabra", "Pensar en otra cosa"],
-  ["Tienes buena base y atencion", "Eres una persona perfecta", "Nunca fallas", "No necesitas leer"]
-];
-
 type TriviaSeed = {
   prompt: string;
   correct: string;
   wrong: [string, string, string];
 };
 
-const sportsTriviaSeeds: Record<string, TriviaSeed[]> = {
+const knowledgeTriviaSeeds: Record<string, TriviaSeed[]> = {
   "conocimientos-futbol": [
     { prompt: "Cuantos jugadores tiene un equipo de futbol en el campo al empezar?", correct: "11", wrong: ["9", "10", "12"] },
     { prompt: "Que sancion muestra el arbitro para expulsar a un jugador?", correct: "Tarjeta roja", wrong: ["Tarjeta azul", "Tarjeta verde", "Tarjeta blanca"] },
@@ -379,6 +343,125 @@ const sportsTriviaSeeds: Record<string, TriviaSeed[]> = {
     { prompt: "Que jugador de baloncesto espanol triunfo en la NBA y la seleccion?", correct: "Pau Gasol", wrong: ["Ricky Rubio", "Marc Marquez", "Iker Casillas"] },
     { prompt: "Que futbolista frances es famoso por su velocidad y el PSG/Francia?", correct: "Kylian Mbappe", wrong: ["Antoine Griezmann", "Karim Benzema", "Olivier Giroud"] },
     { prompt: "Que piloto neerlandes es figura reciente de Red Bull?", correct: "Max Verstappen", wrong: ["Sebastian Vettel", "Lando Norris", "Charles Leclerc"] }
+  ],
+  "cultura-general": [
+    { prompt: "Cual es la capital de Francia?", correct: "Paris", wrong: ["Roma", "Berlin", "Lisboa"] },
+    { prompt: "Que planeta es conocido como el planeta rojo?", correct: "Marte", wrong: ["Venus", "Jupiter", "Saturno"] },
+    { prompt: "Quien pinto La Gioconda?", correct: "Leonardo da Vinci", wrong: ["Pablo Picasso", "Vincent van Gogh", "Claude Monet"] },
+    { prompt: "Cual es el oceano mas grande del mundo?", correct: "Pacifico", wrong: ["Atlantico", "Indico", "Artico"] },
+    { prompt: "Que sustancia tiene la formula H2O?", correct: "Agua", wrong: ["Oxigeno", "Sal", "Dioxido de carbono"] },
+    { prompt: "En que continente esta Egipto?", correct: "Africa", wrong: ["Asia", "Europa", "Oceania"] },
+    { prompt: "Cual es el idioma oficial principal de Brasil?", correct: "Portugues", wrong: ["Espanol", "Frances", "Italiano"] },
+    { prompt: "Cual es el animal mas grande del mundo?", correct: "Ballena azul", wrong: ["Elefante africano", "Tiburon blanco", "Jirafa"] },
+    { prompt: "En que pais esta la Torre Eiffel?", correct: "Francia", wrong: ["Italia", "Belgica", "Suiza"] },
+    { prompt: "Cuantos lados tiene un hexagono?", correct: "6", wrong: ["5", "7", "8"] },
+    { prompt: "Quien escribio Don Quijote de la Mancha?", correct: "Miguel de Cervantes", wrong: ["Federico Garcia Lorca", "Gabriel Garcia Marquez", "Lope de Vega"] },
+    { prompt: "Que metal corresponde al simbolo quimico Au?", correct: "Oro", wrong: ["Plata", "Aluminio", "Cobre"] },
+    { prompt: "Cual es el primer mes del ano?", correct: "Enero", wrong: ["Marzo", "Diciembre", "Septiembre"] },
+    { prompt: "Cual es el rio mas largo de Sudamerica?", correct: "Amazonas", wrong: ["Nilo", "Danubio", "Rin"] },
+    { prompt: "Que elemento quimico tiene el simbolo O?", correct: "Oxigeno", wrong: ["Oro", "Osmio", "Hidrogeno"] }
+  ],
+  "curiosidades-rapidas": [
+    { prompt: "Que mamifero pone huevos?", correct: "Ornitorrinco", wrong: ["Delfin", "Koala", "Murcielago"] },
+    { prompt: "Que producen las abejas a partir del nectar?", correct: "Miel", wrong: ["Leche", "Seda", "Aceite"] },
+    { prompt: "Cual es el hueso mas largo del cuerpo humano?", correct: "Femur", wrong: ["Tibia", "Humero", "Radio"] },
+    { prompt: "Que pais europeo suele asociarse con forma de bota?", correct: "Italia", wrong: ["Grecia", "Noruega", "Portugal"] },
+    { prompt: "Cual es la estrella mas cercana a la Tierra?", correct: "El Sol", wrong: ["Sirio", "Vega", "Proxima Centauri"] },
+    { prompt: "Que instrumento se usa para medir la temperatura?", correct: "Termometro", wrong: ["Barometro", "Cronometro", "Higrometro"] },
+    { prompt: "Que gas es el mas abundante en el aire que respiramos?", correct: "Nitrogeno", wrong: ["Oxigeno", "Helio", "Dioxido de carbono"] },
+    { prompt: "Que color se obtiene mezclando amarillo y azul?", correct: "Verde", wrong: ["Naranja", "Morado", "Rojo"] },
+    { prompt: "Que numero representa la X en numeros romanos?", correct: "10", wrong: ["5", "50", "100"] },
+    { prompt: "Cual es el satelite natural de la Tierra?", correct: "La Luna", wrong: ["Marte", "Europa", "Titan"] },
+    { prompt: "Cual es el continente mas frio?", correct: "Antartida", wrong: ["Europa", "Asia", "America"] },
+    { prompt: "Como se llama el proceso por el que las plantas fabrican alimento con luz?", correct: "Fotosintesis", wrong: ["Respiracion", "Evaporacion", "Fermentacion"] },
+    { prompt: "Que animal aparece en el logotipo de WWF?", correct: "Panda", wrong: ["Tigre", "Oso polar", "Aguila"] },
+    { prompt: "Que escala se asocia popularmente con la magnitud de los terremotos?", correct: "Richter", wrong: ["Beaufort", "Celsius", "Kelvin"] },
+    { prompt: "De que pais es originario el sushi?", correct: "Japon", wrong: ["China", "Corea del Sur", "Tailandia"] }
+  ],
+  "geografia-express": [
+    { prompt: "Cual es la capital de Italia?", correct: "Roma", wrong: ["Milan", "Venecia", "Florencia"] },
+    { prompt: "En que pais esta Machu Picchu?", correct: "Peru", wrong: ["Mexico", "Chile", "Colombia"] },
+    { prompt: "En que continente esta el rio Nilo?", correct: "Africa", wrong: ["Europa", "Asia", "America"] },
+    { prompt: "En que continente se encuentra el desierto del Sahara?", correct: "Africa", wrong: ["Asia", "Oceania", "America"] },
+    { prompt: "Cual es la capital de Japon?", correct: "Tokio", wrong: ["Kioto", "Osaka", "Seul"] },
+    { prompt: "Que oceano separa America de Europa?", correct: "Atlantico", wrong: ["Pacifico", "Indico", "Artico"] },
+    { prompt: "Que pais tiene una hoja de arce en su bandera?", correct: "Canada", wrong: ["Australia", "Irlanda", "Noruega"] },
+    { prompt: "Cual es la capital de Argentina?", correct: "Buenos Aires", wrong: ["Montevideo", "Santiago", "Lima"] },
+    { prompt: "Que cordillera separa Espana y Francia?", correct: "Pirineos", wrong: ["Alpes", "Andes", "Apeninos"] },
+    { prompt: "En que pais estan Sydney y Melbourne?", correct: "Australia", wrong: ["Nueva Zelanda", "Canada", "Sudafrica"] },
+    { prompt: "Que estrecho separa Espana y Marruecos?", correct: "Gibraltar", wrong: ["Bering", "Magallanes", "Bosforo"] },
+    { prompt: "Cual es la capital de Portugal?", correct: "Lisboa", wrong: ["Oporto", "Braga", "Coimbra"] },
+    { prompt: "Cual es el pais con mayor superficie del mundo?", correct: "Rusia", wrong: ["Canada", "China", "Estados Unidos"] },
+    { prompt: "Cual es la montana mas alta del mundo?", correct: "Everest", wrong: ["K2", "Aconcagua", "Mont Blanc"] },
+    { prompt: "Cual es la capital de Marruecos?", correct: "Rabat", wrong: ["Casablanca", "Marrakech", "Fez"] }
+  ],
+  "cultura-musical": [
+    { prompt: "Que grupo canto Bohemian Rhapsody?", correct: "Queen", wrong: ["The Beatles", "ABBA", "Pink Floyd"] },
+    { prompt: "Que artista canta Blinding Lights?", correct: "The Weeknd", wrong: ["Drake", "Bruno Mars", "Post Malone"] },
+    { prompt: "De que pais es Shakira?", correct: "Colombia", wrong: ["Mexico", "Argentina", "Espana"] },
+    { prompt: "Que instrumento tiene teclas blancas y negras?", correct: "Piano", wrong: ["Violin", "Bateria", "Trompeta"] },
+    { prompt: "De donde es Bad Bunny?", correct: "Puerto Rico", wrong: ["Republica Dominicana", "Colombia", "Chile"] },
+    { prompt: "Que artista lanzo el album Thriller?", correct: "Michael Jackson", wrong: ["Prince", "Stevie Wonder", "George Michael"] },
+    { prompt: "Que banda tuvo como miembros a John Lennon y Paul McCartney?", correct: "The Beatles", wrong: ["The Rolling Stones", "Queen", "Oasis"] },
+    { prompt: "Que instrumento clasico suele tener seis cuerdas?", correct: "Guitarra", wrong: ["Flauta", "Saxofon", "Timbal"] },
+    { prompt: "Que cantante es conocida como la Reina del Pop?", correct: "Madonna", wrong: ["Adele", "Billie Eilish", "Dua Lipa"] },
+    { prompt: "Que genero musical se asocia con improvisacion y swing?", correct: "Jazz", wrong: ["Reggaeton", "Punk", "Tecno"] },
+    { prompt: "Que compositor escribio la Quinta Sinfonia?", correct: "Ludwig van Beethoven", wrong: ["Wolfgang Amadeus Mozart", "Johann Sebastian Bach", "Frederic Chopin"] },
+    { prompt: "Que festival musical se celebra en Indio, California?", correct: "Coachella", wrong: ["Glastonbury", "Tomorrowland", "Lollapalooza Berlin"] },
+    { prompt: "Que artista canta Shape of You?", correct: "Ed Sheeran", wrong: ["Sam Smith", "Harry Styles", "Justin Bieber"] },
+    { prompt: "Que grupo publico Hotel California?", correct: "Eagles", wrong: ["Fleetwood Mac", "The Doors", "Bon Jovi"] },
+    { prompt: "Que banda surcoreana popularizo Dynamite?", correct: "BTS", wrong: ["BLACKPINK", "EXO", "Stray Kids"] }
+  ],
+  "adivina-cancion-pista": [
+    { prompt: "Hit de The Weeknd de 2019 con luces en el titulo.", correct: "Blinding Lights", wrong: ["Starboy", "Save Your Tears", "The Hills"] },
+    { prompt: "Cancion de Queen famosa por su mezcla de rock y opera.", correct: "Bohemian Rhapsody", wrong: ["Don't Stop Me Now", "Radio Ga Ga", "Somebody to Love"] },
+    { prompt: "Tema de Celine Dion asociado a la pelicula Titanic.", correct: "My Heart Will Go On", wrong: ["Because You Loved Me", "All by Myself", "The Power of Love"] },
+    { prompt: "Cancion global de 2017 de Luis Fonsi y Daddy Yankee.", correct: "Despacito", wrong: ["Gasolina", "Danza Kuduro", "Bailando"] },
+    { prompt: "Tema de Pharrell Williams incluido en Gru 2.", correct: "Happy", wrong: ["Get Lucky", "Freedom", "Blurred Lines"] },
+    { prompt: "Himno de Journey con un titulo sobre no dejar de creer.", correct: "Don't Stop Believin'", wrong: ["Open Arms", "Separate Ways", "Faithfully"] },
+    { prompt: "Cancion de Adele del album 25 que fue un gran regreso.", correct: "Hello", wrong: ["Rolling in the Deep", "Someone Like You", "Skyfall"] },
+    { prompt: "Tema de Ed Sheeran del album Divide.", correct: "Shape of You", wrong: ["Perfect", "Photograph", "Thinking Out Loud"] },
+    { prompt: "Cancion de Mark Ronson con Bruno Mars.", correct: "Uptown Funk", wrong: ["Locked Out of Heaven", "24K Magic", "Treasure"] },
+    { prompt: "Cancion en ingles de BTS estrenada en 2020.", correct: "Dynamite", wrong: ["Butter", "Permission to Dance", "DNA"] },
+    { prompt: "Tema de Lady Gaga y Bradley Cooper en A Star Is Born.", correct: "Shallow", wrong: ["Bad Romance", "Always Remember Us This Way", "Poker Face"] },
+    { prompt: "Cancion de Nirvana incluida en Nevermind.", correct: "Smells Like Teen Spirit", wrong: ["Come As You Are", "Lithium", "Heart-Shaped Box"] },
+    { prompt: "Tema de Michael Jackson famoso por su video de zombies.", correct: "Thriller", wrong: ["Beat It", "Billie Jean", "Bad"] },
+    { prompt: "Cancion de Oasis del album Morning Glory.", correct: "Wonderwall", wrong: ["Live Forever", "Champagne Supernova", "Supersonic"] },
+    { prompt: "Hit de Miley Cyrus publicado en 2023.", correct: "Flowers", wrong: ["Wrecking Ball", "Malibu", "Midnight Sky"] }
+  ],
+  "cine-series": [
+    { prompt: "Que pelicula tiene como protagonistas a Jack y Rose?", correct: "Titanic", wrong: ["Avatar", "Pearl Harbor", "El diario de Noah"] },
+    { prompt: "Que saga incluye al personaje Darth Vader?", correct: "Star Wars", wrong: ["Star Trek", "Matrix", "Dune"] },
+    { prompt: "Quien dirigio Titanic?", correct: "James Cameron", wrong: ["Steven Spielberg", "Christopher Nolan", "Ridley Scott"] },
+    { prompt: "Que actor interpreto a Iron Man en el MCU?", correct: "Robert Downey Jr.", wrong: ["Chris Evans", "Mark Ruffalo", "Tom Holland"] },
+    { prompt: "Que saga gira alrededor de un anillo unico?", correct: "El senor de los anillos", wrong: ["Harry Potter", "Piratas del Caribe", "Los juegos del hambre"] },
+    { prompt: "En que saga aparece la escuela Hogwarts?", correct: "Harry Potter", wrong: ["Crepusculo", "Narnia", "Percy Jackson"] },
+    { prompt: "Que serie popular incluye el Trono de Hierro?", correct: "Game of Thrones", wrong: ["The Witcher", "Vikings", "The Crown"] },
+    { prompt: "Que pelicula animada trata sobre juguetes que cobran vida?", correct: "Toy Story", wrong: ["Shrek", "Monstruos S.A.", "Cars"] },
+    { prompt: "Quien dirigio Jurassic Park?", correct: "Steven Spielberg", wrong: ["George Lucas", "James Cameron", "Peter Jackson"] },
+    { prompt: "Que pelicula gano el Oscar a mejor pelicula en 1998?", correct: "Titanic", wrong: ["Salvar al soldado Ryan", "La vida es bella", "Good Will Hunting"] },
+    { prompt: "Que superheroe esta asociado con Wakanda?", correct: "Black Panther", wrong: ["Spider-Man", "Thor", "Doctor Strange"] },
+    { prompt: "Que serie tiene como protagonista a Walter White?", correct: "Breaking Bad", wrong: ["The Sopranos", "Lost", "Mad Men"] },
+    { prompt: "Que pelicula de Christopher Nolan trata sobre entrar en suenos?", correct: "Inception", wrong: ["Interstellar", "Tenet", "Memento"] },
+    { prompt: "Que personaje verde de DreamWorks vive en un pantano?", correct: "Shrek", wrong: ["Mike Wazowski", "Sully", "Po"] },
+    { prompt: "Que pelicula de ciencia ficcion presenta la nave Nostromo?", correct: "Alien", wrong: ["Blade Runner", "Terminator", "E.T."] }
+  ],
+  "personajes-pantalla": [
+    { prompt: "A que saga pertenece Jack Sparrow?", correct: "Piratas del Caribe", wrong: ["Harry Potter", "Matrix", "Indiana Jones"] },
+    { prompt: "En que serie aparece Eleven?", correct: "Stranger Things", wrong: ["Dark", "Wednesday", "The Last of Us"] },
+    { prompt: "Que identidad de superheroe usa Tony Stark?", correct: "Iron Man", wrong: ["Doctor Strange", "Hawkeye", "Ant-Man"] },
+    { prompt: "Que personaje de Breaking Bad es profesor de quimica?", correct: "Walter White", wrong: ["Jesse Pinkman", "Saul Goodman", "Gus Fring"] },
+    { prompt: "Que personaje de Star Wars usa una armadura negra y sable rojo?", correct: "Darth Vader", wrong: ["Yoda", "Obi-Wan Kenobi", "Han Solo"] },
+    { prompt: "En que saga aparece Hermione Granger?", correct: "Harry Potter", wrong: ["Crepusculo", "Divergente", "Narnia"] },
+    { prompt: "Que personaje lleva el Anillo Unico hasta Mordor?", correct: "Frodo Bolson", wrong: ["Aragorn", "Legolas", "Gandalf"] },
+    { prompt: "Que personaje de Game of Thrones es conocida como Madre de Dragones?", correct: "Daenerys Targaryen", wrong: ["Arya Stark", "Cersei Lannister", "Sansa Stark"] },
+    { prompt: "Que personaje es el protagonista de Matrix?", correct: "Neo", wrong: ["Morpheus", "Trinity", "Smith"] },
+    { prompt: "Que arqueologo de cine lleva sombrero y latigo?", correct: "Indiana Jones", wrong: ["Rick O'Connell", "Jack Ryan", "Ethan Hunt"] },
+    { prompt: "Que personaje de Disney canta Let It Go?", correct: "Elsa", wrong: ["Ariel", "Moana", "Rapunzel"] },
+    { prompt: "Que personaje de la familia Addams viste de negro y tiene humor seco?", correct: "Wednesday Addams", wrong: ["Morticia Addams", "Enid Sinclair", "Sabrina Spellman"] },
+    { prompt: "Que personaje de The Big Bang Theory suele decir Bazinga?", correct: "Sheldon Cooper", wrong: ["Leonard Hofstadter", "Howard Wolowitz", "Raj Koothrappali"] },
+    { prompt: "Que protagonista usa arco en Los juegos del hambre?", correct: "Katniss Everdeen", wrong: ["Tris Prior", "Lara Croft", "Rey"] },
+    { prompt: "Que boxeador ficticio es protagonista de Rocky?", correct: "Rocky Balboa", wrong: ["Apollo Creed", "Jake LaMotta", "Adonis Johnson"] }
   ]
 };
 
@@ -444,7 +527,7 @@ function makeTriviaSeedQuestions(slug: string, seeds: TriviaSeed[]) {
       options: order.map((labelIndex, optionIndex) => ({
         id: `${slug}-${index + 1}-${optionIndex + 1}`,
         label: labels[labelIndex],
-        value: labelIndex === 0 ? 4 : 1
+        value: labelIndex === 0 ? 1 : 0
       }))
     };
   });
@@ -455,12 +538,16 @@ function makeQuestions(kind: QuizKind, slug: string, subject: string) {
     return mentalAgeQuestions;
   }
 
-  if (kind === "trivia" && sportsTriviaSeeds[slug]) {
-    return makeTriviaSeedQuestions(slug, sportsTriviaSeeds[slug]);
+  if (kind === "trivia" && knowledgeTriviaSeeds[slug]) {
+    return makeTriviaSeedQuestions(slug, knowledgeTriviaSeeds[slug]);
   }
 
-  const prompts = kind === "challenge" ? challengePrompts : kind === "trivia" ? triviaPrompts : personalPrompts;
-  const optionGroups = kind === "challenge" ? challengeOptions : kind === "trivia" ? triviaOptions : personalOptions;
+  if (kind === "trivia") {
+    throw new Error(`Missing knowledge question bank for trivia quiz: ${slug}`);
+  }
+
+  const prompts = kind === "challenge" ? challengePrompts : personalPrompts;
+  const optionGroups = kind === "challenge" ? challengeOptions : personalOptions;
 
   return prompts.map((prompt, index) => ({
     id: `${slug}-${index + 1}`,
@@ -477,24 +564,31 @@ function makeResults(kind: QuizKind, subject: string, accent: string, slug: stri
   if (kind === "trivia") {
     return [
       {
-        id: "starter",
-        title: "Nivel curioso",
-        scoreLabel: "Base",
-        summary: `Tienes una primera base sobre ${subject}. Te falta afinar detalles, pero ya sabes por donde mirar.`,
+        id: "basic",
+        title: "Base en marcha",
+        scoreLabel: "Basico",
+        summary: `Has acertado algunas de ${subject}, pero todavia hay margen para pillar mejor los datos mas claros.`,
         accent
       },
       {
-        id: "solid",
-        title: "Buen ojo",
-        scoreLabel: "Bien",
-        summary: `Te mueves con soltura en ${subject}. Hay memoria, criterio y alguna respuesta con bastante oficio.`,
+        id: "medium",
+        title: "Buen nivel",
+        scoreLabel: "Medio",
+        summary: `Tienes una base solida de ${subject}. Fallas alguna pregunta menos obvia, pero controlas lo principal.`,
         accent
       },
       {
-        id: "expert",
-        title: "Modo experto",
-        scoreLabel: "Top",
-        summary: `Dominas bastantes claves de ${subject}. Este resultado pide captura y un poco de pique sano.`,
+        id: "hard",
+        title: "Muy fino",
+        scoreLabel: "Dificil",
+        summary: `Has sacado bastante nota en ${subject}. Se nota que recuerdas detalles y no solo lo mas popular.`,
+        accent
+      },
+      {
+        id: "extreme",
+        title: "Nivel experto",
+        scoreLabel: "Extremo",
+        summary: `Resultado fuerte en ${subject}. Si esto fuera un pique en grupo, tocaria presumir un poco.`,
         accent
       }
     ];
@@ -712,6 +806,13 @@ export function getResultForScore(quiz: Quiz, score: number) {
     if (score < 42) return quiz.results[2];
     if (score < 53) return quiz.results[3];
     return quiz.results[4];
+  }
+
+  if (quiz.kind === "trivia") {
+    if (score < 0.35) return quiz.results[0];
+    if (score < 0.6) return quiz.results[1];
+    if (score < 0.82) return quiz.results[2];
+    return quiz.results[3];
   }
 
   if (score < 2.35) return quiz.results[0];
