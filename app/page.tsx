@@ -37,7 +37,7 @@ export default function Home() {
             Una plataforma visual de tests por categorias: mente, relaciones, deportes, vida diaria y retos rapidos.
           </p>
           <div className="hero-metrics" aria-label="Detalles de ViralQuiz">
-            <span>40 tests</span>
+            <span>{quizzes.length} tests</span>
             <span>15 preguntas</span>
             <span>Sin registro</span>
             <span>Resultado instantaneo</span>

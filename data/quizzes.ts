@@ -572,17 +572,26 @@ const sectionDrafts: Array<Omit<QuizSection, "quizzes"> & { quizzes: QuizDraft[]
   {
     id: "inteligencia-mente",
     title: "Inteligencia / Mente",
-    description: "Personalidad, foco, memoria y pequenas pruebas mentales.",
+    description: "Edad mental, logica, memoria, atencion y formas de pensar.",
     accent: "#ff5b6e",
     quizzes: [
       { slug: "edad-mental", title: "Test de edad mental", tagline: "Tu energia mental en version rapida.", kind: "personal", subject: "edad mental" },
-      { slug: "tipo-de-mente", title: "Que tipo de mente tienes", tagline: "Analitica, creativa, practica o intuitiva.", kind: "personal", subject: "tipo de mente" },
-      { slug: "vibe-transmites", title: "Que vibe transmites", tagline: "La primera impresion que dejas sin darte cuenta.", kind: "personal", subject: "vibe que transmites" },
-      { slug: "tan-caotico-eres", title: "Que tan caotico eres", tagline: "Orden, improvisacion y un poco de caos diario.", kind: "personal", subject: "caos mental" },
       { slug: "logica-rapida", title: "Test de logica rapida", tagline: "Preguntas cortas para pensar sin dormirse.", kind: "challenge", subject: "logica rapida" },
       { slug: "memoria-visual", title: "Test de memoria visual", tagline: "Mide como observas y recuerdas patrones.", kind: "challenge", subject: "memoria visual" },
       { slug: "atencion", title: "Test de atencion", tagline: "Detalles, trampas pequenas y foco.", kind: "challenge", subject: "atencion" },
       { slug: "inteligencia-predomina", title: "Que inteligencia predomina en ti", tagline: "Tu forma natural de resolver cosas.", kind: "personal", subject: "inteligencia predominante" }
+    ]
+  },
+  {
+    id: "personalidad",
+    title: "Personalidad",
+    description: "Tests sobre energia, estilo personal, caos y forma de ser.",
+    accent: "#9b5cff",
+    quizzes: [
+      { slug: "tipo-de-mente", title: "Que tipo de mente tienes", tagline: "Analitica, creativa, practica o intuitiva.", kind: "personal", subject: "tipo de mente" },
+      { slug: "vibe-transmites", title: "Que vibe transmites", tagline: "La primera impresion que dejas sin darte cuenta.", kind: "personal", subject: "vibe que transmites" },
+      { slug: "tan-caotico-eres", title: "Que tan caotico eres", tagline: "Orden, improvisacion y un poco de caos diario.", kind: "personal", subject: "caos mental" },
+      { slug: "mente-ordenada", title: "Que tan ordenada es tu mente", tagline: "Listas, ruido mental y prioridades.", kind: "personal", subject: "orden mental" }
     ]
   },
   {
@@ -618,19 +627,34 @@ const sectionDrafts: Array<Omit<QuizSection, "quizzes"> & { quizzes: QuizDraft[]
     ]
   },
   {
-    id: "vida-diaria",
-    title: "Vida diaria",
-    description: "Habitos, rutina, organizacion y pequenas decisiones.",
-    accent: "#3568ff",
+    id: "cultura-general",
+    title: "Cultura general",
+    description: "Trivia ligera de conocimientos, curiosidades y datos utiles.",
+    accent: "#ff7a4f",
     quizzes: [
-      { slug: "organizado-eres", title: "Que tan organizado eres", tagline: "Tu sistema real para no perderlo todo.", kind: "personal", subject: "organizacion diaria" },
-      { slug: "procrastinador-eres", title: "Que tan procrastinador eres", tagline: "Manana tambien cuenta, pero hoy pregunta.", kind: "personal", subject: "procrastinacion" },
-      { slug: "vivir-solo", title: "Que tan preparado estas para vivir solo", tagline: "Nevera, horarios y supervivencia basica.", kind: "personal", subject: "vivir solo" },
-      { slug: "buena-rutina", title: "Que tan buena es tu rutina", tagline: "Lo que haces cuando nadie mira.", kind: "personal", subject: "rutina diaria" },
-      { slug: "dependiente-movil", title: "Que tan dependiente eres del movil", tagline: "Notificaciones, scroll y autocontrol.", kind: "personal", subject: "uso del movil" },
-      { slug: "productivo-eres", title: "Que tan productivo eres", tagline: "Foco sin venderte una agenda perfecta.", kind: "personal", subject: "productividad" },
-      { slug: "mente-ordenada", title: "Que tan ordenada es tu mente", tagline: "Listas, ruido mental y prioridades.", kind: "personal", subject: "orden mental" },
-      { slug: "gestionas-tiempo", title: "Que tan bien gestionas tu tiempo", tagline: "Llegar, priorizar y no vivir apagando fuegos.", kind: "personal", subject: "gestion del tiempo" }
+      { slug: "cultura-general", title: "Test de cultura general", tagline: "Una mezcla rapida de datos, mundo y memoria.", kind: "trivia", subject: "cultura general" },
+      { slug: "curiosidades-rapidas", title: "Curiosidades rapidas", tagline: "Preguntas cortas para ver cuanto se te queda.", kind: "trivia", subject: "curiosidades" },
+      { slug: "geografia-express", title: "Geografia express", tagline: "Paises, mapas y pistas sin ponerse academico.", kind: "trivia", subject: "geografia" }
+    ]
+  },
+  {
+    id: "musica",
+    title: "Musica",
+    description: "Ritmos, cultura musical y retos para quien siempre tararea algo.",
+    accent: "#e24ca7",
+    quizzes: [
+      { slug: "cultura-musical", title: "Test de cultura musical", tagline: "Artistas, estilos y memoria de canciones.", kind: "trivia", subject: "musica" },
+      { slug: "adivina-cancion-pista", title: "Adivina la cancion por la pista", tagline: "Lee la pista, piensa en ritmo y responde.", kind: "trivia", subject: "canciones por pistas" }
+    ]
+  },
+  {
+    id: "cine-series",
+    title: "Cine y series",
+    description: "Pantalla grande, maratones, personajes y cultura pop.",
+    accent: "#3d7cff",
+    quizzes: [
+      { slug: "cine-series", title: "Test de cine y series", tagline: "Un repaso rapido por historias, escenas y fandom.", kind: "trivia", subject: "cine y series" },
+      { slug: "personajes-pantalla", title: "Personajes famosos", tagline: "Reconoce iconos de peliculas y series por pistas.", kind: "trivia", subject: "personajes de cine y series" }
     ]
   },
   {
@@ -647,6 +671,21 @@ const sectionDrafts: Array<Omit<QuizSection, "quizzes"> & { quizzes: QuizDraft[]
       { slug: "velocidad-mental", title: "Test de velocidad mental", tagline: "Pensar rapido sin atropellarte.", kind: "challenge", subject: "velocidad mental" },
       { slug: "reaccion", title: "Test de reaccion", tagline: "Control, impulso y timing.", kind: "challenge", subject: "reaccion" },
       { slug: "concentracion-60", title: "Test de concentracion en 60 segundos", tagline: "Un minuto para no despistarte.", kind: "challenge", subject: "concentracion en 60 segundos" }
+    ]
+  },
+  {
+    id: "vida-diaria",
+    title: "Vida diaria",
+    description: "Habitos, rutina, organizacion y pequenas decisiones.",
+    accent: "#3568ff",
+    quizzes: [
+      { slug: "organizado-eres", title: "Que tan organizado eres", tagline: "Tu sistema real para no perderlo todo.", kind: "personal", subject: "organizacion diaria" },
+      { slug: "procrastinador-eres", title: "Que tan procrastinador eres", tagline: "Manana tambien cuenta, pero hoy pregunta.", kind: "personal", subject: "procrastinacion" },
+      { slug: "vivir-solo", title: "Que tan preparado estas para vivir solo", tagline: "Nevera, horarios y supervivencia basica.", kind: "personal", subject: "vivir solo" },
+      { slug: "buena-rutina", title: "Que tan buena es tu rutina", tagline: "Lo que haces cuando nadie mira.", kind: "personal", subject: "rutina diaria" },
+      { slug: "dependiente-movil", title: "Que tan dependiente eres del movil", tagline: "Notificaciones, scroll y autocontrol.", kind: "personal", subject: "uso del movil" },
+      { slug: "productivo-eres", title: "Que tan productivo eres", tagline: "Foco sin venderte una agenda perfecta.", kind: "personal", subject: "productividad" },
+      { slug: "gestionas-tiempo", title: "Que tan bien gestionas tu tiempo", tagline: "Llegar, priorizar y no vivir apagando fuegos.", kind: "personal", subject: "gestion del tiempo" }
     ]
   }
 ];
