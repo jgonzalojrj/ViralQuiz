@@ -1,6 +1,6 @@
 import Image from "next/image";
+import Link from "next/link";
 import type { CSSProperties } from "react";
-import { QuizCard } from "@/components/QuizCard";
 import { quizSections, quizzes } from "@/data/quizzes";
 
 type CSSVariableProperties = CSSProperties & Record<`--${string}`, string>;
@@ -47,7 +47,7 @@ export default function Home() {
               Probar ahora
             </a>
             <a className="button button-ghost" href="#tests">
-              Ver tests
+              Ver categorias
             </a>
           </div>
         </div>
@@ -55,27 +55,31 @@ export default function Home() {
 
       <section className="page-shell test-list-section" id="tests">
         <div className="section-heading">
-          <p className="section-kicker">Secciones</p>
-          <h2>Tests organizados por categoria</h2>
-          <p>Los tests personales viven en mente y relaciones. Deportes se centra en trivia, reglas y conocimiento.</p>
+          <p className="section-kicker">Categorias</p>
+          <h2>Elige una seccion para empezar</h2>
+          <p>Primero eliges categoria, despues el test. Asi cada tipo de reto tiene su sitio.</p>
         </div>
 
-        <div className="section-grid">
+        <div className="category-grid">
           {quizSections.map((section) => (
-            <section className="quiz-section" id={section.id} key={section.id}>
-              <div className="quiz-section-heading">
-                <span style={{ "--section-accent": section.accent } as CSSVariableProperties} />
-                <div>
-                  <h3>{section.title}</h3>
-                  <p>{section.description}</p>
-                </div>
+            <Link
+              className="category-card"
+              href={`/categoria/${section.id}`}
+              key={section.id}
+              style={{ "--section-accent": section.accent } as CSSVariableProperties}
+            >
+              <div className="category-card-mark" aria-hidden="true">
+                <span />
+                <span />
+                <span />
               </div>
-              <div className="quiz-grid">
-                {section.quizzes.map((quiz, index) => (
-                  <QuizCard key={quiz.slug} quiz={quiz} featured={quiz.slug === featuredQuiz.slug || index === 0} />
-                ))}
+              <div>
+                <p className="quiz-card-kicker">{section.quizzes.length} tests</p>
+                <h3>{section.title}</h3>
+                <p>{section.description}</p>
               </div>
-            </section>
+              <span className="category-card-action">Ver tests</span>
+            </Link>
           ))}
         </div>
       </section>

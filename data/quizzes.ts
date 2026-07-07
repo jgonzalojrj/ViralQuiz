@@ -85,6 +85,122 @@ const personalOptions = [
   ["Adaptarte rapido", "Negociar una opcion", "Reorganizar", "Preferir otro dia"]
 ];
 
+const mentalAgeQuestions: QuizQuestion[] = [
+  {
+    id: "edad-mental-1",
+    prompt: "Tu sabado ideal empieza con...",
+    options: makeOptions(["Plan sin mirar la hora", "Algo divertido pero facil", "Recados hechos y cena tranquila", "Casa, silencio y cero prisas"], "edad-mental-1", [16, 27, 42, 58])
+  },
+  {
+    id: "edad-mental-2",
+    prompt: "Si el grupo cambia el plan a ultima hora, tu reaccion es...",
+    options: makeOptions(["Me apunto igual", "Pregunto dos detalles y voy", "Reorganizo antes de decir que si", "Prefiero dejarlo para otro dia"], "edad-mental-2", [18, 29, 45, 60])
+  },
+  {
+    id: "edad-mental-3",
+    prompt: "Cuando te llega dinero inesperado...",
+    options: makeOptions(["Capricho inmediato", "Mitad gusto, mitad cabeza", "Lo guardo para algo util", "Ya se exactamente donde va"], "edad-mental-3", [17, 30, 44, 57])
+  },
+  {
+    id: "edad-mental-4",
+    prompt: "Con las notificaciones del movil eres...",
+    options: makeOptions(["Las miro al momento", "Las reviso por tandas", "Muchas estan silenciadas", "Modo no molestar casi siempre"], "edad-mental-4", [16, 28, 43, 59])
+  },
+  {
+    id: "edad-mental-5",
+    prompt: "Si hay drama cerca, normalmente...",
+    options: makeOptions(["Entro por contexto", "Escucho sin meter mucho ruido", "Intento cerrar el tema", "Me aparto antes de cargarme"], "edad-mental-5", [19, 31, 46, 60])
+  },
+  {
+    id: "edad-mental-6",
+    prompt: "Tu forma de comprar algo caro es...",
+    options: makeOptions(["Si me encanta, adelante", "Comparo un poco y decido", "Espero y reviso presupuesto", "Solo si encaja perfecto"], "edad-mental-6", [18, 32, 47, 59])
+  },
+  {
+    id: "edad-mental-7",
+    prompt: "Cuando aprendes algo nuevo, prefieres...",
+    options: makeOptions(["Probar y equivocarme", "Ver ejemplos rapidos", "Entender el sistema", "Leer bien antes de tocar"], "edad-mental-7", [17, 29, 41, 55])
+  },
+  {
+    id: "edad-mental-8",
+    prompt: "Tu energia social despues de un dia largo es...",
+    options: makeOptions(["Todavia me apunto a algo", "Depende del plan", "Solo con gente de confianza", "Necesito desaparecer un rato"], "edad-mental-8", [16, 30, 44, 58])
+  },
+  {
+    id: "edad-mental-9",
+    prompt: "Ante una decision importante tiras mas de...",
+    options: makeOptions(["Instinto rapido", "Lo que me pide el cuerpo", "Pros, contras y contexto", "Tiempo, calma y datos"], "edad-mental-9", [18, 27, 43, 60])
+  },
+  {
+    id: "edad-mental-10",
+    prompt: "Si alguien te critica, sueles...",
+    options: makeOptions(["Responder al momento", "Darle una vuelta despues", "Quedarme con lo util", "Tomar distancia antes de hablar"], "edad-mental-10", [19, 31, 45, 57])
+  },
+  {
+    id: "edad-mental-11",
+    prompt: "Tu relacion con la rutina es...",
+    options: makeOptions(["Me aburre rapido", "Me ayuda si es flexible", "La necesito para funcionar", "Es mi paz mental"], "edad-mental-11", [16, 28, 42, 56])
+  },
+  {
+    id: "edad-mental-12",
+    prompt: "Cuando un viaje se acerca, tu maleta...",
+    options: makeOptions(["Se hace a ultima hora", "Tiene lo basico y ya", "Lleva lista mental", "Esta pensada por escenarios"], "edad-mental-12", [17, 30, 46, 59])
+  },
+  {
+    id: "edad-mental-13",
+    prompt: "Si tienes una tarde libre inesperada...",
+    options: makeOptions(["Busco plan", "Improviso algo pequeno", "Aprovecho para ordenar cosas", "Descanso sin culpa"], "edad-mental-13", [18, 29, 44, 55])
+  },
+  {
+    id: "edad-mental-14",
+    prompt: "En una conversacion intensa, tiendes a...",
+    options: makeOptions(["Subir la energia", "Intentar explicarte rapido", "Elegir bien las palabras", "Bajar el ritmo"], "edad-mental-14", [19, 32, 47, 60])
+  },
+  {
+    id: "edad-mental-15",
+    prompt: "Cuando algo no sale como querias...",
+    options: makeOptions(["Cambio de plan sobre la marcha", "Me frustro un poco y sigo", "Analizo que fallo", "Acepto y recalculo con calma"], "edad-mental-15", [17, 30, 45, 58])
+  }
+];
+
+const mentalAgeResults: QuizResult[] = [
+  {
+    id: "teen",
+    title: "Chispa adolescente",
+    scoreLabel: "16",
+    summary: "Tu edad mental va ligera, impulsiva y curiosa. Te mueve mas la energia del momento que el manual de instrucciones.",
+    accent: "#ff5b6e"
+  },
+  {
+    id: "young",
+    title: "Mente joven",
+    scoreLabel: "24",
+    summary: "Tienes ganas de moverte, pero ya empiezas a elegir mejor tus batallas. Espontaneidad con algo de filtro.",
+    accent: "#18b7a0"
+  },
+  {
+    id: "adult",
+    title: "Equilibrio adulto",
+    scoreLabel: "36",
+    summary: "Tu resultado mezcla energia y criterio. Sabes divertirte, pero tambien detectar cuando toca poner orden.",
+    accent: "#f4b63f"
+  },
+  {
+    id: "calm",
+    title: "Cabeza serena",
+    scoreLabel: "48",
+    summary: "Lees bastante bien las situaciones y no todo te arrastra. Prefieres calma, claridad y decisiones con sentido.",
+    accent: "#3568ff"
+  },
+  {
+    id: "wise",
+    title: "Sabiduria tranquila",
+    scoreLabel: "60",
+    summary: "Tu energia es selectiva y muy tuya. No todo merece prisa, respuesta o explicacion, y eso te queda bien.",
+    accent: "#9b5cff"
+  }
+];
+
 const triviaPrompts = [
   "Cual seria la forma mas fiable de comprobar un dato sobre {subject}?",
   "En {subject}, que detalle suele decidir si alguien entiende bien el tema?",
@@ -302,11 +418,11 @@ const challengeOptions = [
   ["Mantener precision", "Correr aunque falles", "Cambiar todas", "No acabar"]
 ];
 
-function makeOptions(labels: string[], prefix: string) {
+function makeOptions(labels: string[], prefix: string, values?: number[]) {
   return labels.map((label, index) => ({
     id: `${prefix}-${index + 1}`,
     label,
-    value: index + 1
+    value: values?.[index] ?? index + 1
   }));
 }
 
@@ -335,6 +451,10 @@ function makeTriviaSeedQuestions(slug: string, seeds: TriviaSeed[]) {
 }
 
 function makeQuestions(kind: QuizKind, slug: string, subject: string) {
+  if (slug === "edad-mental") {
+    return mentalAgeQuestions;
+  }
+
   if (kind === "trivia" && sportsTriviaSeeds[slug]) {
     return makeTriviaSeedQuestions(slug, sportsTriviaSeeds[slug]);
   }
@@ -349,7 +469,11 @@ function makeQuestions(kind: QuizKind, slug: string, subject: string) {
   }));
 }
 
-function makeResults(kind: QuizKind, subject: string, accent: string): QuizResult[] {
+function makeResults(kind: QuizKind, subject: string, accent: string, slug: string): QuizResult[] {
+  if (slug === "edad-mental") {
+    return mentalAgeResults;
+  }
+
   if (kind === "trivia") {
     return [
       {
@@ -440,7 +564,7 @@ function makeQuiz(draft: QuizDraft, accent: string): Quiz {
         : "Resultado orientativo y de entretenimiento.",
     href: `/test/${draft.slug}`,
     questions: makeQuestions(draft.kind, draft.slug, draft.subject),
-    results: makeResults(draft.kind, draft.subject, accent)
+    results: makeResults(draft.kind, draft.subject, accent, draft.slug)
   };
 }
 
@@ -538,7 +662,19 @@ export function getQuizBySlug(slug: string) {
   return quizzes.find((quiz) => quiz.slug === slug);
 }
 
+export function getSectionById(id: string) {
+  return quizSections.find((section) => section.id === id);
+}
+
 export function getResultForScore(quiz: Quiz, score: number) {
+  if (quiz.slug === "edad-mental") {
+    if (score < 21) return quiz.results[0];
+    if (score < 31) return quiz.results[1];
+    if (score < 42) return quiz.results[2];
+    if (score < 53) return quiz.results[3];
+    return quiz.results[4];
+  }
+
   if (score < 2.35) return quiz.results[0];
   if (score < 3.25) return quiz.results[1];
   return quiz.results[2];
