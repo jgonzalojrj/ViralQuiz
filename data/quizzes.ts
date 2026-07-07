@@ -220,6 +220,84 @@ const mentalAgeResults: QuizResult[] = [
   }
 ];
 
+const iqQuickQuestions: QuizQuestion[] = [
+  {
+    id: "iq-rapido-1",
+    prompt: "Completa la serie: 2, 4, 8, 16...",
+    options: makeOptions(["24", "30", "32", "36"], "iq-rapido-1", [1, 1, 4, 1])
+  },
+  {
+    id: "iq-rapido-2",
+    prompt: "Si MAR es a AGUA como DESIERTO es a...",
+    options: makeOptions(["Arena", "Sol", "Sequedad", "Oasis"], "iq-rapido-2", [4, 1, 1, 1])
+  },
+  {
+    id: "iq-rapido-3",
+    prompt: "Que numero falta: 3, 6, 12, 24...",
+    options: makeOptions(["36", "42", "48", "54"], "iq-rapido-3", [1, 1, 4, 1])
+  },
+  {
+    id: "iq-rapido-4",
+    prompt: "Cual sobra en este grupo?",
+    options: makeOptions(["Triangulo", "Cuadrado", "Circulo", "Mesa"], "iq-rapido-4", [2, 2, 2, 4])
+  },
+  {
+    id: "iq-rapido-5",
+    prompt: "Si A=1, B=2 y C=3, cuanto vale CAB?",
+    options: makeOptions(["312", "321", "123", "213"], "iq-rapido-5", [4, 1, 1, 1])
+  },
+  {
+    id: "iq-rapido-6",
+    prompt: "Todos los lunes son dias. Algunos dias son lluviosos. Entonces...",
+    options: makeOptions(["Todos los lunes son lluviosos", "Algunos dias pueden ser lunes", "Ningun lunes es dia", "Todos los dias son lunes"], "iq-rapido-6", [1, 4, 1, 1])
+  },
+  {
+    id: "iq-rapido-7",
+    prompt: "Que figura tiene mas lados?",
+    options: makeOptions(["Pentagono", "Hexagono", "Triangulo", "Cuadrado"], "iq-rapido-7", [2, 4, 1, 1])
+  },
+  {
+    id: "iq-rapido-8",
+    prompt: "Completa: 1, 1, 2, 3, 5...",
+    options: makeOptions(["6", "7", "8", "10"], "iq-rapido-8", [1, 1, 4, 1])
+  },
+  {
+    id: "iq-rapido-9",
+    prompt: "Si cambias el orden de las letras de ROMA puedes formar...",
+    options: makeOptions(["AMOR", "RAMO", "MORA", "Todas valen"], "iq-rapido-9", [2, 2, 2, 4])
+  },
+  {
+    id: "iq-rapido-10",
+    prompt: "Que numero es la mitad de la mitad de 40?",
+    options: makeOptions(["5", "10", "15", "20"], "iq-rapido-10", [1, 4, 1, 2])
+  },
+  {
+    id: "iq-rapido-11",
+    prompt: "Si hoy es martes, que dia sera dentro de 10 dias?",
+    options: makeOptions(["Jueves", "Viernes", "Sabado", "Domingo"], "iq-rapido-11", [1, 4, 1, 1])
+  },
+  {
+    id: "iq-rapido-12",
+    prompt: "Cual es la relacion: libro es a leer como pelicula es a...",
+    options: makeOptions(["Mirar", "Ver", "Escribir", "Pintar"], "iq-rapido-12", [2, 4, 1, 1])
+  },
+  {
+    id: "iq-rapido-13",
+    prompt: "Que numero falta: 100, 90, 80, 70...",
+    options: makeOptions(["65", "60", "50", "40"], "iq-rapido-13", [1, 4, 2, 1])
+  },
+  {
+    id: "iq-rapido-14",
+    prompt: "Si tres cajas pesan igual y juntas pesan 18 kg, cuanto pesa una?",
+    options: makeOptions(["3 kg", "6 kg", "9 kg", "12 kg"], "iq-rapido-14", [1, 4, 1, 1])
+  },
+  {
+    id: "iq-rapido-15",
+    prompt: "Cual completa mejor la secuencia: rojo, azul, rojo, azul...",
+    options: makeOptions(["Rojo", "Verde", "Azul", "Amarillo"], "iq-rapido-15", [4, 1, 1, 1])
+  }
+];
+
 const knowledgeTriviaSeeds: Record<string, TriviaSeed[]> = {
   ...expandedKnowledgeTriviaSeeds,
   "conocimientos-futbol": [
@@ -552,6 +630,10 @@ function makeQuestions(kind: QuizKind, slug: string, subject: string) {
     return mentalAgeQuestions;
   }
 
+  if (slug === "iq-rapido") {
+    return iqQuickQuestions;
+  }
+
   if (kind === "trivia" && knowledgeTriviaSeeds[slug]) {
     return makeTriviaSeedQuestions(slug, knowledgeTriviaSeeds[slug]);
   }
@@ -634,6 +716,13 @@ function makeResults(kind: QuizKind, subject: string, accent: string, slug: stri
     ];
   }
 
+  if (personalResultThemes[slug]) {
+    return personalResultThemes[slug].map((result) => ({
+      ...result,
+      accent
+    }));
+  }
+
   if (kind === "challenge") {
     return [
       {
@@ -696,6 +785,269 @@ function makeResults(kind: QuizKind, subject: string, accent: string, slug: stri
     }
   ];
 }
+
+const personalResultThemes: Record<string, Omit<QuizResult, "accent">[]> = {
+  "verdadero-pais": [
+    {
+      id: "brasil",
+      title: "Brasil vivo",
+      scoreLabel: "Sol",
+      subtitle: "Tu energia pide calle, ritmo y planes con gente.",
+      summary: "Tienes una forma de moverte muy expresiva: te activas con lo nuevo, con la mezcla y con los dias que no vienen demasiado cerrados.",
+      reason: "Tus respuestas tiran hacia espontaneidad, impulso social y ganas de entrar en accion sin pensarlo todo veinte veces."
+    },
+    {
+      id: "italia",
+      title: "Italia luminosa",
+      scoreLabel: "Arte",
+      subtitle: "Calidez, gusto por los detalles y mucho caracter.",
+      summary: "Tu pais interior tiene conversacion larga, mesa compartida y una mezcla bonita entre emocion y criterio. No eres plano: tienes textura.",
+      reason: "Has combinado opciones de intuicion con otras mas cuidadas, como alguien que disfruta la vida pero tambien sabe elegir el momento."
+    },
+    {
+      id: "japon",
+      title: "Japon sereno",
+      scoreLabel: "Zen",
+      subtitle: "Orden, calma y una sensibilidad que no necesita gritar.",
+      summary: "Tu energia encaja con un pais de detalles finos: observas, filtras y prefieres que las cosas tengan sentido antes que solo ruido.",
+      reason: "Tus respuestas apuntan a pausa, foco y cuidado de tu espacio personal, especialmente cuando hay demasiada intensidad alrededor."
+    }
+  ],
+  "estacion-eres": [
+    {
+      id: "verano",
+      title: "Verano electrico",
+      scoreLabel: "Calor",
+      subtitle: "Llegas con luz alta y ganas de que pasen cosas.",
+      summary: "Tu estacion vibra con planes espontaneos, conversaciones rapidas y esa sensacion de que cualquier tarde puede cambiar el dia.",
+      reason: "Has elegido respuestas de impulso, energia social y movimiento: patrones muy de vivir hacia fuera."
+    },
+    {
+      id: "primavera",
+      title: "Primavera curiosa",
+      scoreLabel: "Bloom",
+      subtitle: "Ligera, adaptable y con ganas de empezar algo.",
+      summary: "Tu resultado tiene frescura sin ser caos. Te gusta probar, conectar y cambiar de aire, pero no pierdes del todo el centro.",
+      reason: "Tus respuestas mezclan espontaneidad con cierta cabeza, como alguien que se abre al plan sin dejarse arrastrar por todo."
+    },
+    {
+      id: "otono",
+      title: "Otono dorado",
+      scoreLabel: "Calma",
+      subtitle: "Tu encanto va mas por profundidad que por ruido.",
+      summary: "Eres una estacion de planes cuidados, conversaciones con fondo y energia bien elegida. No necesitas correr para llegar fuerte.",
+      reason: "Has tendido a respuestas de pausa, observacion y seleccion, senal de que prefieres calidad antes que cantidad."
+    }
+  ],
+  "color-energia": [
+    {
+      id: "coral",
+      title: "Coral intenso",
+      scoreLabel: "Vivo",
+      subtitle: "Tu energia se nota incluso cuando intentas disimular.",
+      summary: "Tienes un color de accion: calido, rapido y bastante contagioso. Cuando algo te importa, no tardas mucho en moverte.",
+      reason: "Tus respuestas se inclinan hacia reaccion, intuicion y expresividad, por eso el resultado sale con un tono tan encendido."
+    },
+    {
+      id: "verde",
+      title: "Verde menta",
+      scoreLabel: "Fresh",
+      subtitle: "Equilibrio, frescura y una vibra facil de tener cerca.",
+      summary: "Tu energia no aplasta: acompana. Tienes una mezcla de calma y chispa que hace que los demas te lean como alguien adaptable.",
+      reason: "Has alternado opciones activas con otras mas medidas, creando un patron flexible y bastante estable."
+    },
+    {
+      id: "azul",
+      title: "Azul noche",
+      scoreLabel: "Deep",
+      subtitle: "Reservada, elegante y con mas fondo del que ensenas.",
+      summary: "Tu color habla de foco, sensibilidad y control. No eres frio: simplemente eliges muy bien donde pones tu energia.",
+      reason: "Tus respuestas muestran preferencia por pensar, filtrar y proteger tu calma cuando el entorno se acelera."
+    }
+  ],
+  "animal-personalidad": [
+    {
+      id: "colibri",
+      title: "Colibri social",
+      scoreLabel: "Veloz",
+      subtitle: "Rapido, curioso y con una energia dificil de encerrar.",
+      summary: "Te mueves mejor cuando puedes cambiar, probar y seguir el impulso. Tu personalidad tiene brillo y velocidad.",
+      reason: "Tus respuestas apuntan a accion, improvisacion y busqueda de estimulos, como alguien que se activa con facilidad."
+    },
+    {
+      id: "zorro",
+      title: "Zorro intuitivo",
+      scoreLabel: "Listo",
+      subtitle: "Observas mas de lo que parece y te adaptas rapido.",
+      summary: "Tu resultado mezcla picardia tranquila con lectura social. No necesitas imponerte para entender lo que esta pasando.",
+      reason: "Has combinado instinto con estrategia, senal de que improvisas pero tambien sabes leer el contexto."
+    },
+    {
+      id: "lobo",
+      title: "Lobo sereno",
+      scoreLabel: "Fiel",
+      subtitle: "Selectivo, protector y con energia de circulo cerrado.",
+      summary: "Tu personalidad no va de agradar a todo el mundo. Cuidas tu espacio, eliges bien y eres fuerte cuando algo importa.",
+      reason: "Tus respuestas se han ido hacia limites, calma y lealtad selectiva, un patron de energia muy cuidada."
+    }
+  ],
+  "ciudad-encaja": [
+    {
+      id: "barcelona",
+      title: "Barcelona abierta",
+      scoreLabel: "Flow",
+      subtitle: "Creativa, social y con ganas de mezcla.",
+      summary: "Encajas con una ciudad de planes que empiezan sin pedir permiso: energia visual, movimiento y mucha vida alrededor.",
+      reason: "Tus respuestas muestran gusto por improvisar, conectar y moverte con cierta libertad."
+    },
+    {
+      id: "lisboa",
+      title: "Lisboa suave",
+      scoreLabel: "Luz",
+      subtitle: "Calida, sensible y con ritmo propio.",
+      summary: "Tu ciudad no necesita correr para enganchar. Tiene encanto, detalle y una melancolia bonita sin ponerse dramatica.",
+      reason: "Has elegido una mezcla de calma, cercania y espontaneidad moderada, muy de disfrutar sin quemarte."
+    },
+    {
+      id: "tokio",
+      title: "Tokio nocturna",
+      scoreLabel: "Foco",
+      subtitle: "Orden, intensidad interior y un mundo propio muy claro.",
+      summary: "Tu resultado encaja con una ciudad de contrastes: por fuera control, por dentro muchisimas capas pasando a la vez.",
+      reason: "Tus respuestas apuntan a foco, observacion y necesidad de espacio cuando el ruido sube."
+    }
+  ],
+  "elemento-eres": [
+    {
+      id: "fuego",
+      title: "Fuego rapido",
+      scoreLabel: "Fuego",
+      subtitle: "Cuando algo prende, vas de frente.",
+      summary: "Tu elemento es energia directa: accion, impulso y esa forma de contagiar movimiento cuando el ambiente esta parado.",
+      reason: "Tus elecciones han sido mas rapidas, sociales e intuitivas, con poca necesidad de esperar a tenerlo todo perfecto."
+    },
+    {
+      id: "aire",
+      title: "Aire libre",
+      scoreLabel: "Aire",
+      subtitle: "Ligero, mental y dificil de encasillar.",
+      summary: "Te mueve la posibilidad: cambiar de idea, mirar desde otro angulo y no quedarte demasiado tiempo donde todo pesa.",
+      reason: "Tus respuestas mezclan curiosidad, adaptacion y margen personal, un patron muy de moverte sin romperte."
+    },
+    {
+      id: "agua",
+      title: "Agua profunda",
+      scoreLabel: "Agua",
+      subtitle: "Sensible, intuitiva y mas fuerte en calma.",
+      summary: "Tu elemento no empuja: rodea, entiende y sostiene. Tienes una energia que se nota mas cuanto menos intenta hacerse notar.",
+      reason: "Has elegido opciones de pausa, cuidado y lectura emocional, senal de que procesas mucho antes de actuar."
+    }
+  ],
+  "vibe-transmites": [
+    {
+      id: "spark",
+      title: "Chispa cercana",
+      scoreLabel: "Glow",
+      subtitle: "La gente nota que contigo puede pasar algo divertido.",
+      summary: "Transmites una energia abierta, rapida y bastante viva. No hace falta conocerte mucho para notar movimiento alrededor.",
+      reason: "Tus respuestas se inclinan hacia accion, expresividad y reaccion natural ante lo que cambia."
+    },
+    {
+      id: "soft",
+      title: "Magnetismo suave",
+      scoreLabel: "Soft",
+      subtitle: "No invades, pero te quedas en la memoria.",
+      summary: "Tu vibe funciona por equilibrio: sabes entrar, escuchar y soltar una presencia agradable sin convertirlo todo en show.",
+      reason: "Has marcado un patron mixto de cercania y criterio, como alguien que se adapta sin perder su tono."
+    },
+    {
+      id: "mystic",
+      title: "Misterio tranquilo",
+      scoreLabel: "Mood",
+      subtitle: "Das la sensacion de tener mas capas de las que ensenas.",
+      summary: "Transmites calma, distancia bonita y una energia algo dificil de leer. Eso no enfria: crea curiosidad.",
+      reason: "Tus respuestas muestran seleccion, pausa y necesidad de espacio, por eso tu vibe sale mas reservada y magnetica."
+    }
+  ],
+  "estetica-eres": [
+    {
+      id: "pop",
+      title: "Pop urbano",
+      scoreLabel: "Pop",
+      subtitle: "Color, movimiento y cero miedo a llamar la atencion.",
+      summary: "Tu estetica tiene energia de calle, planes rapidos y detalles que se notan. Lo tuyo no pasa completamente desapercibido.",
+      reason: "Tus respuestas van hacia lo expresivo y espontaneo, un patron visual mas atrevido y directo."
+    },
+    {
+      id: "indie",
+      title: "Indie luminoso",
+      scoreLabel: "Indie",
+      subtitle: "Natural, cuidado y con personalidad sin forzarlo.",
+      summary: "Tu estilo encaja con lo autentico: algo creativo, algo suave y con esa sensacion de que eliges por gusto, no por copia.",
+      reason: "Has mezclado opciones sociales con otras mas reflexivas, creando un resultado estetico equilibrado."
+    },
+    {
+      id: "minimal",
+      title: "Minimal nocturno",
+      scoreLabel: "Clean",
+      subtitle: "Pocas cosas, bien elegidas y con mucho control.",
+      summary: "Tu estetica no necesita exceso. Funciona por lineas limpias, calma y una seguridad que aparece sin pedir permiso.",
+      reason: "Tus respuestas apuntan a orden, filtro y energia selectiva, una combinacion muy de estilo pulido."
+    }
+  ],
+  "tipo-alma": [
+    {
+      id: "cometa",
+      title: "Alma cometa",
+      scoreLabel: "Brillo",
+      subtitle: "Pasas rapido, pero dejas algo encendido.",
+      summary: "Tu alma tiene impulso, hambre de experiencia y una forma muy viva de buscar lo que te despierta.",
+      reason: "Tus respuestas se mueven hacia accion, planes espontaneos y emocion inmediata."
+    },
+    {
+      id: "puente",
+      title: "Alma puente",
+      scoreLabel: "Union",
+      subtitle: "Conectas mundos, personas e ideas sin hacer ruido.",
+      summary: "Tu resultado habla de alguien que entiende matices. Sabes estar entre energia y calma, entre instinto y cabeza.",
+      reason: "Has elegido respuestas bastante equilibradas, con tendencia a adaptarte sin borrarte."
+    },
+    {
+      id: "faro",
+      title: "Alma faro",
+      scoreLabel: "Guia",
+      subtitle: "Calma por fuera, mucha lectura por dentro.",
+      summary: "Tu alma tiene una presencia serena: observa, filtra y aparece fuerte justo cuando hace falta.",
+      reason: "Tus respuestas reflejan pausa, limites y una forma muy selectiva de cuidar tu energia."
+    }
+  ],
+  "cancion-energia": [
+    {
+      id: "hit",
+      title: "Hit de verano",
+      scoreLabel: "Play",
+      subtitle: "Energia pegadiza, directa y con ganas de plan.",
+      summary: "Si fueras una cancion, sonarias a algo que sube el volumen de la habitacion. Tienes una vibra facil de contagiar.",
+      reason: "Tus respuestas apuntan a impulso, expresividad y reaccion rapida ante los cambios."
+    },
+    {
+      id: "indie",
+      title: "Tema indie",
+      scoreLabel: "Loop",
+      subtitle: "Ligera, especial y con detalle cuando escuchas bien.",
+      summary: "Tu energia no necesita ser la mas ruidosa para enganchar. Tiene personalidad, cambios suaves y un punto muy tuyo.",
+      reason: "Has mezclado espontaneidad con filtro, como alguien que se deja llevar pero no por cualquier cosa."
+    },
+    {
+      id: "nocturna",
+      title: "Balada nocturna",
+      scoreLabel: "Deep",
+      subtitle: "Mas intensa de lo que parece a primera escucha.",
+      summary: "Tu cancion tiene calma, fondo y una emocion que entra despacio. No busca gustar a todos, pero conecta fuerte con quien entiende.",
+      reason: "Tus respuestas tienden a pausa, profundidad y energia reservada, por eso el resultado baja el ritmo y gana peso."
+    }
+  ]
+};
 
 const difficultyOrder: Record<QuizDifficulty, number> = {
   facil: 0,
@@ -804,43 +1156,29 @@ function advancedDrafts(sectionId: AdvancedSectionId): QuizDraft[] {
 const sectionDrafts: Array<Omit<QuizSection, "quizzes"> & { quizzes: QuizDraft[] }> = [
   {
     id: "inteligencia-mente",
-    title: "Inteligencia / Mente",
-    description: "Edad mental, logica, memoria, atencion y formas de pensar.",
+    title: "Inteligencia",
+    description: "Un test rapido para medir agilidad mental sin ponerse academico.",
     accent: "#ff5b6e",
     quizzes: [
-      { slug: "edad-mental", title: "Test de edad mental", tagline: "Tu energia mental en version rapida.", kind: "personal", subject: "edad mental" },
-      { slug: "logica-rapida", title: "Test de logica rapida", tagline: "Preguntas cortas para pensar sin dormirse.", kind: "challenge", subject: "logica rapida" },
-      { slug: "memoria-visual", title: "Test de memoria visual", tagline: "Mide como observas y recuerdas patrones.", kind: "challenge", subject: "memoria visual" },
-      { slug: "atencion", title: "Test de atencion", tagline: "Detalles, trampas pequenas y foco.", kind: "challenge", subject: "atencion" },
-      { slug: "inteligencia-predomina", title: "Que inteligencia predomina en ti", tagline: "Tu forma natural de resolver cosas.", kind: "personal", subject: "inteligencia predominante" }
+      { slug: "iq-rapido", title: "Test de IQ rapido", tagline: "Agilidad, foco y lectura rapida en 15 preguntas.", kind: "challenge", subject: "IQ rapido" }
     ]
   },
   {
     id: "personalidad",
     title: "Personalidad",
-    description: "Tests sobre energia, estilo personal, caos y forma de ser.",
+    description: "Tests simbolicos, visuales y virales sobre tu energia.",
     accent: "#9b5cff",
     quizzes: [
-      { slug: "tipo-de-mente", title: "Que tipo de mente tienes", tagline: "Analitica, creativa, practica o intuitiva.", kind: "personal", subject: "tipo de mente" },
+      { slug: "verdadero-pais", title: "Cual es tu verdadero pais", tagline: "El pais que encaja con tu energia interior.", kind: "personal", subject: "verdadero pais" },
+      { slug: "estacion-eres", title: "Que estacion eres", tagline: "Tu forma de brillar segun tu ritmo emocional.", kind: "personal", subject: "estacion personal" },
+      { slug: "color-energia", title: "Que color representa tu energia", tagline: "Un color para tu vibra real.", kind: "personal", subject: "color de energia" },
+      { slug: "animal-personalidad", title: "Que animal refleja tu personalidad", tagline: "Tu instinto convertido en simbolo.", kind: "personal", subject: "animal de personalidad" },
+      { slug: "ciudad-encaja", title: "Que ciudad encaja contigo", tagline: "La ciudad que tendria tu ritmo.", kind: "personal", subject: "ciudad que encaja contigo" },
+      { slug: "elemento-eres", title: "Que elemento eres", tagline: "Fuego, aire o agua segun tus respuestas.", kind: "personal", subject: "elemento personal" },
       { slug: "vibe-transmites", title: "Que vibe transmites", tagline: "La primera impresion que dejas sin darte cuenta.", kind: "personal", subject: "vibe que transmites" },
-      { slug: "tan-caotico-eres", title: "Que tan caotico eres", tagline: "Orden, improvisacion y un poco de caos diario.", kind: "personal", subject: "caos mental" },
-      { slug: "mente-ordenada", title: "Que tan ordenada es tu mente", tagline: "Listas, ruido mental y prioridades.", kind: "personal", subject: "orden mental" }
-    ]
-  },
-  {
-    id: "relaciones",
-    title: "Relaciones",
-    description: "Pareja, amistad, limites y comportamiento social.",
-    accent: "#18b7a0",
-    quizzes: [
-      { slug: "tipo-pareja", title: "Que tipo de pareja eres", tagline: "Tu estilo cuando quieres bien.", kind: "personal", subject: "relaciones de pareja" },
-      { slug: "tipo-amigo", title: "Que tipo de amigo eres", tagline: "Como estas para los tuyos.", kind: "personal", subject: "amistad" },
-      { slug: "tan-celoso-eres", title: "Que tan celoso eres", tagline: "Confianza, dudas y calma emocional.", kind: "personal", subject: "celos" },
-      { slug: "compatibilidad", title: "Que tan compatible eres con alguien", tagline: "Ritmos, planes y forma de comunicarse.", kind: "personal", subject: "compatibilidad" },
-      { slug: "red-flags", title: "Test de red flags", tagline: "Detecta senales que conviene mirar dos veces.", kind: "personal", subject: "red flags" },
-      { slug: "green-flags", title: "Test de green flags", tagline: "Lo sano tambien merece puntuacion.", kind: "personal", subject: "green flags" },
-      { slug: "facil-te-enamoras", title: "Que tan facil te enamoras", tagline: "Intensidad, ilusion y pies en la tierra.", kind: "personal", subject: "enamorarse" },
-      { slug: "poner-limites", title: "Que tan bien sabes poner limites", tagline: "Decir que no sin montar una pelicula.", kind: "personal", subject: "limites personales" }
+      { slug: "estetica-eres", title: "Que estetica eres", tagline: "Tu estilo interior en version visual.", kind: "personal", subject: "estetica personal" },
+      { slug: "tipo-alma", title: "Que tipo de alma tienes", tagline: "Un resultado mas simbolico y emocional.", kind: "personal", subject: "tipo de alma" },
+      { slug: "cancion-energia", title: "Que cancion representa tu energia", tagline: "Tu energia convertida en mood musical.", kind: "personal", subject: "cancion de energia" }
     ]
   },
   {
@@ -1005,37 +1343,6 @@ const sectionDrafts: Array<Omit<QuizSection, "quizzes"> & { quizzes: QuizDraft[]
     description: "Etimologia, ortografia, traducciones y lenguas del mundo.",
     accent: "#8f5cf4",
     quizzes: advancedDrafts("idiomas")
-  },
-  {
-    id: "retos-rapidos",
-    title: "Retos rapidos",
-    description: "Mini-juegos de foco, reflejos y velocidad mental.",
-    accent: "#9b5cff",
-    quizzes: [
-      { slug: "reflejos", title: "Test de reflejos", tagline: "Respuesta rapida sin perder precision.", kind: "challenge", subject: "reflejos" },
-      { slug: "atencion-visual", title: "Test de atencion visual", tagline: "Mira bien antes de tocar.", kind: "challenge", subject: "atencion visual" },
-      { slug: "decisiones-rapidas", title: "Test de decisiones rapidas", tagline: "Elegir con poco margen tambien se entrena.", kind: "challenge", subject: "decisiones rapidas" },
-      { slug: "numero-diferente", title: "Encuentra el numero diferente", tagline: "Un clasico de ojo fino.", kind: "challenge", subject: "numero diferente" },
-      { slug: "memoria-numerica", title: "Test de memoria numerica", tagline: "Bloques, cifras y cabeza fria.", kind: "challenge", subject: "memoria numerica" },
-      { slug: "velocidad-mental", title: "Test de velocidad mental", tagline: "Pensar rapido sin atropellarte.", kind: "challenge", subject: "velocidad mental" },
-      { slug: "reaccion", title: "Test de reaccion", tagline: "Control, impulso y timing.", kind: "challenge", subject: "reaccion" },
-      { slug: "concentracion-60", title: "Test de concentracion en 60 segundos", tagline: "Un minuto para no despistarte.", kind: "challenge", subject: "concentracion en 60 segundos" }
-    ]
-  },
-  {
-    id: "vida-diaria",
-    title: "Vida diaria",
-    description: "Habitos, rutina, organizacion y pequenas decisiones.",
-    accent: "#3568ff",
-    quizzes: [
-      { slug: "organizado-eres", title: "Que tan organizado eres", tagline: "Tu sistema real para no perderlo todo.", kind: "personal", subject: "organizacion diaria" },
-      { slug: "procrastinador-eres", title: "Que tan procrastinador eres", tagline: "Manana tambien cuenta, pero hoy pregunta.", kind: "personal", subject: "procrastinacion" },
-      { slug: "vivir-solo", title: "Que tan preparado estas para vivir solo", tagline: "Nevera, horarios y supervivencia basica.", kind: "personal", subject: "vivir solo" },
-      { slug: "buena-rutina", title: "Que tan buena es tu rutina", tagline: "Lo que haces cuando nadie mira.", kind: "personal", subject: "rutina diaria" },
-      { slug: "dependiente-movil", title: "Que tan dependiente eres del movil", tagline: "Notificaciones, scroll y autocontrol.", kind: "personal", subject: "uso del movil" },
-      { slug: "productivo-eres", title: "Que tan productivo eres", tagline: "Foco sin venderte una agenda perfecta.", kind: "personal", subject: "productividad" },
-      { slug: "gestionas-tiempo", title: "Que tan bien gestionas tu tiempo", tagline: "Llegar, priorizar y no vivir apagando fuegos.", kind: "personal", subject: "gestion del tiempo" }
-    ]
   }
 ];
 

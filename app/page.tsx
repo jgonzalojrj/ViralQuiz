@@ -34,7 +34,7 @@ export default function Home() {
           <p className="brand-chip">Mini-app viral</p>
           <h1>Tests rapidos con resultados que apetece compartir</h1>
           <p>
-            Una plataforma visual de tests por categorias: mente, relaciones, deportes, vida diaria y retos rapidos.
+            Una plataforma visual de tests por categorias: inteligencia, personalidad, cultura, deportes y entretenimiento.
           </p>
           <div className="hero-metrics" aria-label="Detalles de ViralQuiz">
             <span>{quizzes.length} tests</span>
