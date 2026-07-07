@@ -1,3 +1,5 @@
+import { expandedKnowledgeTriviaSeeds, type TriviaSeed } from "./trivia";
+
 export type QuizOption = {
   id: string;
   label: string;
@@ -201,13 +203,8 @@ const mentalAgeResults: QuizResult[] = [
   }
 ];
 
-type TriviaSeed = {
-  prompt: string;
-  correct: string;
-  wrong: [string, string, string];
-};
-
 const knowledgeTriviaSeeds: Record<string, TriviaSeed[]> = {
+  ...expandedKnowledgeTriviaSeeds,
   "conocimientos-futbol": [
     { prompt: "Cuantos jugadores tiene un equipo de futbol en el campo al empezar?", correct: "11", wrong: ["9", "10", "12"] },
     { prompt: "Que sancion muestra el arbitro para expulsar a un jugador?", correct: "Tarjeta roja", wrong: ["Tarjeta azul", "Tarjeta verde", "Tarjeta blanca"] },
@@ -728,7 +725,63 @@ const sectionDrafts: Array<Omit<QuizSection, "quizzes"> & { quizzes: QuizDraft[]
     quizzes: [
       { slug: "cultura-general", title: "Test de cultura general", tagline: "Una mezcla rapida de datos, mundo y memoria.", kind: "trivia", subject: "cultura general" },
       { slug: "curiosidades-rapidas", title: "Curiosidades rapidas", tagline: "Preguntas cortas para ver cuanto se te queda.", kind: "trivia", subject: "curiosidades" },
-      { slug: "geografia-express", title: "Geografia express", tagline: "Paises, mapas y pistas sin ponerse academico.", kind: "trivia", subject: "geografia" }
+      { slug: "cultura-general-basico", title: "Cultura general basico", tagline: "Preguntas faciles para calentar sin miedo.", kind: "trivia", subject: "cultura general basica" },
+      { slug: "cultura-general-medio", title: "Cultura general medio", tagline: "Un poco mas de mundo, lectura y memoria.", kind: "trivia", subject: "cultura general media" },
+      { slug: "cultura-general-dificil", title: "Cultura general dificil", tagline: "Para quien suele quedarse con los detalles.", kind: "trivia", subject: "cultura general dificil" },
+      { slug: "cultura-general-extremo", title: "Cultura general extremo", tagline: "Preguntas duras para picarse en serio.", kind: "trivia", subject: "cultura general extrema" },
+      { slug: "cultura-general-espana", title: "Cultura general Espana", tagline: "Arte, lugares, historia y referencias de aqui.", kind: "trivia", subject: "cultura general de Espana" },
+      { slug: "cultura-general-europa", title: "Cultura general Europa", tagline: "Capitales, rios, arte y datos europeos.", kind: "trivia", subject: "cultura general europea" },
+      { slug: "cultura-general-mundo", title: "Cultura general mundo", tagline: "Un viaje rapido por datos del planeta.", kind: "trivia", subject: "cultura general del mundo" },
+      { slug: "todo-el-mundo-deberia-saber", title: "Preguntas que todo el mundo deberia saber", tagline: "Basicos utiles que conviene tener frescos.", kind: "trivia", subject: "conocimientos basicos" }
+    ]
+  },
+  {
+    id: "geografia",
+    title: "Geografia",
+    description: "Capitales, banderas, mapas, rios y pistas del mundo.",
+    accent: "#2f9e71",
+    quizzes: [
+      { slug: "geografia-express", title: "Geografia express", tagline: "Paises, mapas y pistas sin ponerse academico.", kind: "trivia", subject: "geografia" },
+      { slug: "capitales-basico", title: "Capitales nivel basico", tagline: "Capitales populares para entrar en ritmo.", kind: "trivia", subject: "capitales basicas" },
+      { slug: "capitales-dificil", title: "Capitales nivel dificil", tagline: "Capitales menos obvias para subir el nivel.", kind: "trivia", subject: "capitales dificiles" },
+      { slug: "banderas-mundo", title: "Banderas del mundo", tagline: "Colores, simbolos y detalles reconocibles.", kind: "trivia", subject: "banderas del mundo" },
+      { slug: "paises-por-pistas", title: "Paises por pistas", tagline: "Lee la pista y ubica el pais correcto.", kind: "trivia", subject: "paises por pistas" },
+      { slug: "mapas-continentes", title: "Mapas y continentes", tagline: "Hemisferios, oceanos y ubicacion global.", kind: "trivia", subject: "mapas y continentes" },
+      { slug: "rios-montanas-oceanos", title: "Rios, montanas y oceanos", tagline: "Geografia fisica sin rodeos.", kind: "trivia", subject: "rios, montanas y oceanos" },
+      { slug: "geografia-espana", title: "Geografia de Espana", tagline: "Rios, islas, ciudades y comunidades.", kind: "trivia", subject: "geografia de Espana" },
+      { slug: "geografia-extrema", title: "Geografia extrema", tagline: "Datos menos obvios para gente de mapa fino.", kind: "trivia", subject: "geografia extrema" }
+    ]
+  },
+  {
+    id: "historia",
+    title: "Historia",
+    description: "Epocas, guerras, civilizaciones y personajes historicos.",
+    accent: "#b86b3f",
+    quizzes: [
+      { slug: "historia-basica", title: "Historia basica", tagline: "Fechas y hechos que salen en cualquier conversacion.", kind: "trivia", subject: "historia basica" },
+      { slug: "historia-espana", title: "Historia de Espana", tagline: "Reinos, constituciones, guerras y cambios clave.", kind: "trivia", subject: "historia de Espana" },
+      { slug: "historia-mundial", title: "Historia mundial", tagline: "Un repaso global sin quedarse en lo facil.", kind: "trivia", subject: "historia mundial" },
+      { slug: "edad-media", title: "Edad Media", tagline: "Feudos, reinos, peste y castillos con contexto.", kind: "trivia", subject: "Edad Media" },
+      { slug: "segunda-guerra-mundial", title: "Segunda Guerra Mundial", tagline: "Frentes, batallas y fechas fundamentales.", kind: "trivia", subject: "Segunda Guerra Mundial" },
+      { slug: "civilizaciones-antiguas", title: "Civilizaciones antiguas", tagline: "Egipto, Roma, Grecia, America y Mesopotamia.", kind: "trivia", subject: "civilizaciones antiguas" },
+      { slug: "reyes-imperios-conquistas", title: "Reyes, imperios y conquistas", tagline: "Gobernantes, expansiones y nombres grandes.", kind: "trivia", subject: "reyes, imperios y conquistas" },
+      { slug: "historia-extrema", title: "Historia nivel extremo", tagline: "Tratados, batallas y detalles para nota.", kind: "trivia", subject: "historia extrema" }
+    ]
+  },
+  {
+    id: "ciencia",
+    title: "Ciencia",
+    description: "Biologia, fisica, quimica, astronomia e inventos.",
+    accent: "#20a6d9",
+    quizzes: [
+      { slug: "ciencia-basica", title: "Ciencia basica", tagline: "Conceptos claros para empezar fuerte.", kind: "trivia", subject: "ciencia basica" },
+      { slug: "biologia-basica", title: "Biologia basica", tagline: "Celulas, seres vivos y cuerpo en modo sencillo.", kind: "trivia", subject: "biologia basica" },
+      { slug: "fisica-basica", title: "Fisica basica", tagline: "Fuerzas, energia, luz y movimiento.", kind: "trivia", subject: "fisica basica" },
+      { slug: "quimica-basica", title: "Quimica basica", tagline: "Elementos, formulas y cambios de estado.", kind: "trivia", subject: "quimica basica" },
+      { slug: "astronomia", title: "Astronomia", tagline: "Planetas, estrellas, lunas y espacio.", kind: "trivia", subject: "astronomia" },
+      { slug: "cuerpo-humano", title: "Cuerpo humano", tagline: "Organos, huesos y funciones esenciales.", kind: "trivia", subject: "cuerpo humano" },
+      { slug: "animales", title: "Animales", tagline: "Especies, rasgos y curiosidades naturales.", kind: "trivia", subject: "animales" },
+      { slug: "inventos-descubrimientos", title: "Inventos y descubrimientos", tagline: "Ideas, hallazgos y personas que cambiaron cosas.", kind: "trivia", subject: "inventos y descubrimientos" }
     ]
   },
   {
