@@ -500,6 +500,55 @@ button {
     #ffffff;
 }
 
+.difficulty-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  gap: 7px;
+  padding: 0 10px 0 8px;
+  border: 1px solid color-mix(in srgb, var(--difficulty-color) 36%, transparent);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--difficulty-color) 11%, white);
+  color: var(--difficulty-ink);
+  font-size: 0.72rem;
+  font-weight: 950;
+  text-transform: uppercase;
+  box-shadow: 0 8px 18px rgba(21, 25, 29, 0.08);
+}
+
+.difficulty-badge::before {
+  display: block;
+  width: 24px;
+  height: 5px;
+  border-radius: 999px;
+  background: var(--difficulty-color);
+  content: "";
+}
+
+.difficulty-facil {
+  --difficulty-color: #1fba74;
+  --difficulty-ink: #11633f;
+}
+
+.difficulty-medio {
+  --difficulty-color: #f0b429;
+  --difficulty-ink: #73530a;
+}
+
+.difficulty-dificil {
+  --difficulty-color: #ef5b4d;
+  --difficulty-ink: #8f241c;
+}
+
+.difficulty-extremo {
+  --difficulty-color: #b91c1c;
+  --difficulty-ink: #6f1212;
+}
+
 .quiz-card-art {
   display: flex;
   align-items: end;

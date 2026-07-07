@@ -21,6 +21,7 @@ export type QuizResult = {
 };
 
 export type QuizKind = "personal" | "trivia" | "challenge";
+export type QuizDifficulty = "facil" | "medio" | "dificil" | "extremo";
 
 export type Quiz = {
   slug: string;
@@ -28,6 +29,7 @@ export type Quiz = {
   tagline: string;
   duration: string;
   kind: QuizKind;
+  difficulty: QuizDifficulty;
   note: string;
   href: string;
   questions: QuizQuestion[];
@@ -49,6 +51,7 @@ type QuizDraft = {
   duration?: string;
   kind: QuizKind;
   subject: string;
+  difficulty?: QuizDifficulty;
 };
 
 const personalPrompts = [
@@ -642,6 +645,81 @@ function makeResults(kind: QuizKind, subject: string, accent: string, slug: stri
   ];
 }
 
+const difficultyOrder: Record<QuizDifficulty, number> = {
+  facil: 0,
+  medio: 1,
+  dificil: 2,
+  extremo: 3
+};
+
+const difficultyOverrides: Record<string, QuizDifficulty> = {
+  "edad-mental": "facil",
+  "curiosidades-rapidas": "facil",
+  "todo-el-mundo-deberia-saber": "facil",
+  "geografia-express": "facil",
+  "adivina-deporte-pista": "facil",
+  "cine-basico": "facil",
+  "series-famosas": "facil",
+  "personajes-pantalla": "facil",
+  "animales": "facil",
+  "reflejos": "facil",
+  "numero-diferente": "facil",
+  "reaccion": "facil",
+  "conocimientos-futbol": "medio",
+  "conocimientos-baloncesto": "medio",
+  "conocimientos-tenis": "medio",
+  "conocimientos-formula-1": "medio",
+  "reglas-deportivas": "medio",
+  "jugadores-famosos": "medio",
+  "cultura-general": "medio",
+  "cultura-general-espana": "medio",
+  "cultura-general-europa": "medio",
+  "cultura-general-mundo": "medio",
+  "banderas-mundo": "medio",
+  "paises-por-pistas": "medio",
+  "mapas-continentes": "medio",
+  "rios-montanas-oceanos": "medio",
+  "geografia-espana": "medio",
+  "historia-espana": "medio",
+  "historia-mundial": "medio",
+  "edad-media": "medio",
+  "segunda-guerra-mundial": "medio",
+  "civilizaciones-antiguas": "medio",
+  "reyes-imperios-conquistas": "medio",
+  "biologia-basica": "facil",
+  "fisica-basica": "facil",
+  "quimica-basica": "facil",
+  "astronomia": "medio",
+  "cuerpo-humano": "facil",
+  "inventos-descubrimientos": "medio",
+  "cultura-musical": "medio",
+  "adivina-cancion-pista": "medio",
+  "cine-series": "medio",
+  "pokemon": "medio",
+  "reggaeton": "medio",
+  "historia-futbol": "dificil",
+  "concentracion-60": "dificil"
+};
+
+function getQuizDifficulty(draft: QuizDraft): QuizDifficulty {
+  if (draft.difficulty) return draft.difficulty;
+  if (difficultyOverrides[draft.slug]) return difficultyOverrides[draft.slug];
+
+  const difficultyText = `${draft.slug} ${draft.title} ${draft.subject}`.toLowerCase();
+
+  if (difficultyText.includes("extremo") || difficultyText.includes("extrema")) return "extremo";
+  if (difficultyText.includes("dificil") || difficultyText.includes("dificiles")) return "dificil";
+  if (difficultyText.includes("medio") || difficultyText.includes("media")) return "medio";
+  if (difficultyText.includes("basico") || difficultyText.includes("basica") || difficultyText.includes("basicos") || difficultyText.includes("basicas")) {
+    return "facil";
+  }
+
+  if (draft.kind === "challenge") return "medio";
+  if (draft.kind === "personal") return "facil";
+
+  return "medio";
+}
+
 function makeQuiz(draft: QuizDraft, accent: string): Quiz {
   return {
     slug: draft.slug,
@@ -649,6 +727,7 @@ function makeQuiz(draft: QuizDraft, accent: string): Quiz {
     tagline: draft.tagline,
     duration: draft.duration ?? "2 min",
     kind: draft.kind,
+    difficulty: getQuizDifficulty(draft),
     note:
       draft.kind === "trivia"
         ? "Test de entretenimiento: no es una evaluacion oficial."
@@ -863,7 +942,14 @@ const sectionDrafts: Array<Omit<QuizSection, "quizzes"> & { quizzes: QuizDraft[]
 
 export const quizSections: QuizSection[] = sectionDrafts.map((section) => ({
   ...section,
-  quizzes: section.quizzes.map((quiz) => makeQuiz(quiz, section.accent))
+  quizzes: section.quizzes
+    .map((quiz, index) => ({ quiz: makeQuiz(quiz, section.accent), index }))
+    .sort(
+      (first, second) =>
+        difficultyOrder[first.quiz.difficulty] - difficultyOrder[second.quiz.difficulty] ||
+        first.index - second.index
+    )
+    .map(({ quiz }) => quiz)
 }));
 
 export const quizzes: Quiz[] = quizSections.flatMap((section) => section.quizzes);
