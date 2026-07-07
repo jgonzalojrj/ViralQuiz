@@ -23,6 +23,7 @@ export type Quiz = {
   title: string;
   tagline: string;
   duration: string;
+  details: string[];
   status: "available" | "soon";
   href: string;
 };
@@ -31,24 +32,27 @@ export const quizzes: Quiz[] = [
   {
     slug: "edad-mental",
     title: "Test de edad mental",
-    tagline: "Descubre que energia llevas por dentro.",
-    duration: "1 min",
+    tagline: "Cinco preguntas rapidas para saber que ritmo llevas hoy.",
+    duration: "2 min",
+    details: ["5 preguntas", "Resultado instantaneo", "Compartible"],
     status: "available",
     href: "/test/edad-mental"
   },
   {
     slug: "aura-digital",
     title: "Que aura digital tienes",
-    tagline: "Tu vibe online en cinco decisiones.",
+    tagline: "Tu forma de estar online, sin drama y con color.",
     duration: "Pronto",
+    details: ["15 preguntas", "Sin registro", "Post listo"],
     status: "soon",
     href: "#tests"
   },
   {
     slug: "modo-caos",
     title: "Nivel de caos diario",
-    tagline: "Mide tu intensidad antes de abrir otra app.",
+    tagline: "Para esos dias en los que todo va un poco demasiado rapido.",
     duration: "Pronto",
+    details: ["2 min", "Modo express", "Compartible"],
     status: "soon",
     href: "#tests"
   }
