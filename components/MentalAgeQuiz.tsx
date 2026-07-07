@@ -40,14 +40,22 @@ export function MentalAgeQuiz() {
   if (result) {
     return (
       <section className="test-shell result-shell" aria-live="polite">
-        <div className="result-visual" style={{ "--result-accent": result.accent } as CSSProperties}>
-          <span>Edad mental</span>
-          <strong>{result.age}</strong>
+        <div className="result-card" style={{ "--result-accent": result.accent } as CSSProperties}>
+          <div className="result-visual">
+            <span>Edad mental</span>
+            <strong>{result.age}</strong>
+          </div>
+          <div className="result-ribbon">ViralQuiz</div>
         </div>
         <div className="result-copy">
           <p className="section-kicker">Resultado</p>
           <h1>{result.title}</h1>
           <p>{result.summary}</p>
+          <div className="result-tags" aria-label="Resumen del resultado">
+            <span>Visual</span>
+            <span>Compartible</span>
+            <span>1 min</span>
+          </div>
           <button className="button" type="button" onClick={restart}>
             Repetir test
           </button>
@@ -60,7 +68,7 @@ export function MentalAgeQuiz() {
     <section className="test-shell">
       <div className="test-topline">
         <span>
-          {answers.length + 1}/{mentalAgeQuestions.length}
+          Pregunta {answers.length + 1} de {mentalAgeQuestions.length}
         </span>
         <div className="progress-track" aria-hidden="true">
           <div className="progress-bar" style={{ width: `${progress}%` }} />
@@ -73,14 +81,15 @@ export function MentalAgeQuiz() {
       </div>
 
       <div className="answer-grid">
-        {currentQuestion.options.map((option) => (
+        {currentQuestion.options.map((option, index) => (
           <button
             className={`answer-button ${selectedOption === option.id ? "is-selected" : ""}`}
             key={option.id}
             type="button"
             onClick={() => chooseOption(option)}
           >
-            {option.label}
+            <span className="answer-index">{String.fromCharCode(65 + index)}</span>
+            <span>{option.label}</span>
           </button>
         ))}
       </div>

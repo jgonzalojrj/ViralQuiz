@@ -9,7 +9,12 @@ export default function MentalAgePage() {
   return (
     <main className="test-page">
       <nav className="test-nav" aria-label="Navegacion principal">
-        <Link href="/">ViralQuiz</Link>
+        <Link className="wordmark wordmark-dark" href="/">
+          ViralQuiz
+        </Link>
+        <Link className="nav-cta nav-cta-dark" href="/">
+          Inicio
+        </Link>
       </nav>
       <MentalAgeQuiz />
     </main>

@@ -20,12 +20,25 @@ export default function Home() {
           />
         </div>
         <div className="hero-overlay" />
+        <header className="hero-nav page-shell">
+          <a className="wordmark" href="/">
+            ViralQuiz
+          </a>
+          <a className="nav-cta" href="#tests">
+            Tests
+          </a>
+        </header>
         <div className="page-shell hero-content">
-          <p className="brand-chip">ViralQuiz</p>
-          <h1>Mini-tests visuales para compartir al instante</h1>
+          <p className="brand-chip">Mini-app viral</p>
+          <h1>Tests rapidos con resultados que apetece compartir</h1>
           <p>
-            Resultados rapidos, tarjetas grandes y una experiencia pensada para el scroll.
+            Una experiencia visual, ligera y directa para descubrir tu vibe en menos de un minuto.
           </p>
+          <div className="hero-metrics" aria-label="Detalles de ViralQuiz">
+            <span>1 min</span>
+            <span>Vibe test</span>
+            <span>Resultado</span>
+          </div>
           <div className="hero-actions">
             <a className="button" href={featuredQuiz.href}>
               Probar ahora
@@ -40,7 +53,7 @@ export default function Home() {
       <section className="page-shell test-list-section" id="tests">
         <div className="section-heading">
           <p className="section-kicker">Tests disponibles</p>
-          <h2>Elige una mini experiencia</h2>
+          <h2>Elige tu proximo resultado</h2>
         </div>
 
         <div className="quiz-grid">

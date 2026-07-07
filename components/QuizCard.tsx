@@ -11,13 +11,18 @@ export function QuizCard({ quiz, featured = false }: QuizCardProps) {
 
   return (
     <article className={`quiz-card ${featured ? "quiz-card-featured" : ""}`}>
+      <div className="quiz-card-art" aria-hidden="true">
+        <span />
+        <span />
+        <span />
+      </div>
       <div>
         <p className="quiz-card-kicker">{isAvailable ? "Disponible" : "Proximamente"}</p>
         <h3>{quiz.title}</h3>
         <p>{quiz.tagline}</p>
       </div>
       <div className="quiz-card-footer">
-        <span>{quiz.duration}</span>
+        <span className="quiz-duration">{quiz.duration}</span>
         {isAvailable ? (
           <Link className="button button-small" href={quiz.href}>
             Empezar
