@@ -9,8 +9,8 @@ type QuizCardProps = {
 const difficultyLabels: Record<Quiz["difficulty"], string> = {
   facil: "Facil",
   medio: "Medio",
-  dificil: "Dificil",
-  extremo: "Extremo"
+  dificil: "Complicado",
+  extremo: "Complicado"
 };
 
 export function QuizCard({ quiz, featured = false }: QuizCardProps) {
