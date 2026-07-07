@@ -18,10 +18,15 @@ export function QuizRunner({ quiz }: QuizRunnerProps) {
   const progress = Math.round((answers.length / quiz.questions.length) * 100);
   const isComplete = answers.length === quiz.questions.length;
 
-  const result = useMemo(() => {
+  const resultState = useMemo(() => {
     if (!isComplete) return null;
-    const score = answers.reduce((total, answer) => total + answer, 0) / answers.length;
-    return getResultForScore(quiz, score);
+    const totalScore = answers.reduce((total, answer) => total + answer, 0);
+    const averageScore = totalScore / answers.length;
+
+    return {
+      result: getResultForScore(quiz, quiz.kind === "trivia" ? totalScore : averageScore),
+      totalScore
+    };
   }, [answers, isComplete, quiz]);
 
   function chooseOption(option: QuizOption) {
@@ -39,24 +44,39 @@ export function QuizRunner({ quiz }: QuizRunnerProps) {
     setSelectedOption(null);
   }
 
-  if (result) {
+  if (resultState) {
+    const { result, totalScore } = resultState;
+    const isTrivia = quiz.kind === "trivia";
+    const visualLabel = isTrivia ? "Aciertos" : quiz.kind === "challenge" ? "Reto" : "Resultado";
+    const scoreLabel = isTrivia ? `${totalScore}/${quiz.questions.length}` : result.scoreLabel;
+    const resultEyebrow = isTrivia ? "Marcador final" : quiz.kind === "challenge" ? "Tu reto" : "Tu resultado";
+    const reasonTitle = isTrivia ? "Lectura del marcador" : "Por que te ha salido esto";
+    const tags = isTrivia
+      ? ["Quiz", `${totalScore} de ${quiz.questions.length}`, "Compartible"]
+      : [quiz.kind === "challenge" ? "Reto rapido" : "Tu estilo", "Orientativo", quiz.duration];
+
     return (
-      <section className="test-shell result-shell" aria-live="polite">
+      <section className={`test-shell result-shell result-${quiz.kind}`} aria-live="polite">
         <div className="result-card" style={{ "--result-accent": result.accent } as CSSVariableProperties}>
           <div className="result-visual">
-            <span>{quiz.kind === "trivia" ? "Nivel" : quiz.kind === "challenge" ? "Reto" : "Resultado"}</span>
-            <strong>{result.scoreLabel}</strong>
+            <span>{visualLabel}</span>
+            <strong>{scoreLabel}</strong>
           </div>
           <div className="result-ribbon">ViralQuiz</div>
         </div>
         <div className="result-copy">
-          <p className="section-kicker">Resultado</p>
+          <p className="section-kicker">{resultEyebrow}</p>
           <h1>{result.title}</h1>
+          <p className="result-subtitle">{result.subtitle}</p>
           <p>{result.summary}</p>
+          <div className="result-reason">
+            <span>{reasonTitle}</span>
+            <p>{result.reason}</p>
+          </div>
           <div className="result-tags" aria-label="Resumen del resultado">
-            <span>Visual</span>
-            <span>Compartible</span>
-            <span>{quiz.duration}</span>
+            {tags.map((tag) => (
+              <span key={tag}>{tag}</span>
+            ))}
           </div>
           <p className="test-note">{quiz.note}</p>
           <button className="button" type="button" onClick={restart}>

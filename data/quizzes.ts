@@ -16,7 +16,9 @@ export type QuizResult = {
   id: string;
   title: string;
   scoreLabel: string;
+  subtitle: string;
   summary: string;
+  reason: string;
   accent: string;
 };
 
@@ -175,35 +177,45 @@ const mentalAgeResults: QuizResult[] = [
     id: "teen",
     title: "Chispa adolescente",
     scoreLabel: "16",
-    summary: "Tu edad mental va ligera, impulsiva y curiosa. Te mueve mas la energia del momento que el manual de instrucciones.",
+    subtitle: "Vas con ganas, curiosidad y cero necesidad de pedir permiso.",
+    summary: "Tu edad mental va ligera, impulsiva y muy viva. Te mueve mas la energia del momento que el manual de instrucciones, y eso te da un punto fresco.",
+    reason: "Tus respuestas tiran hacia planes espontaneos, decisiones rapidas y poca paciencia para darle veinte vueltas a todo.",
     accent: "#ff5b6e"
   },
   {
     id: "young",
     title: "Mente joven",
     scoreLabel: "24",
-    summary: "Tienes ganas de moverte, pero ya empiezas a elegir mejor tus batallas. Espontaneidad con algo de filtro.",
+    subtitle: "Espontaneidad, pero con un poco mas de filtro.",
+    summary: "Tienes ganas de moverte y probar cosas, pero ya empiezas a elegir mejor tus batallas. Sigues teniendo chispa, solo que ahora la usas con mas criterio.",
+    reason: "Has mezclado respuestas impulsivas con otras mas pensadas: te apuntas al plan, pero ya miras si encaja contigo.",
     accent: "#18b7a0"
   },
   {
     id: "adult",
     title: "Equilibrio adulto",
     scoreLabel: "36",
-    summary: "Tu resultado mezcla energia y criterio. Sabes divertirte, pero tambien detectar cuando toca poner orden.",
+    subtitle: "Sabes pasarlo bien sin perder del todo el volante.",
+    summary: "Tu resultado mezcla energia y criterio. Puedes improvisar, pero tambien detectas cuando toca poner orden, cuidar el tiempo o bajar un poco el ruido.",
+    reason: "Tus elecciones suelen quedarse en el punto medio: ni todo impulso ni todo control. Te adaptas, pero con cabeza.",
     accent: "#f4b63f"
   },
   {
     id: "calm",
     title: "Cabeza serena",
     scoreLabel: "48",
-    summary: "Lees bastante bien las situaciones y no todo te arrastra. Prefieres calma, claridad y decisiones con sentido.",
+    subtitle: "Tu paz pesa mas que el drama del momento.",
+    summary: "Lees bastante bien las situaciones y no todo te arrastra. Prefieres calma, claridad y decisiones con sentido, incluso si eso te hace ir a otro ritmo.",
+    reason: "Tus respuestas muestran preferencia por planificar, filtrar energia y evitar entrar en cosas que no te compensan.",
     accent: "#3568ff"
   },
   {
     id: "wise",
     title: "Sabiduria tranquila",
     scoreLabel: "60",
-    summary: "Tu energia es selectiva y muy tuya. No todo merece prisa, respuesta o explicacion, y eso te queda bien.",
+    subtitle: "Observas mucho, eliges mejor y no corres por cualquiera.",
+    summary: "Tu energia es selectiva y muy tuya. No todo merece prisa, respuesta o explicacion, y esa forma de proteger tu calma te queda bastante bien.",
+    reason: "Has elegido opciones muy orientadas a pausa, distancia y control. Para ti, responder bien suele importar mas que responder rapido.",
     accent: "#9b5cff"
   }
 ];
@@ -566,31 +578,57 @@ function makeResults(kind: QuizKind, subject: string, accent: string, slug: stri
   if (kind === "trivia") {
     return [
       {
-        id: "basic",
-        title: "Base en marcha",
-        scoreLabel: "Basico",
-        summary: `Has acertado algunas de ${subject}, pero todavia hay margen para pillar mejor los datos mas claros.`,
+        id: "revancha",
+        title: "Revancha obligatoria",
+        scoreLabel: "0-3",
+        subtitle: "El test te ha pillado en frio.",
+        summary: `En ${subject} no ha salido tu mejor ronda, pero esto tiene arreglo rapido: un repaso, otra vuelta y cambia la historia.`,
+        reason: "Has acertado pocas preguntas, asi que el resultado se queda en modo calentamiento. La gracia esta en repetirlo y subir el marcador.",
         accent
       },
       {
-        id: "medium",
-        title: "Buen nivel",
-        scoreLabel: "Medio",
-        summary: `Tienes una base solida de ${subject}. Fallas alguna pregunta menos obvia, pero controlas lo principal.`,
+        id: "warming",
+        title: "Vas afinando",
+        scoreLabel: "4-6",
+        subtitle: "Hay base, pero falta punteria.",
+        summary: `Has rascado varios aciertos de ${subject}. Se nota que algunas te sonaban, aunque otras han ido directas a la trampa.`,
+        reason: "Tu marcador queda en la zona de arranque: reconoces parte del tema, pero todavia se escapan detalles importantes.",
         accent
       },
       {
-        id: "hard",
-        title: "Muy fino",
-        scoreLabel: "Dificil",
-        summary: `Has sacado bastante nota en ${subject}. Se nota que recuerdas detalles y no solo lo mas popular.`,
+        id: "solid",
+        title: "Nada mal",
+        scoreLabel: "7-9",
+        subtitle: "Tienes buena base y algun despiste.",
+        summary: `En ${subject} te defiendes bastante bien. No es una paliza perfecta, pero hay conocimiento real detras del resultado.`,
+        reason: "Has acertado alrededor de la mitad alta del test: controlas lo comun y alguna pregunta mas fina, aunque aun hay margen.",
         accent
       },
       {
-        id: "extreme",
-        title: "Nivel experto",
-        scoreLabel: "Extremo",
-        summary: `Resultado fuerte en ${subject}. Si esto fuera un pique en grupo, tocaria presumir un poco.`,
+        id: "top",
+        title: "Muy top",
+        scoreLabel: "10-12",
+        subtitle: "Aqui ya se nota que controlas.",
+        summary: `Resultado fuerte en ${subject}. Has pasado de saber lo basico a moverte con bastante seguridad entre preguntas con mala idea.`,
+        reason: "Tu marcador entra en zona alta: has fallado poco y seguramente las dudas han estado en detalles concretos.",
+        accent
+      },
+      {
+        id: "near-perfect",
+        title: "Nivel maquina",
+        scoreLabel: "13-14",
+        subtitle: "Casi perfecto. De los que molestan en un pique.",
+        summary: `Lo tuyo con ${subject} va muy en serio. Has dejado poquisimo margen y el resultado pide captura para presumir.`,
+        reason: "Has acertado practicamente todo. El test solo te ha quitado el pleno por una o dos preguntas muy finas.",
+        accent
+      },
+      {
+        id: "legend",
+        title: "Leyenda total",
+        scoreLabel: "15/15",
+        subtitle: "Pleno limpio. Esto ya es otra liga.",
+        summary: `Has reventado el test de ${subject}. No hay mucho que explicar: marcador perfecto, energia de final boss y cero dudas.`,
+        reason: "Has acertado todas las preguntas, asi que el resultado salta al nivel maximo. Aqui solo queda compartirlo o buscar un test mas dificil.",
         accent
       }
     ];
@@ -602,21 +640,27 @@ function makeResults(kind: QuizKind, subject: string, accent: string, slug: stri
         id: "warm",
         title: "Arranque suave",
         scoreLabel: "Foco",
-        summary: `En ${subject} vas mejor cuando bajas el ruido y encuentras ritmo antes de acelerar.`,
+        subtitle: "Necesitas un segundo para entrar en ritmo.",
+        summary: `En ${subject} vas mejor cuando bajas el ruido y encuentras tu propio compas antes de acelerar. No es falta de capacidad: es foco calentando.`,
+        reason: "Tus respuestas han tendido a las opciones mas prudentes o lentas, asi que el resultado marca margen para ganar velocidad con calma.",
         accent
       },
       {
         id: "sharp",
         title: "Reflejos finos",
         scoreLabel: "Rapido",
-        summary: `Tienes buena mezcla de velocidad y control. ${subject} se te da mejor cuando confias sin precipitarte.`,
+        subtitle: "Rapidez con bastante control.",
+        summary: `Tienes buena mezcla de velocidad y lectura. ${subject} se te da mejor cuando confias en lo que ves sin precipitarte en la primera trampa.`,
+        reason: "Tus elecciones combinan intuicion y correccion. Has ido rapido, pero sin perder del todo la precision.",
         accent
       },
       {
         id: "locked",
         title: "Concentracion total",
         scoreLabel: "Pro",
-        summary: `Tu resultado en ${subject} tiene pinta de mente entrenada: lees, decides y no te vas con la primera trampa.`,
+        subtitle: "Modo foco: activado de verdad.",
+        summary: `Tu resultado en ${subject} tiene pinta de mente entrenada: lees, decides y no te vas con la primera trampa. Muy de resolver sin hacer ruido.`,
+        reason: "Has elegido muchas respuestas de control, atencion y precision. El patron general apunta a buena lectura y pocos impulsos tontos.",
         accent
       }
     ];
@@ -627,21 +671,27 @@ function makeResults(kind: QuizKind, subject: string, accent: string, slug: stri
       id: "spark",
       title: "Impulso vivo",
       scoreLabel: "Activo",
-      summary: `En ${subject} tiras de energia, intuicion y ganas de moverte. Lo tuyo es entrar en accion rapido.`,
+      subtitle: "Vas con chispa y se nota cuando algo te importa.",
+      summary: `En ${subject} tiras de energia, intuicion y ganas de moverte. Lo tuyo es entrar en accion rapido, probar y corregir sobre la marcha.`,
+      reason: "Tus respuestas se inclinan hacia lo espontaneo: eliges movimiento, reaccion y contacto directo antes que analizar demasiado.",
       accent
     },
     {
       id: "balance",
       title: "Equilibrio flexible",
       scoreLabel: "Mix",
-      summary: `Tu resultado en ${subject} mezcla espontaneidad con cabeza. Te adaptas sin perder demasiado el centro.`,
+      subtitle: "Ni caos total ni manual de instrucciones.",
+      summary: `Tu resultado en ${subject} mezcla espontaneidad con cabeza. Te adaptas sin perder demasiado el centro, y eso te hace bastante facil de leer sin ser predecible.`,
+      reason: "Has alternado respuestas impulsivas con opciones mas cuidadas. El patron habla de alguien que se ajusta al contexto.",
       accent
     },
     {
       id: "calm",
       title: "Calma selectiva",
       scoreLabel: "Zen",
-      summary: `En ${subject} prefieres elegir bien antes que correr. Observas, filtras y sueles cuidar tu energia.`,
+      subtitle: "No todo merece tu energia, y lo tienes claro.",
+      summary: `En ${subject} prefieres elegir bien antes que correr. Observas, filtras y sueles cuidar tu energia sin convertirlo todo en drama.`,
+      reason: "Tus respuestas apuntan a pausa, limites y seleccion. Tiendes a pensar antes de entrar, responder o comprometerte.",
       accent
     }
   ];
@@ -1021,10 +1071,12 @@ export function getResultForScore(quiz: Quiz, score: number) {
   }
 
   if (quiz.kind === "trivia") {
-    if (score < 0.35) return quiz.results[0];
-    if (score < 0.6) return quiz.results[1];
-    if (score < 0.82) return quiz.results[2];
-    return quiz.results[3];
+    if (score <= 3) return quiz.results[0];
+    if (score <= 6) return quiz.results[1];
+    if (score <= 9) return quiz.results[2];
+    if (score <= 12) return quiz.results[3];
+    if (score <= 14) return quiz.results[4];
+    return quiz.results[5];
   }
 
   if (score < 2.35) return quiz.results[0];
