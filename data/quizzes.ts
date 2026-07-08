@@ -1,15 +1,43 @@
+import { personalQuestionBanks, type PersonalQuestionSpec } from "./personal";
 import { advancedQuizDraftsBySection, expandedKnowledgeTriviaSeeds, type TriviaSeed } from "./trivia";
+
+export type QuizVisualTone = "coral" | "teal" | "yellow" | "blue" | "purple" | "ink" | "soft";
+
+export type QuizFigure = {
+  shape: "circle" | "square" | "triangle" | "diamond" | "pentagon" | "bar" | "arrow" | "plus" | "angle";
+  tone?: QuizVisualTone;
+  size?: "sm" | "md" | "lg";
+  rotate?: number;
+  x?: number;
+  y?: number;
+  open?: boolean;
+};
+
+export type QuizVisualCell = {
+  figures?: QuizFigure[];
+  label?: string;
+  missing?: boolean;
+};
+
+export type QuizVisual = {
+  layout: "matrix" | "sequence" | "single";
+  columns?: number;
+  cells: QuizVisualCell[];
+};
 
 export type QuizOption = {
   id: string;
   label: string;
   value: number;
+  visual?: QuizVisual;
 };
 
 export type QuizQuestion = {
   id: string;
   prompt: string;
   options: QuizOption[];
+  difficulty?: "facil" | "medio" | "dificil" | "avanzado";
+  visual?: QuizVisual;
 };
 
 export type QuizResult = {
@@ -220,82 +248,314 @@ const mentalAgeResults: QuizResult[] = [
   }
 ];
 
+const iqFig = (
+  shape: QuizFigure["shape"],
+  tone: QuizVisualTone = "ink",
+  details: Omit<QuizFigure, "shape" | "tone"> = {}
+): QuizFigure => ({
+  shape,
+  tone,
+  ...details
+});
+
+const iqCell = (...figures: QuizFigure[]): QuizVisualCell => ({ figures });
+const iqMissing = (): QuizVisualCell => ({ missing: true });
+const iqVisual = (layout: QuizVisual["layout"], columns: number, cells: QuizVisualCell[]): QuizVisual => ({ layout, columns, cells });
+const iqSingle = (...figures: QuizFigure[]) => iqVisual("single", 1, [iqCell(...figures)]);
+const iqMatrix = (cells: QuizVisualCell[]) => iqVisual("matrix", 3, cells);
+const iqSequence = (cells: QuizVisualCell[]) => iqVisual("sequence", cells.length, cells);
+
+function makeIqOptions(labels: string[], prefix: string, correctIndex: number, visuals?: QuizVisual[]) {
+  return labels.map((label, index) => ({
+    id: `${prefix}-${index + 1}`,
+    label,
+    value: index === correctIndex ? 1 : 0,
+    visual: visuals?.[index]
+  }));
+}
+
+function makeIqQuestion(
+  index: number,
+  difficulty: QuizQuestion["difficulty"],
+  prompt: string,
+  labels: string[],
+  correctIndex: number,
+  visual?: QuizVisual,
+  optionVisuals?: QuizVisual[]
+): QuizQuestion {
+  const id = `iq-rapido-${index}`;
+
+  return {
+    id,
+    prompt,
+    difficulty,
+    visual,
+    options: makeIqOptions(labels, id, correctIndex, optionVisuals)
+  };
+}
+
 const iqQuickQuestions: QuizQuestion[] = [
-  {
-    id: "iq-rapido-1",
-    prompt: "Completa la serie: 2, 4, 8, 16...",
-    options: makeOptions(["24", "30", "32", "36"], "iq-rapido-1", [1, 1, 4, 1])
-  },
-  {
-    id: "iq-rapido-2",
-    prompt: "Si MAR es a AGUA como DESIERTO es a...",
-    options: makeOptions(["Arena", "Sol", "Sequedad", "Oasis"], "iq-rapido-2", [4, 1, 1, 1])
-  },
-  {
-    id: "iq-rapido-3",
-    prompt: "Que numero falta: 3, 6, 12, 24...",
-    options: makeOptions(["36", "42", "48", "54"], "iq-rapido-3", [1, 1, 4, 1])
-  },
-  {
-    id: "iq-rapido-4",
-    prompt: "Cual sobra en este grupo?",
-    options: makeOptions(["Triangulo", "Cuadrado", "Circulo", "Mesa"], "iq-rapido-4", [2, 2, 2, 4])
-  },
-  {
-    id: "iq-rapido-5",
-    prompt: "Si A=1, B=2 y C=3, cuanto vale CAB?",
-    options: makeOptions(["312", "321", "123", "213"], "iq-rapido-5", [4, 1, 1, 1])
-  },
-  {
-    id: "iq-rapido-6",
-    prompt: "Todos los lunes son dias. Algunos dias son lluviosos. Entonces...",
-    options: makeOptions(["Todos los lunes son lluviosos", "Algunos dias pueden ser lunes", "Ningun lunes es dia", "Todos los dias son lunes"], "iq-rapido-6", [1, 4, 1, 1])
-  },
-  {
-    id: "iq-rapido-7",
-    prompt: "Que figura tiene mas lados?",
-    options: makeOptions(["Pentagono", "Hexagono", "Triangulo", "Cuadrado"], "iq-rapido-7", [2, 4, 1, 1])
-  },
-  {
-    id: "iq-rapido-8",
-    prompt: "Completa: 1, 1, 2, 3, 5...",
-    options: makeOptions(["6", "7", "8", "10"], "iq-rapido-8", [1, 1, 4, 1])
-  },
-  {
-    id: "iq-rapido-9",
-    prompt: "Si cambias el orden de las letras de ROMA puedes formar...",
-    options: makeOptions(["AMOR", "RAMO", "MORA", "Todas valen"], "iq-rapido-9", [2, 2, 2, 4])
-  },
-  {
-    id: "iq-rapido-10",
-    prompt: "Que numero es la mitad de la mitad de 40?",
-    options: makeOptions(["5", "10", "15", "20"], "iq-rapido-10", [1, 4, 1, 2])
-  },
-  {
-    id: "iq-rapido-11",
-    prompt: "Si hoy es martes, que dia sera dentro de 10 dias?",
-    options: makeOptions(["Jueves", "Viernes", "Sabado", "Domingo"], "iq-rapido-11", [1, 4, 1, 1])
-  },
-  {
-    id: "iq-rapido-12",
-    prompt: "Cual es la relacion: libro es a leer como pelicula es a...",
-    options: makeOptions(["Mirar", "Ver", "Escribir", "Pintar"], "iq-rapido-12", [2, 4, 1, 1])
-  },
-  {
-    id: "iq-rapido-13",
-    prompt: "Que numero falta: 100, 90, 80, 70...",
-    options: makeOptions(["65", "60", "50", "40"], "iq-rapido-13", [1, 4, 2, 1])
-  },
-  {
-    id: "iq-rapido-14",
-    prompt: "Si tres cajas pesan igual y juntas pesan 18 kg, cuanto pesa una?",
-    options: makeOptions(["3 kg", "6 kg", "9 kg", "12 kg"], "iq-rapido-14", [1, 4, 1, 1])
-  },
-  {
-    id: "iq-rapido-15",
-    prompt: "Cual completa mejor la secuencia: rojo, azul, rojo, azul...",
-    options: makeOptions(["Rojo", "Verde", "Azul", "Amarillo"], "iq-rapido-15", [4, 1, 1, 1])
-  }
+  makeIqQuestion(
+    1,
+    "facil",
+    "El patron alterna dos figuras. Que pieza sigue?",
+    ["Circulo", "Cuadrado", "Triangulo", "Rombo"],
+    0,
+    iqSequence([
+      iqCell(iqFig("circle", "coral")),
+      iqCell(iqFig("square", "teal")),
+      iqCell(iqFig("circle", "coral")),
+      iqCell(iqFig("square", "teal")),
+      iqMissing()
+    ]),
+    [iqSingle(iqFig("circle", "coral")), iqSingle(iqFig("square", "teal")), iqSingle(iqFig("triangle", "yellow")), iqSingle(iqFig("diamond", "purple"))]
+  ),
+  makeIqQuestion(2, "facil", "Completa la serie numerica: 2, 4, 8, 16...", ["24", "30", "32", "36"], 2),
+  makeIqQuestion(
+    3,
+    "facil",
+    "Completa la matriz desplazando las figuras una posicion por fila.",
+    ["Cuadrado", "Circulo", "Triangulo", "Rombo"],
+    0,
+    iqMatrix([
+      iqCell(iqFig("circle", "coral")),
+      iqCell(iqFig("square", "teal")),
+      iqCell(iqFig("triangle", "yellow")),
+      iqCell(iqFig("square", "teal")),
+      iqCell(iqFig("triangle", "yellow")),
+      iqCell(iqFig("circle", "coral")),
+      iqCell(iqFig("triangle", "yellow")),
+      iqCell(iqFig("circle", "coral")),
+      iqMissing()
+    ]),
+    [iqSingle(iqFig("square", "teal")), iqSingle(iqFig("circle", "coral")), iqSingle(iqFig("triangle", "yellow")), iqSingle(iqFig("diamond", "purple"))]
+  ),
+  makeIqQuestion(
+    4,
+    "facil",
+    "Analogia visual: el circulo pequeno pasa a grande. Que ocurre con el cuadrado pequeno?",
+    ["Cuadrado grande", "Cuadrado pequeno", "Circulo grande", "Triangulo grande"],
+    0,
+    iqSequence([
+      iqCell(iqFig("circle", "blue", { size: "sm" })),
+      iqCell(iqFig("circle", "blue", { size: "lg" })),
+      iqCell(iqFig("square", "purple", { size: "sm" })),
+      iqMissing()
+    ]),
+    [iqSingle(iqFig("square", "purple", { size: "lg" })), iqSingle(iqFig("square", "purple", { size: "sm" })), iqSingle(iqFig("circle", "blue", { size: "lg" })), iqSingle(iqFig("triangle", "purple", { size: "lg" }))]
+  ),
+  makeIqQuestion(5, "facil", "Si todos los nims son verdes y este objeto es nim, que puedes deducir?", ["Es verde", "Es rojo", "No es nim", "No se puede saber nada"], 0),
+  makeIqQuestion(
+    6,
+    "facil",
+    "La flecha rota 90 grados cada paso. Que flecha sigue?",
+    ["Izquierda", "Derecha", "Abajo", "Arriba"],
+    0,
+    iqSequence([
+      iqCell(iqFig("arrow", "ink", { rotate: 0 })),
+      iqCell(iqFig("arrow", "ink", { rotate: 90 })),
+      iqCell(iqFig("arrow", "ink", { rotate: 180 })),
+      iqMissing()
+    ]),
+    [iqSingle(iqFig("arrow", "ink", { rotate: 270 })), iqSingle(iqFig("arrow", "ink", { rotate: 90 })), iqSingle(iqFig("arrow", "ink", { rotate: 180 })), iqSingle(iqFig("arrow", "ink", { rotate: 0 }))]
+  ),
+  makeIqQuestion(7, "facil", "Que numero falta: 3, 6, 12, 24...", ["36", "42", "48", "54"], 2),
+  makeIqQuestion(
+    8,
+    "facil",
+    "Cual opcion rompe la regla de tener vertices?",
+    ["Triangulo", "Cuadrado", "Rombo", "Circulo"],
+    3,
+    undefined,
+    [iqSingle(iqFig("triangle", "yellow")), iqSingle(iqFig("square", "teal")), iqSingle(iqFig("diamond", "purple")), iqSingle(iqFig("circle", "coral"))]
+  ),
+  makeIqQuestion(
+    9,
+    "medio",
+    "Completa la matriz: cada fila repite colores en orden desplazado.",
+    ["Verde", "Azul", "Coral", "Amarillo"],
+    0,
+    iqMatrix([
+      iqCell(iqFig("circle", "coral")),
+      iqCell(iqFig("circle", "teal")),
+      iqCell(iqFig("circle", "yellow")),
+      iqCell(iqFig("circle", "teal")),
+      iqCell(iqFig("circle", "yellow")),
+      iqCell(iqFig("circle", "coral")),
+      iqCell(iqFig("circle", "yellow")),
+      iqCell(iqFig("circle", "coral")),
+      iqMissing()
+    ]),
+    [iqSingle(iqFig("circle", "teal")), iqSingle(iqFig("circle", "blue")), iqSingle(iqFig("circle", "coral")), iqSingle(iqFig("circle", "yellow"))]
+  ),
+  makeIqQuestion(10, "medio", "Completa la serie: 1, 1, 2, 3, 5...", ["6", "7", "8", "10"], 2),
+  makeIqQuestion(
+    11,
+    "medio",
+    "Si una figura aumenta un lado en cada paso, que sigue despues del cuadrado?",
+    ["Pentagono", "Triangulo", "Circulo", "Linea"],
+    0,
+    iqSequence([iqCell(iqFig("triangle", "yellow")), iqCell(iqFig("square", "teal")), iqMissing()]),
+    [iqSingle(iqFig("pentagon", "purple")), iqSingle(iqFig("triangle", "yellow")), iqSingle(iqFig("circle", "coral")), iqSingle(iqFig("bar", "ink"))]
+  ),
+  makeIqQuestion(12, "medio", "Si A esta antes que B y B antes que C, cual debe ir primero?", ["A", "B", "C", "No se puede saber"], 0),
+  makeIqQuestion(
+    13,
+    "medio",
+    "El punto avanza por las esquinas en sentido horario. Que posicion sigue?",
+    ["Abajo izquierda", "Arriba izquierda", "Abajo derecha", "Centro"],
+    0,
+    iqSequence([
+      iqCell(iqFig("square", "soft", { open: true, size: "lg" }), iqFig("circle", "coral", { size: "sm", x: 28, y: 28 })),
+      iqCell(iqFig("square", "soft", { open: true, size: "lg" }), iqFig("circle", "coral", { size: "sm", x: 72, y: 28 })),
+      iqCell(iqFig("square", "soft", { open: true, size: "lg" }), iqFig("circle", "coral", { size: "sm", x: 72, y: 72 })),
+      iqMissing()
+    ]),
+    [
+      iqSingle(iqFig("square", "soft", { open: true, size: "lg" }), iqFig("circle", "coral", { size: "sm", x: 28, y: 72 })),
+      iqSingle(iqFig("square", "soft", { open: true, size: "lg" }), iqFig("circle", "coral", { size: "sm", x: 28, y: 28 })),
+      iqSingle(iqFig("square", "soft", { open: true, size: "lg" }), iqFig("circle", "coral", { size: "sm", x: 72, y: 72 })),
+      iqSingle(iqFig("square", "soft", { open: true, size: "lg" }), iqFig("circle", "coral", { size: "sm", x: 50, y: 50 }))
+    ]
+  ),
+  makeIqQuestion(14, "medio", "Que numero falta: 7, 10, 16, 25...", ["34", "36", "37", "40"], 2),
+  makeIqQuestion(15, "medio", "Cinco personas se sientan en fila. Ana esta a la izquierda de Luis y Luis a la izquierda de Eva. Quien puede estar mas a la derecha?", ["Eva", "Luis", "Ana", "Nadie"], 0),
+  makeIqQuestion(
+    16,
+    "dificil",
+    "Completa la matriz: la cantidad de puntos aumenta por fila y columna.",
+    ["Cinco puntos", "Tres puntos", "Dos puntos", "Cuatro puntos"],
+    0,
+    iqMatrix([
+      iqCell(iqFig("circle", "ink", { size: "sm", x: 50, y: 50 })),
+      iqCell(iqFig("circle", "ink", { size: "sm", x: 38, y: 50 }), iqFig("circle", "ink", { size: "sm", x: 62, y: 50 })),
+      iqCell(iqFig("circle", "ink", { size: "sm", x: 30, y: 50 }), iqFig("circle", "ink", { size: "sm", x: 50, y: 50 }), iqFig("circle", "ink", { size: "sm", x: 70, y: 50 })),
+      iqCell(iqFig("circle", "ink", { size: "sm", x: 38, y: 50 }), iqFig("circle", "ink", { size: "sm", x: 62, y: 50 })),
+      iqCell(iqFig("circle", "ink", { size: "sm", x: 30, y: 50 }), iqFig("circle", "ink", { size: "sm", x: 50, y: 50 }), iqFig("circle", "ink", { size: "sm", x: 70, y: 50 })),
+      iqCell(iqFig("circle", "ink", { size: "sm", x: 30, y: 38 }), iqFig("circle", "ink", { size: "sm", x: 70, y: 38 }), iqFig("circle", "ink", { size: "sm", x: 30, y: 68 }), iqFig("circle", "ink", { size: "sm", x: 70, y: 68 })),
+      iqCell(iqFig("circle", "ink", { size: "sm", x: 30, y: 50 }), iqFig("circle", "ink", { size: "sm", x: 50, y: 50 }), iqFig("circle", "ink", { size: "sm", x: 70, y: 50 })),
+      iqCell(iqFig("circle", "ink", { size: "sm", x: 30, y: 38 }), iqFig("circle", "ink", { size: "sm", x: 70, y: 38 }), iqFig("circle", "ink", { size: "sm", x: 30, y: 68 }), iqFig("circle", "ink", { size: "sm", x: 70, y: 68 })),
+      iqMissing()
+    ]),
+    [
+      iqSingle(iqFig("circle", "ink", { size: "sm", x: 28, y: 28 }), iqFig("circle", "ink", { size: "sm", x: 72, y: 28 }), iqFig("circle", "ink", { size: "sm", x: 28, y: 72 }), iqFig("circle", "ink", { size: "sm", x: 72, y: 72 }), iqFig("circle", "ink", { size: "sm", x: 50, y: 50 })),
+      iqSingle(iqFig("circle", "ink", { size: "sm", x: 30, y: 50 }), iqFig("circle", "ink", { size: "sm", x: 50, y: 50 }), iqFig("circle", "ink", { size: "sm", x: 70, y: 50 })),
+      iqSingle(iqFig("circle", "ink", { size: "sm", x: 38, y: 50 }), iqFig("circle", "ink", { size: "sm", x: 62, y: 50 })),
+      iqSingle(iqFig("circle", "ink", { size: "sm", x: 28, y: 28 }), iqFig("circle", "ink", { size: "sm", x: 72, y: 28 }), iqFig("circle", "ink", { size: "sm", x: 28, y: 72 }), iqFig("circle", "ink", { size: "sm", x: 72, y: 72 }))
+    ]
+  ),
+  makeIqQuestion(
+    17,
+    "dificil",
+    "La pieza angular rota 90 grados en cada paso. Que opcion completa la secuencia?",
+    ["Angulo 270 grados", "Angulo 90 grados", "Angulo 180 grados", "Angulo 0 grados"],
+    0,
+    iqSequence([iqCell(iqFig("angle", "blue")), iqCell(iqFig("angle", "blue", { rotate: 90 })), iqCell(iqFig("angle", "blue", { rotate: 180 })), iqMissing()]),
+    [iqSingle(iqFig("angle", "blue", { rotate: 270 })), iqSingle(iqFig("angle", "blue", { rotate: 90 })), iqSingle(iqFig("angle", "blue", { rotate: 180 })), iqSingle(iqFig("angle", "blue"))]
+  ),
+  makeIqQuestion(
+    18,
+    "dificil",
+    "Analogia: la figura abierta se convierte en cerrada y gira. Que falta?",
+    ["Triangulo cerrado girado", "Triangulo abierto", "Cuadrado cerrado", "Circulo cerrado"],
+    0,
+    iqSequence([
+      iqCell(iqFig("square", "teal", { open: true })),
+      iqCell(iqFig("square", "teal", { rotate: 45 })),
+      iqCell(iqFig("triangle", "coral", { open: true })),
+      iqMissing()
+    ]),
+    [iqSingle(iqFig("triangle", "coral", { rotate: 180 })), iqSingle(iqFig("triangle", "coral", { open: true })), iqSingle(iqFig("square", "teal", { rotate: 45 })), iqSingle(iqFig("circle", "coral"))]
+  ),
+  makeIqQuestion(19, "dificil", "Que numero falta: 2, 6, 12, 20...", ["28", "30", "32", "36"], 1),
+  makeIqQuestion(
+    20,
+    "dificil",
+    "En cada fila, la tercera casilla combina las dos anteriores. Que falta?",
+    ["Circulo y cuadrado", "Solo circulo", "Solo cuadrado", "Triangulo y circulo"],
+    0,
+    iqMatrix([
+      iqCell(iqFig("circle", "coral")),
+      iqCell(iqFig("square", "teal")),
+      iqCell(iqFig("circle", "coral", { x: 38 }), iqFig("square", "teal", { x: 62, size: "sm" })),
+      iqCell(iqFig("triangle", "yellow")),
+      iqCell(iqFig("diamond", "purple")),
+      iqCell(iqFig("triangle", "yellow", { x: 38 }), iqFig("diamond", "purple", { x: 62, size: "sm" })),
+      iqCell(iqFig("circle", "coral")),
+      iqCell(iqFig("square", "teal")),
+      iqMissing()
+    ]),
+    [iqSingle(iqFig("circle", "coral", { x: 38 }), iqFig("square", "teal", { x: 62, size: "sm" })), iqSingle(iqFig("circle", "coral")), iqSingle(iqFig("square", "teal")), iqSingle(iqFig("triangle", "yellow", { x: 38 }), iqFig("circle", "coral", { x: 62, size: "sm" }))]
+  ),
+  makeIqQuestion(
+    21,
+    "dificil",
+    "La secuencia repite color cada tres pasos. Que color sigue?",
+    ["Amarillo", "Coral", "Verde", "Azul"],
+    0,
+    iqSequence([
+      iqCell(iqFig("circle", "coral")),
+      iqCell(iqFig("circle", "teal")),
+      iqCell(iqFig("circle", "yellow")),
+      iqCell(iqFig("circle", "coral")),
+      iqCell(iqFig("circle", "teal")),
+      iqMissing()
+    ]),
+    [iqSingle(iqFig("circle", "yellow")), iqSingle(iqFig("circle", "coral")), iqSingle(iqFig("circle", "teal")), iqSingle(iqFig("circle", "blue"))]
+  ),
+  makeIqQuestion(22, "dificil", "Ningun zed es claro. Algunos zed son rapidos. Que se deduce con seguridad?", ["Algunos rapidos no son claros", "Todos los rapidos son zed", "Todos los claros son rapidos", "Ningun rapido existe"], 0),
+  makeIqQuestion(23, "dificil", "Si una pieza se refleja en un espejo vertical, que cambia?", ["Izquierda y derecha se intercambian", "Arriba y abajo se intercambian", "El tamano se duplica", "El color desaparece"], 0),
+  makeIqQuestion(24, "dificil", "Completa los cuadrados perfectos: 1, 4, 9, 16, 25...", ["30", "32", "36", "49"], 2),
+  makeIqQuestion(
+    25,
+    "avanzado",
+    "Completa la matriz: las columnas cambian relleno y las filas cambian figura.",
+    ["Rombo abierto", "Rombo lleno", "Circulo abierto", "Cuadrado abierto"],
+    0,
+    iqMatrix([
+      iqCell(iqFig("circle", "coral")),
+      iqCell(iqFig("circle", "coral", { open: true })),
+      iqCell(iqFig("circle", "soft", { open: true })),
+      iqCell(iqFig("square", "teal")),
+      iqCell(iqFig("square", "teal", { open: true })),
+      iqCell(iqFig("square", "soft", { open: true })),
+      iqCell(iqFig("diamond", "purple")),
+      iqCell(iqFig("diamond", "purple", { open: true })),
+      iqMissing()
+    ]),
+    [iqSingle(iqFig("diamond", "soft", { open: true })), iqSingle(iqFig("diamond", "purple")), iqSingle(iqFig("circle", "soft", { open: true })), iqSingle(iqFig("square", "soft", { open: true }))]
+  ),
+  makeIqQuestion(
+    26,
+    "avanzado",
+    "Analogia espacial: la flecha se invierte y cambia de tono. Que falta?",
+    ["Flecha izquierda azul", "Flecha derecha azul", "Flecha izquierda coral", "Flecha abajo azul"],
+    0,
+    iqSequence([iqCell(iqFig("arrow", "coral", { rotate: 0 })), iqCell(iqFig("arrow", "blue", { rotate: 180 })), iqCell(iqFig("arrow", "coral", { rotate: 90 })), iqMissing()]),
+    [iqSingle(iqFig("arrow", "blue", { rotate: 270 })), iqSingle(iqFig("arrow", "blue", { rotate: 90 })), iqSingle(iqFig("arrow", "coral", { rotate: 270 })), iqSingle(iqFig("arrow", "blue", { rotate: 180 }))]
+  ),
+  makeIqQuestion(27, "avanzado", "Que numero sigue: 5, 11, 23, 47...", ["83", "91", "95", "99"], 2),
+  makeIqQuestion(28, "avanzado", "Solo una frase es verdadera: A dice 'B miente', B dice 'C miente', C dice 'A y B mienten'. Quien puede decir la verdad?", ["B", "A", "C", "Nadie"], 0),
+  makeIqQuestion(
+    29,
+    "avanzado",
+    "La figura gira 45 grados mas en cada casilla de la fila. Que falta?",
+    ["Barra a 180 grados", "Barra a 90 grados", "Barra a 135 grados", "Barra a 45 grados"],
+    0,
+    iqMatrix([
+      iqCell(iqFig("bar", "ink", { rotate: 0 })),
+      iqCell(iqFig("bar", "ink", { rotate: 45 })),
+      iqCell(iqFig("bar", "ink", { rotate: 90 })),
+      iqCell(iqFig("bar", "ink", { rotate: 45 })),
+      iqCell(iqFig("bar", "ink", { rotate: 90 })),
+      iqCell(iqFig("bar", "ink", { rotate: 135 })),
+      iqCell(iqFig("bar", "ink", { rotate: 90 })),
+      iqCell(iqFig("bar", "ink", { rotate: 135 })),
+      iqMissing()
+    ]),
+    [iqSingle(iqFig("bar", "ink", { rotate: 180 })), iqSingle(iqFig("bar", "ink", { rotate: 90 })), iqSingle(iqFig("bar", "ink", { rotate: 135 })), iqSingle(iqFig("bar", "ink", { rotate: 45 }))]
+  ),
+  makeIqQuestion(30, "avanzado", "Completa la serie: 2, 3, 5, 9, 17...", ["27", "31", "33", "35"], 2)
 ];
 
 const knowledgeTriviaSeeds: Record<string, TriviaSeed[]> = {
@@ -625,6 +885,18 @@ function makeTriviaSeedQuestions(slug: string, seeds: TriviaSeed[]) {
   });
 }
 
+function makePersonalThemeQuestions(slug: string, specs: PersonalQuestionSpec[]) {
+  return specs.map((spec, index) => {
+    const id = `${slug}-${index + 1}`;
+
+    return {
+      id,
+      prompt: spec.prompt,
+      options: makeOptions(spec.options, id, [1, 2, 3, 2])
+    };
+  });
+}
+
 function makeQuestions(kind: QuizKind, slug: string, subject: string) {
   if (slug === "edad-mental") {
     return mentalAgeQuestions;
@@ -632,6 +904,10 @@ function makeQuestions(kind: QuizKind, slug: string, subject: string) {
 
   if (slug === "iq-rapido") {
     return iqQuickQuestions;
+  }
+
+  if (kind === "personal" && personalQuestionBanks[slug]) {
+    return makePersonalThemeQuestions(slug, personalQuestionBanks[slug]);
   }
 
   if (kind === "trivia" && knowledgeTriviaSeeds[slug]) {
@@ -655,6 +931,56 @@ function makeQuestions(kind: QuizKind, slug: string, subject: string) {
 function makeResults(kind: QuizKind, subject: string, accent: string, slug: string): QuizResult[] {
   if (slug === "edad-mental") {
     return mentalAgeResults;
+  }
+
+  if (slug === "iq-rapido") {
+    return [
+      {
+        id: "iq-warmup",
+        title: "Razonamiento en calentamiento",
+        scoreLabel: "IQ 85",
+        subtitle: "Has resuelto algunas bases, pero las matrices y deducciones han pesado.",
+        summary: "Tu resultado apunta a una lectura todavia irregular de patrones, giros y relaciones logicas. Hay aciertos sueltos, pero el test te ha pedido mas constancia visual.",
+        reason: "Has acertado entre 0 y 8 preguntas. El patron sugiere que las series simples pueden salir, pero las combinaciones espaciales y las reglas de varias capas han cortado el ritmo.",
+        accent: "#ff5b6e"
+      },
+      {
+        id: "iq-standard",
+        title: "Base logica equilibrada",
+        scoreLabel: "IQ 98",
+        subtitle: "Tienes una lectura correcta en lo simple y alguna buena intuicion visual.",
+        summary: "Tu resultado cae en una zona normal y estable: detectas patrones claros, secuencias numericas y deducciones directas, aunque las preguntas con doble regla todavia cuestan.",
+        reason: "Has acertado entre 9 y 14 preguntas. El test te coloca aqui porque respondes bien cuando la regla es visible, pero pierdes precision cuando hay rotacion, combinacion o abstraccion.",
+        accent: "#18b7a0"
+      },
+      {
+        id: "iq-sharp",
+        title: "Razonamiento agil",
+        scoreLabel: "IQ 110",
+        subtitle: "Buena mezcla de logica, vision de patrones y control bajo presion.",
+        summary: "Tu resultado muestra una capacidad solida para leer secuencias, comparar figuras y separar pistas utiles de ruido visual. No es pleno, pero si una base bastante fuerte.",
+        reason: "Has acertado entre 15 y 21 preguntas. El patron indica que entiendes reglas visuales y numericas con bastante seguridad, aunque las ultimas capas avanzadas aun dejan margen.",
+        accent: "#f4b63f"
+      },
+      {
+        id: "iq-high",
+        title: "Mente muy fina",
+        scoreLabel: "IQ 122",
+        subtitle: "Has conectado reglas complejas con muy pocos tropiezos.",
+        summary: "Tu resultado apunta a una lectura visual y logica por encima de la media del propio test. Detectas rotaciones, combinaciones y series con una seguridad poco comun.",
+        reason: "Has acertado entre 22 y 28 preguntas. El test te coloca aqui porque mantuviste precision incluso cuando las reglas dejaron de ser obvias.",
+        accent: "#3568ff"
+      },
+      {
+        id: "iq-elite",
+        title: "Razonamiento de elite",
+        scoreLabel: "IQ 135+",
+        subtitle: "Has rozado o clavado el techo del test.",
+        summary: "Tu resultado es el mas alto de esta prueba: lectura espacial rapida, buena abstraccion y mucha precision en preguntas donde una sola regla no bastaba.",
+        reason: "Has acertado 29 preguntas o mas. El patron es muy claro: mantuviste control en matrices, analogias, deduccion y series avanzadas sin depender de respuestas faciles.",
+        accent: "#9b5cff"
+      }
+    ];
   }
 
   if (kind === "trivia") {
@@ -1133,7 +1459,9 @@ function makeQuiz(draft: QuizDraft, accent: string): Quiz {
     kind: draft.kind,
     difficulty: getQuizDifficulty(draft),
     note:
-      draft.kind === "trivia"
+      draft.slug === "iq-rapido"
+        ? "Estimacion orientativa y de entretenimiento. No es una prueba oficial de IQ."
+        : draft.kind === "trivia"
         ? "Test de entretenimiento: no es una evaluacion oficial."
         : "Resultado orientativo y de entretenimiento.",
     href: `/test/${draft.slug}`,
@@ -1160,7 +1488,7 @@ const sectionDrafts: Array<Omit<QuizSection, "quizzes"> & { quizzes: QuizDraft[]
     description: "Un test rapido para medir agilidad mental sin ponerse academico.",
     accent: "#ff5b6e",
     quizzes: [
-      { slug: "iq-rapido", title: "Test de IQ rapido", tagline: "Agilidad, foco y lectura rapida en 15 preguntas.", kind: "challenge", subject: "IQ rapido" }
+      { slug: "iq-rapido", title: "Test de IQ rapido", tagline: "Matrices, patrones, series y deduccion en 30 preguntas.", duration: "5 min", kind: "challenge", subject: "IQ rapido", difficulty: "dificil" }
     ]
   },
   {
@@ -1374,6 +1702,14 @@ export function getResultForScore(quiz: Quiz, score: number) {
     if (score < 31) return quiz.results[1];
     if (score < 42) return quiz.results[2];
     if (score < 53) return quiz.results[3];
+    return quiz.results[4];
+  }
+
+  if (quiz.slug === "iq-rapido") {
+    if (score <= 8) return quiz.results[0];
+    if (score <= 14) return quiz.results[1];
+    if (score <= 21) return quiz.results[2];
+    if (score <= 28) return quiz.results[3];
     return quiz.results[4];
   }
 
