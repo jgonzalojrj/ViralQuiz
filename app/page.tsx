@@ -47,6 +47,27 @@ const popularSlugs = [
   "verdadero-pais"
 ];
 
+const categoryEmojis: Record<string, string> = {
+  "inteligencia-mente": "🧩",
+  personalidad: "✨",
+  deportes: "⚽",
+  "cultura-general": "🧠",
+  geografia: "🌍",
+  historia: "🏛️",
+  ciencia: "🧪",
+  tecnologia: "💻",
+  musica: "🎧",
+  "cine-series": "🍿",
+  gaming: "🎮",
+  "naturaleza-animales": "🌿",
+  comida: "🍔",
+  idiomas: "🗣️"
+};
+
+function getCategoryEmoji(categoryId: string) {
+  return categoryEmojis[categoryId] ?? "✨";
+}
+
 export default function Home() {
   const featuredQuiz = quizzes[0];
   const popularQuizzes = popularSlugs
@@ -114,9 +135,7 @@ export default function Home() {
               style={{ "--section-accent": section.accent } as CSSVariableProperties}
             >
               <div className="category-card-mark" aria-hidden="true">
-                <span />
-                <span />
-                <span />
+                <span>{getCategoryEmoji(section.id)}</span>
               </div>
               <div>
                 <p className="quiz-card-kicker">{section.quizzes.length} tests</p>
