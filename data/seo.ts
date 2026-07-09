@@ -1,10 +1,9 @@
 import type { Quiz, QuizSection } from "./quizzes";
 
 export const siteName = "ViralQuiz";
-export const siteUrl = (
-  process.env.NEXT_PUBLIC_SITE_URL ??
-  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "https://viralquiz.vercel.app")
-).replace(/\/$/, "");
+const configuredSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim() || "https://viral-quiz.vercel.app";
+
+export const siteUrl = (configuredSiteUrl.startsWith("http") ? configuredSiteUrl : `https://${configuredSiteUrl}`).replace(/\/$/, "");
 
 export const defaultSeoTitle = "ViralQuiz | Mini tests virales, rapidos y gratis";
 export const defaultSeoDescription =
