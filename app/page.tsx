@@ -1,11 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
-import type { CSSProperties } from "react";
+import { CategoryCardLink } from "@/components/CategoryCardLink";
 import { quizSections, quizzes } from "@/data/quizzes";
 import { defaultOgImage, defaultSeoDescription, defaultSeoTitle, siteName } from "@/data/seo";
-
-type CSSVariableProperties = CSSProperties & Record<`--${string}`, string>;
 
 export const metadata: Metadata = {
   title: defaultSeoTitle,
@@ -128,22 +126,15 @@ export default function Home() {
 
         <div className="category-grid">
           {quizSections.map((section) => (
-            <Link
-              className="category-card"
+            <CategoryCardLink
               href={`/categoria/${section.id}`}
               key={section.id}
-              style={{ "--section-accent": section.accent } as CSSVariableProperties}
-            >
-              <div className="category-card-mark" aria-hidden="true">
-                <span>{getCategoryEmoji(section.id)}</span>
-              </div>
-              <div>
-                <p className="quiz-card-kicker">{section.quizzes.length} tests</p>
-                <h3>{section.title}</h3>
-                <p>{section.description}</p>
-              </div>
-              <span className="category-card-action">Ver tests</span>
-            </Link>
+              accent={section.accent}
+              emoji={getCategoryEmoji(section.id)}
+              title={section.title}
+              description={section.description}
+              quizCount={section.quizzes.length}
+            />
           ))}
         </div>
       </section>
