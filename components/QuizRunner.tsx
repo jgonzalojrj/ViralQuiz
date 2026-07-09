@@ -10,6 +10,8 @@ type QuizRunnerProps = {
   quiz: Quiz;
 };
 
+type AnswerFeedback = "correct" | "wrong" | null;
+
 const difficultyLabels: Record<NonNullable<QuizQuestion["difficulty"]>, string> = {
   facil: "Facil",
   medio: "Medio",
@@ -124,6 +126,7 @@ function VisualPanel({ visual, compact = false }: { visual: QuizVisual; compact?
 export function QuizRunner({ quiz }: QuizRunnerProps) {
   const [answers, setAnswers] = useState<number[]>([]);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [answerFeedback, setAnswerFeedback] = useState<AnswerFeedback>(null);
 
   const currentQuestion = quiz.questions[answers.length];
   const progress = Math.round((answers.length / quiz.questions.length) * 100);
@@ -145,7 +148,16 @@ export function QuizRunner({ quiz }: QuizRunnerProps) {
   function chooseOption(option: QuizOption) {
     if (selectedOption) return;
 
+    const hasCorrectAnswers = quiz.kind === "trivia" || quiz.slug === "iq-rapido";
+
     setSelectedOption(option.id);
+    if (hasCorrectAnswers) {
+      setAnswerFeedback(option.value > 0 ? "correct" : "wrong");
+      window.setTimeout(() => {
+        setAnswerFeedback(null);
+      }, 820);
+    }
+
     window.setTimeout(() => {
       setAnswers((current) => [...current, option.value]);
       setSelectedOption(null);
@@ -155,6 +167,7 @@ export function QuizRunner({ quiz }: QuizRunnerProps) {
   function restart() {
     setAnswers([]);
     setSelectedOption(null);
+    setAnswerFeedback(null);
   }
 
   if (resultState) {
@@ -207,9 +220,10 @@ export function QuizRunner({ quiz }: QuizRunnerProps) {
   }
 
   const hasVisualOptions = currentQuestion.options.some((option) => option.visual);
+  const feedbackClass = answerFeedback ? `answer-feedback answer-feedback-${answerFeedback}` : "";
 
   return (
-    <section className={`test-shell ${quiz.slug === "iq-rapido" ? "iq-test-shell" : ""}`}>
+    <section className={`test-shell ${quiz.slug === "iq-rapido" ? "iq-test-shell" : ""} ${feedbackClass}`}>
       <div className="test-topline">
         <span>
           Pregunta {answers.length + 1} de {quiz.questions.length}
