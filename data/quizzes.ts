@@ -38,6 +38,8 @@ export type QuizQuestion = {
   options: QuizOption[];
   difficulty?: "facil" | "medio" | "dificil" | "avanzado";
   visual?: QuizVisual;
+  image?: string;
+  imageAlt?: string;
 };
 
 export type QuizResult = {
@@ -861,6 +863,116 @@ function makeOptions(labels: string[], prefix: string, values?: number[]) {
   }));
 }
 
+type QuestionImage = Pick<QuizQuestion, "image" | "imageAlt">;
+
+const questionImages = {
+  art: {
+    image: "/question-images/mona-lisa.svg",
+    imageAlt: "Ilustracion propia de una sala de arte con un retrato clasico"
+  },
+  basketball: {
+    image: "/question-images/baloncesto-cancha.svg",
+    imageAlt: "Ilustracion propia de una cancha de baloncesto"
+  },
+  body: {
+    image: "/question-images/cuerpo-humano.svg",
+    imageAlt: "Ilustracion propia de anatomia humana sencilla"
+  },
+  cinema: {
+    image: "/question-images/cine-claqueta.svg",
+    imageAlt: "Ilustracion propia de una claqueta y luces de cine"
+  },
+  culture: {
+    image: "/question-images/cultura-libros.svg",
+    imageAlt: "Ilustracion propia de libros y cultura general"
+  },
+  f1: {
+    image: "/question-images/formula-1-pista.svg",
+    imageAlt: "Ilustracion propia de un circuito de velocidad"
+  },
+  football: {
+    image: "/question-images/mundial-2010-estadio.svg",
+    imageAlt: "Ilustracion propia de un estadio y un trofeo de futbol generico"
+  },
+  food: {
+    image: "/question-images/comida-plato.svg",
+    imageAlt: "Ilustracion propia de una mesa con comida"
+  },
+  gaming: {
+    image: "/question-images/gaming-mando.svg",
+    imageAlt: "Ilustracion propia de un mando de videojuegos"
+  },
+  geography: {
+    image: "/question-images/geografia-mapa.svg",
+    imageAlt: "Ilustracion propia de un mapa generico con marcadores"
+  },
+  history: {
+    image: "/question-images/historia-archivo.svg",
+    imageAlt: "Ilustracion propia de documentos historicos y columnas"
+  },
+  language: {
+    image: "/question-images/idiomas-burbujas.svg",
+    imageAlt: "Ilustracion propia de burbujas de conversacion"
+  },
+  music: {
+    image: "/question-images/musica-escenario.svg",
+    imageAlt: "Ilustracion propia de un escenario musical"
+  },
+  nature: {
+    image: "/question-images/naturaleza-hojas.svg",
+    imageAlt: "Ilustracion propia de hojas y naturaleza"
+  },
+  ocean: {
+    image: "/question-images/oceano-pacifico.svg",
+    imageAlt: "Ilustracion propia de olas y un oceano generico"
+  },
+  science: {
+    image: "/question-images/ciencia-laboratorio.svg",
+    imageAlt: "Ilustracion propia de material de laboratorio"
+  },
+  space: {
+    image: "/question-images/espacio-planetas.svg",
+    imageAlt: "Ilustracion propia de varios planetas en el espacio"
+  },
+  technology: {
+    image: "/question-images/tecnologia-codigo.svg",
+    imageAlt: "Ilustracion propia de una pantalla con codigo"
+  },
+  tennis: {
+    image: "/question-images/tenis-pista.svg",
+    imageAlt: "Ilustracion propia de una pista de tenis"
+  }
+} satisfies Record<string, Required<QuestionImage>>;
+
+function hasAny(text: string, words: string[]) {
+  return words.some((word) => text.includes(word));
+}
+
+function getTriviaQuestionImage(slug: string, prompt: string): QuestionImage {
+  const text = `${slug} ${prompt}`.toLowerCase();
+
+  if (hasAny(text, ["oceano", "mar ", "mares", "ola", "corriente", "fosa"])) return questionImages.ocean;
+  if (hasAny(text, ["marte", "planeta", "luna", "sol", "jupiter", "saturno", "asteroide", "astronomia"])) return questionImages.space;
+  if (hasAny(text, ["gioconda", "pintor", "pinto", "obra", "museo", "arte", "artistico", "vivaldi", "mozart", "beethoven"])) return questionImages.art;
+  if (hasAny(text, ["baloncesto", "nba", "triple", "canasta", "mvp"])) return questionImages.basketball;
+  if (hasAny(text, ["formula 1", "formula-1", "f1", "piloto", "circuito", "escuderia", "boxes", "pole"])) return questionImages.f1;
+  if (hasAny(text, ["tenis", "wimbledon", "roland", "grand slam", "raqueta"])) return questionImages.tennis;
+  if (hasAny(text, ["futbol", "mundial", "champions", "eurocopa", "balon de oro", "libertadores"])) return questionImages.football;
+  if (hasAny(text, ["cine", "pelicula", "serie", "oscar", "titanic", "actor", "director", "saga"])) return questionImages.cinema;
+  if (hasAny(text, ["musica", "cancion", "artista", "album", "grammy", "reggaeton", "queen", "beatles"])) return questionImages.music;
+  if (hasAny(text, ["tecnologia", "internet", "software", "hardware", "codigo", "ciberseguridad", "web"])) return questionImages.technology;
+  if (hasAny(text, ["gaming", "videojuego", "pokemon", "minecraft", "consola", "gta"])) return questionImages.gaming;
+  if (hasAny(text, ["animal", "naturaleza", "dinosaurio", "planta", "biologia animal", "especie"])) return questionImages.nature;
+  if (hasAny(text, ["comida", "gastronomia", "cocina", "postre", "ingrediente", "sushi", "paella"])) return questionImages.food;
+  if (hasAny(text, ["idioma", "ortografia", "traduccion", "etimologia", "linguistica", "palabra"])) return questionImages.language;
+  if (hasAny(text, ["cuerpo", "hueso", "organo", "sangre", "humano", "corazon"])) return questionImages.body;
+  if (hasAny(text, ["ciencia", "quimica", "fisica", "biologia", "formula", "elemento", "laboratorio", "newton"])) return questionImages.science;
+  if (hasAny(text, ["geografia", "capital", "pais", "bandera", "mapa", "continente", "rio", "montana", "desierto"])) return questionImages.geography;
+  if (hasAny(text, ["historia", "guerra", "edad media", "civilizacion", "rey", "imperio", "batalla", "tratado"])) return questionImages.history;
+
+  return questionImages.culture;
+}
+
 function makeTriviaSeedQuestions(slug: string, seeds: TriviaSeed[]) {
   const orders = [
     [0, 1, 2, 3],
@@ -872,10 +984,13 @@ function makeTriviaSeedQuestions(slug: string, seeds: TriviaSeed[]) {
   return seeds.map((seed, index) => {
     const labels = [seed.correct, ...seed.wrong];
     const order = orders[index % orders.length];
+    const media = seed.image ? { image: seed.image, imageAlt: seed.imageAlt } : getTriviaQuestionImage(slug, seed.prompt);
 
     return {
       id: `${slug}-${index + 1}`,
       prompt: seed.prompt,
+      image: media.image,
+      imageAlt: media.imageAlt,
       options: order.map((labelIndex, optionIndex) => ({
         id: `${slug}-${index + 1}-${optionIndex + 1}`,
         label: labels[labelIndex],

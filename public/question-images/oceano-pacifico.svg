@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" role="img">
+  <linearGradient id="sea" x1="0" x2="0" y1="0" y2="1">
+    <stop stop-color="#dff8ff"/>
+    <stop offset=".48" stop-color="#12b7a6"/>
+    <stop offset="1" stop-color="#315be8"/>
+  </linearGradient>
+  <rect width="800" height="420" fill="url(#sea)"/>
+  <circle cx="638" cy="82" r="54" fill="#fff7ec" opacity=".75"/>
+  <path d="M0 240c88-42 144 42 232 0s144 42 232 0 144 42 232 0 144 42 232 0v180H0z" fill="#fff" opacity=".34"/>
+  <path d="M0 302c88-42 144 42 232 0s144 42 232 0 144 42 232 0 144 42 232 0" fill="none" stroke="#fff" stroke-width="18" opacity=".62"/>
+  <path d="M142 174c82-44 170-44 252 0" fill="none" stroke="#fff" stroke-width="10" opacity=".45" stroke-linecap="round"/>
+</svg>

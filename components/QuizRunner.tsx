@@ -128,6 +128,7 @@ export function QuizRunner({ quiz }: QuizRunnerProps) {
   const currentQuestion = quiz.questions[answers.length];
   const progress = Math.round((answers.length / quiz.questions.length) * 100);
   const isComplete = answers.length === quiz.questions.length;
+  const questionImage = !isComplete && quiz.kind === "trivia" ? currentQuestion?.image : undefined;
 
   const resultState = useMemo(() => {
     if (!isComplete) return null;
@@ -221,6 +222,11 @@ export function QuizRunner({ quiz }: QuizRunnerProps) {
       <div className="question-block">
         <p className="section-kicker">{quiz.title}</p>
         {currentQuestion.difficulty ? <span className="question-difficulty">{difficultyLabels[currentQuestion.difficulty]}</span> : null}
+        {questionImage ? (
+          <figure className="question-image-frame">
+            <img src={questionImage} alt={currentQuestion.imageAlt ?? "Imagen visual de la pregunta"} decoding="async" />
+          </figure>
+        ) : null}
         <h1>{currentQuestion.prompt}</h1>
         {currentQuestion.visual ? <VisualPanel visual={currentQuestion.visual} /> : null}
         <p className="test-note">{quiz.note}</p>
