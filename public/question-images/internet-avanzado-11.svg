@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" role="img" aria-label="Ilustracion propia de tecnologia para esta pregunta">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop stop-color="#111820"/>
+      <stop offset="1" stop-color="#315be8" stop-opacity="0.22"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <circle cx="288" cy="316" r="131" fill="#fffaf4" opacity="0.13"/>
+  <circle cx="195" cy="344" r="82" fill="#315be8" opacity="0.16"/>
+  <circle cx="552" cy="293" r="2" fill="#12b7a6" opacity="0.69"/><circle cx="143" cy="40" r="2" fill="#12b7a6" opacity="0.68"/><circle cx="654" cy="115" r="2" fill="#12b7a6" opacity="0.71"/><circle cx="245" cy="204" r="2" fill="#12b7a6" opacity="0.7"/><circle cx="756" cy="278" r="2" fill="#12b7a6" opacity="0.28"/><circle cx="347" cy="368" r="2" fill="#12b7a6" opacity="0.72"/><circle cx="142" cy="100" r="2" fill="#12b7a6" opacity="0.30000000000000004"/><circle cx="449" cy="189" r="2" fill="#12b7a6" opacity="0.29000000000000004"/><circle cx="244" cy="264" r="2" fill="#12b7a6" opacity="0.32"/>
+  <rect width="800" height="420" fill="#fffaf4"/><rect x="108" y="72" width="584" height="276" rx="28" fill="#315be8"/><rect x="108" y="72" width="584" height="58" rx="28" fill="#12b7a6"/><path d="M234 206l-62 44 62 44M566 206l62 44-62 44" stroke="#fffaf4" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M364 306l72-184" stroke="#12b7a6" stroke-width="18" stroke-linecap="round"/>
+</svg>

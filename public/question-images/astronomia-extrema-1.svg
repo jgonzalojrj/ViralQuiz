@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" role="img" aria-label="Ilustracion propia de espacio y planetas para esta pregunta">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop stop-color="#12171a"/>
+      <stop offset="1" stop-color="#f6bc42" stop-opacity="0.22"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <circle cx="450" cy="105" r="135" fill="#e46b4f" opacity="0.13"/>
+  <circle cx="215" cy="138" r="82" fill="#f6bc42" opacity="0.16"/>
+  <circle cx="595" cy="262" r="4" fill="#315be8" opacity="0.5700000000000001"/><circle cx="288" cy="172" r="4" fill="#315be8" opacity="0.5800000000000001"/><circle cx="697" cy="83" r="4" fill="#315be8" opacity="0.5900000000000001"/><circle cx="390" cy="336" r="4" fill="#315be8" opacity="0.6000000000000001"/><circle cx="391" cy="276" r="4" fill="#315be8" opacity="0.53"/><circle cx="84" cy="187" r="4" fill="#315be8" opacity="0.54"/><circle cx="493" cy="98" r="4" fill="#315be8" opacity="0.55"/><circle cx="186" cy="351" r="4" fill="#315be8" opacity="0.56"/><circle cx="187" cy="291" r="4" fill="#315be8" opacity="0.49"/>
+  <rect width="800" height="420" fill="#e46b4f"/><circle cx="422" cy="218" r="98" fill="#f6bc42"/><path d="M230 212c36 14 66-22 112-2" stroke="#8f3327" stroke-width="12" stroke-linecap="round" opacity=".36"/><circle cx="406" cy="232" r="64" fill="#315be8"/><circle cx="620" cy="276" r="32" fill="#fffaf4"/><path d="M176 324c140 46 308 54 476 0" stroke="#fff" stroke-width="5" fill="none" opacity=".38"/>
+</svg>

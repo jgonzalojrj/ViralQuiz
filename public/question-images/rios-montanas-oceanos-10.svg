@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" role="img" aria-label="Ilustracion propia de oceano y olas para esta pregunta">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop stop-color="#dff8ff"/>
+      <stop offset="1" stop-color="#315be8" stop-opacity="0.22"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <circle cx="687" cy="267" r="115" fill="#12b7a6" opacity="0.13"/>
+  <circle cx="469" cy="302" r="100" fill="#315be8" opacity="0.16"/>
+  <circle cx="262" cy="113" r="4" fill="#fffaf4" opacity="0.38"/><circle cx="569" cy="202" r="4" fill="#fffaf4" opacity="0.37"/><circle cx="160" cy="292" r="4" fill="#fffaf4" opacity="0.36000000000000004"/><circle cx="467" cy="39" r="4" fill="#fffaf4" opacity="0.35000000000000003"/><circle cx="466" cy="99" r="4" fill="#fffaf4" opacity="0.42000000000000004"/><circle cx="57" cy="188" r="4" fill="#fffaf4" opacity="0.41000000000000003"/><circle cx="364" cy="277" r="4" fill="#fffaf4" opacity="0.4"/><circle cx="671" cy="366" r="4" fill="#fffaf4" opacity="0.39"/><circle cx="570" cy="143" r="4" fill="#fffaf4" opacity="0.30000000000000004"/>
+  <path d="M0 240c88-42 144 42 232 0s144 42 232 0 144 42 232 0 144 42 232 0v180H0z" fill="#fff" opacity=".34"/><path d="M0 296c88-42 144 42 232 0s144 42 232 0 144 42 232 0 144 42 232 0" fill="none" stroke="#fff" stroke-width="18" opacity=".62"/><path d="M142 174c82-44 170-44 252 0" fill="none" stroke="#fff" stroke-width="10" opacity=".45" stroke-linecap="round"/>
+</svg>

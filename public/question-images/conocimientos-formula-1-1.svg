@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" role="img" aria-label="Ilustracion propia de circuito de velocidad para esta pregunta">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop stop-color="#e7f8ff"/>
+      <stop offset="1" stop-color="#ff4f6d" stop-opacity="0.22"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <circle cx="605" cy="262" r="135" fill="#15191d" opacity="0.13"/>
+  <circle cx="384" cy="337" r="122" fill="#ff4f6d" opacity="0.16"/>
+  <circle cx="251" cy="289" r="2" fill="#315be8" opacity="0.54"/><circle cx="660" cy="200" r="2" fill="#315be8" opacity="0.55"/><circle cx="353" cy="111" r="2" fill="#315be8" opacity="0.56"/><circle cx="46" cy="364" r="2" fill="#315be8" opacity="0.5700000000000001"/><circle cx="279" cy="176" r="2" fill="#315be8" opacity="0.64"/><circle cx="688" cy="87" r="2" fill="#315be8" opacity="0.65"/><circle cx="381" cy="340" r="2" fill="#315be8" opacity="0.66"/><circle cx="558" cy="36" r="2" fill="#315be8" opacity="0.53"/><circle cx="75" cy="191" r="2" fill="#315be8" opacity="0.6000000000000001"/>
+  <path d="M98 300c110-170 248-42 350-120 60-46 118-84 210-28 66 40 54 132-26 152-96 24-160-50-246-24-100 30-152 94-288 20z" fill="none" stroke="#15191d" stroke-width="52" stroke-linecap="round"/><path d="M98 300c110-170 248-42 350-120 60-46 118-84 210-28 66 40 54 132-26 152-96 24-160-50-246-24-100 30-152 94-288 20z" fill="none" stroke="#fff" stroke-width="7" stroke-dasharray="24 22" stroke-linecap="round"/><rect x="376" y="250" width="150" height="42" rx="18" fill="#315be8"/><path d="M404 250l34-34h52l24 34z" fill="#fffaf4"/>
+</svg>

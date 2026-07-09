@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" role="img" aria-label="Ilustracion propia de escenario musical para esta pregunta">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop stop-color="#201525"/>
+      <stop offset="1" stop-color="#ff4f6d" stop-opacity="0.22"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <circle cx="165" cy="250" r="127" fill="#fffaf4" opacity="0.13"/>
+  <circle cx="104" cy="192" r="71" fill="#ff4f6d" opacity="0.16"/>
+  <circle cx="61" cy="304" r="2" fill="#12b7a6" opacity="0.5800000000000001"/><circle cx="470" cy="215" r="2" fill="#12b7a6" opacity="0.5900000000000001"/><circle cx="675" cy="141" r="2" fill="#12b7a6" opacity="0.56"/><circle cx="368" cy="52" r="2" fill="#12b7a6" opacity="0.5700000000000001"/><circle cx="573" cy="319" r="2" fill="#12b7a6" opacity="0.54"/><circle cx="266" cy="230" r="2" fill="#12b7a6" opacity="0.55"/><circle cx="471" cy="155" r="2" fill="#12b7a6" opacity="0.52"/><circle cx="164" cy="66" r="2" fill="#12b7a6" opacity="0.53"/><circle cx="369" cy="334" r="2" fill="#12b7a6" opacity="0.5"/>
+  <rect width="800" height="420" fill="#fffaf4"/><path d="M206 0l170 290M594 0L510 290" stroke="#12b7a6" stroke-width="34" opacity=".5"/><rect x="150" y="292" width="500" height="54" rx="20" fill="#ff4f6d" opacity=".9"/><path d="M280 292c26-80 214-80 240 0" fill="none" stroke="#fffaf4" stroke-width="16"/><path d="M452 98v126c0 28-24 50-58 50s-58-22-58-50 24-50 58-50c12 0 23 3 32 8V98z" fill="#ff4f6d"/>
+</svg>

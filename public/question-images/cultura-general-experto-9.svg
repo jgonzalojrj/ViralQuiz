@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" role="img" aria-label="Ilustracion propia de arte y museo para esta pregunta">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop stop-color="#fff2df"/>
+      <stop offset="1" stop-color="#6f4a2d" stop-opacity="0.22"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <circle cx="220" cy="344" r="122" fill="#6f4a2d" opacity="0.13"/>
+  <circle cx="186" cy="97" r="141" fill="#12b7a6" opacity="0.16"/>
+  <circle cx="754" cy="323" r="2" fill="#ff4f6d" opacity="0.53"/><circle cx="345" cy="70" r="2" fill="#ff4f6d" opacity="0.52"/><circle cx="652" cy="160" r="2" fill="#ff4f6d" opacity="0.51"/><circle cx="243" cy="249" r="2" fill="#ff4f6d" opacity="0.5"/><circle cx="242" cy="309" r="2" fill="#ff4f6d" opacity="0.5700000000000001"/><circle cx="549" cy="56" r="2" fill="#ff4f6d" opacity="0.56"/><circle cx="140" cy="145" r="2" fill="#ff4f6d" opacity="0.55"/><circle cx="447" cy="234" r="2" fill="#ff4f6d" opacity="0.54"/><circle cx="346" cy="353" r="2" fill="#ff4f6d" opacity="0.45000000000000007"/>
+  <rect x="294" y="54" width="304" height="312" rx="24" fill="#6f4a2d"/><rect x="324" y="84" width="244" height="252" rx="16" fill="#d9c092"/><circle cx="446" cy="178" r="54" fill="#f0c7a5"/><path d="M376 318c12-82 42-120 70-120s58 38 70 120z" fill="#ff4f6d"/><path d="M390 154c36-72 116-46 122 10-36-18-74-18-122-10z" fill="#4a2d22"/>
+</svg>

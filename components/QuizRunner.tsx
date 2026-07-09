@@ -145,6 +145,10 @@ export function QuizRunner({ quiz }: QuizRunnerProps) {
     };
   }, [answers, isComplete, quiz]);
 
+  const feedbackOverlay = answerFeedback ? (
+    <div className={`answer-screen-feedback answer-screen-feedback-${answerFeedback}`} aria-hidden="true" />
+  ) : null;
+
   function chooseOption(option: QuizOption) {
     if (selectedOption) return;
 
@@ -185,83 +189,88 @@ export function QuizRunner({ quiz }: QuizRunnerProps) {
       : [result.scoreLabel, quiz.kind === "challenge" ? "Reto rapido" : "Tu estilo", quiz.duration];
 
     return (
-      <section className={`test-shell result-shell result-${quiz.kind}`} aria-live="polite">
-        <div className="result-card" style={{ "--result-accent": result.accent } as CSSVariableProperties}>
-          <div className="result-card-mark">{resultEyebrow}</div>
-          <div className="result-visual">
-            <span>{visualLabel}</span>
-            <strong>{scoreLabel}</strong>
+      <>
+        {feedbackOverlay}
+        <section className={`test-shell result-shell result-${quiz.kind}`} aria-live="polite">
+          <div className="result-card" style={{ "--result-accent": result.accent } as CSSVariableProperties}>
+            <div className="result-card-mark">{resultEyebrow}</div>
+            <div className="result-visual">
+              <span>{visualLabel}</span>
+              <strong>{scoreLabel}</strong>
+            </div>
+            <div className="result-ribbon">ViralQuiz</div>
           </div>
-          <div className="result-ribbon">ViralQuiz</div>
-        </div>
-        <div className="result-copy">
-          <p className="section-kicker">{resultEyebrow}</p>
-          <h1>{result.title}</h1>
-          <p className="result-subtitle">{result.subtitle}</p>
-          <p>{result.summary}</p>
-          <div className="result-reason">
-            <span>{reasonTitle}</span>
-            <p>{result.reason}</p>
+          <div className="result-copy">
+            <p className="section-kicker">{resultEyebrow}</p>
+            <h1>{result.title}</h1>
+            <p className="result-subtitle">{result.subtitle}</p>
+            <p>{result.summary}</p>
+            <div className="result-reason">
+              <span>{reasonTitle}</span>
+              <p>{result.reason}</p>
+            </div>
+            <div className="result-tags" aria-label="Resumen del resultado">
+              {tags.map((tag) => (
+                <span key={tag}>{tag}</span>
+              ))}
+            </div>
+            <p className="test-note">{quiz.note}</p>
+            <div className="result-actions">
+              <button className="button" type="button" onClick={restart}>
+                Repetir test
+              </button>
+            </div>
           </div>
-          <div className="result-tags" aria-label="Resumen del resultado">
-            {tags.map((tag) => (
-              <span key={tag}>{tag}</span>
-            ))}
-          </div>
-          <p className="test-note">{quiz.note}</p>
-          <div className="result-actions">
-            <button className="button" type="button" onClick={restart}>
-              Repetir test
-            </button>
-          </div>
-        </div>
-      </section>
+        </section>
+      </>
     );
   }
 
   const hasVisualOptions = currentQuestion.options.some((option) => option.visual);
-  const feedbackClass = answerFeedback ? `answer-feedback answer-feedback-${answerFeedback}` : "";
 
   return (
-    <section className={`test-shell ${quiz.slug === "iq-rapido" ? "iq-test-shell" : ""} ${feedbackClass}`}>
-      <div className="test-topline">
-        <span>
-          Pregunta {answers.length + 1} de {quiz.questions.length}
-        </span>
-        <div className="progress-track" aria-hidden="true">
-          <div className="progress-bar" style={{ width: `${progress}%` }} />
+    <>
+      {feedbackOverlay}
+      <section className={`test-shell ${quiz.slug === "iq-rapido" ? "iq-test-shell" : ""}`}>
+        <div className="test-topline">
+          <span>
+            Pregunta {answers.length + 1} de {quiz.questions.length}
+          </span>
+          <div className="progress-track" aria-hidden="true">
+            <div className="progress-bar" style={{ width: `${progress}%` }} />
+          </div>
         </div>
-      </div>
 
-      <div className="question-block">
-        <p className="section-kicker">{quiz.title}</p>
-        {currentQuestion.difficulty ? <span className="question-difficulty">{difficultyLabels[currentQuestion.difficulty]}</span> : null}
-        {questionImage ? (
-          <figure className="question-image-frame">
-            <img src={questionImage} alt={currentQuestion.imageAlt ?? "Imagen visual de la pregunta"} decoding="async" />
-          </figure>
-        ) : null}
-        <h1>{currentQuestion.prompt}</h1>
-        {currentQuestion.visual ? <VisualPanel visual={currentQuestion.visual} /> : null}
-        <p className="test-note">{quiz.note}</p>
-      </div>
+        <div className="question-block">
+          <p className="section-kicker">{quiz.title}</p>
+          {currentQuestion.difficulty ? <span className="question-difficulty">{difficultyLabels[currentQuestion.difficulty]}</span> : null}
+          {questionImage ? (
+            <figure className="question-image-frame">
+              <img src={questionImage} alt={currentQuestion.imageAlt ?? "Imagen visual de la pregunta"} decoding="async" />
+            </figure>
+          ) : null}
+          <h1>{currentQuestion.prompt}</h1>
+          {currentQuestion.visual ? <VisualPanel visual={currentQuestion.visual} /> : null}
+          <p className="test-note">{quiz.note}</p>
+        </div>
 
-      <div className={`answer-grid ${hasVisualOptions ? "answer-grid-visual" : ""}`}>
-        {currentQuestion.options.map((option, index) => (
-          <button
-            className={`answer-button ${option.visual ? "answer-button-visual" : ""} ${selectedOption === option.id ? "is-selected" : ""}`}
-            key={option.id}
-            type="button"
-            onClick={() => chooseOption(option)}
-          >
-            <span className="answer-index">{String.fromCharCode(65 + index)}</span>
-            <span className="answer-content">
-              {option.visual ? <VisualPanel visual={option.visual} compact /> : null}
-              <span>{option.label}</span>
-            </span>
-          </button>
-        ))}
-      </div>
-    </section>
+        <div className={`answer-grid ${hasVisualOptions ? "answer-grid-visual" : ""}`}>
+          {currentQuestion.options.map((option, index) => (
+            <button
+              className={`answer-button ${option.visual ? "answer-button-visual" : ""} ${selectedOption === option.id ? "is-selected" : ""}`}
+              key={option.id}
+              type="button"
+              onClick={() => chooseOption(option)}
+            >
+              <span className="answer-index">{String.fromCharCode(65 + index)}</span>
+              <span className="answer-content">
+                {option.visual ? <VisualPanel visual={option.visual} compact /> : null}
+                <span>{option.label}</span>
+              </span>
+            </button>
+          ))}
+        </div>
+      </section>
+    </>
   );
 }

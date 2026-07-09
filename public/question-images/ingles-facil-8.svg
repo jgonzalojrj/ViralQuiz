@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" role="img" aria-label="Ilustracion propia de cultura general para esta pregunta">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop stop-color="#fff7ec"/>
+      <stop offset="1" stop-color="#ff4f6d" stop-opacity="0.22"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <circle cx="388" cy="283" r="66" fill="#ff4f6d" opacity="0.13"/>
+  <circle cx="357" cy="339" r="124" fill="#315be8" opacity="0.16"/>
+  <circle cx="220" cy="106" r="4" fill="#12b7a6" opacity="0.28"/><circle cx="527" cy="195" r="4" fill="#12b7a6" opacity="0.72"/><circle cx="322" cy="270" r="4" fill="#12b7a6" opacity="0.30000000000000004"/><circle cx="629" cy="359" r="4" fill="#12b7a6" opacity="0.29000000000000004"/><circle cx="424" cy="91" r="4" fill="#12b7a6" opacity="0.32"/><circle cx="731" cy="181" r="4" fill="#12b7a6" opacity="0.31000000000000005"/><circle cx="294" cy="41" r="4" fill="#12b7a6" opacity="0.65"/><circle cx="117" cy="344" r="4" fill="#12b7a6" opacity="0.33"/><circle cx="396" cy="205" r="4" fill="#12b7a6" opacity="0.67"/>
+  <rect x="238" y="164" width="96" height="210" rx="14" fill="#ff4f6d"/><rect x="342" y="128" width="96" height="246" rx="14" fill="#12b7a6"/><rect x="418" y="184" width="96" height="190" rx="14" fill="#fffaf4"/><path d="M-24 384h848" stroke="#15191d" stroke-width="18" stroke-linecap="round" opacity=".86"/>
+</svg>

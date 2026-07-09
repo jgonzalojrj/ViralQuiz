@@ -890,33 +890,27 @@ button {
   backdrop-filter: blur(16px);
 }
 
-.answer-feedback {
-  animation: answerFeedbackShell 820ms ease both;
-}
-
-.answer-feedback::before {
-  position: absolute;
+.answer-screen-feedback {
+  position: fixed;
   inset: 0;
-  z-index: 2;
-  border-radius: inherit;
+  z-index: 90;
   background:
-    linear-gradient(90deg, var(--answer-feedback-color), transparent 18%, transparent 82%, var(--answer-feedback-color)),
-    linear-gradient(180deg, var(--answer-feedback-color), transparent 22%, transparent 78%, var(--answer-feedback-color));
+    linear-gradient(90deg, var(--answer-feedback-color), transparent 16%, transparent 84%, var(--answer-feedback-color)),
+    linear-gradient(180deg, var(--answer-feedback-color), transparent 18%, transparent 82%, var(--answer-feedback-color));
   box-shadow:
-    inset 0 0 0 2px color-mix(in srgb, var(--answer-feedback-color) 34%, transparent),
-    inset 0 0 42px color-mix(in srgb, var(--answer-feedback-color) 24%, transparent),
-    0 18px 58px color-mix(in srgb, var(--answer-feedback-color) 15%, transparent);
-  content: "";
+    inset 0 0 0 2px color-mix(in srgb, var(--answer-feedback-color) 22%, transparent),
+    inset 0 0 48px color-mix(in srgb, var(--answer-feedback-color) 22%, transparent),
+    inset 0 0 120px color-mix(in srgb, var(--answer-feedback-color) 12%, transparent);
   opacity: 0;
   pointer-events: none;
-  animation: answerFeedbackGlow 820ms ease both;
+  animation: answerScreenFeedbackGlow 840ms ease both;
 }
 
-.answer-feedback-correct {
+.answer-screen-feedback-correct {
   --answer-feedback-color: #1fba74;
 }
 
-.answer-feedback-wrong {
+.answer-screen-feedback-wrong {
   --answer-feedback-color: #ef5b4d;
 }
 
@@ -1455,33 +1449,18 @@ button {
   }
 }
 
-@keyframes answerFeedbackShell {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  22% {
-    transform: scale(0.997);
-  }
-  48% {
-    transform: scale(1.004);
-  }
-}
-
-@keyframes answerFeedbackGlow {
+@keyframes answerScreenFeedbackGlow {
   0% {
     opacity: 0;
-    transform: scale(0.992);
   }
   16% {
-    opacity: 0.64;
+    opacity: 0.7;
   }
   58% {
-    opacity: 0.42;
+    opacity: 0.46;
   }
   100% {
     opacity: 0;
-    transform: scale(1.012);
   }
 }
 

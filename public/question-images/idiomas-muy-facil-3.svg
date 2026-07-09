@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" role="img" aria-label="Ilustracion propia de idiomas y conversacion para esta pregunta">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop stop-color="#eef7ff"/>
+      <stop offset="1" stop-color="#ff4f6d" stop-opacity="0.22"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <circle cx="435" cy="252" r="141" fill="#315be8" opacity="0.13"/>
+  <circle cx="138" cy="228" r="123" fill="#ff4f6d" opacity="0.16"/>
+  <circle cx="139" cy="347" r="5" fill="#12b7a6" opacity="0.28"/><circle cx="548" cy="257" r="5" fill="#12b7a6" opacity="0.29000000000000004"/><circle cx="241" cy="168" r="5" fill="#12b7a6" opacity="0.30000000000000004"/><circle cx="650" cy="79" r="5" fill="#12b7a6" opacity="0.31000000000000005"/><circle cx="651" cy="361" r="5" fill="#12b7a6" opacity="0.69"/><circle cx="344" cy="272" r="5" fill="#12b7a6" opacity="0.7"/><circle cx="753" cy="183" r="5" fill="#12b7a6" opacity="0.71"/><circle cx="446" cy="94" r="5" fill="#12b7a6" opacity="0.72"/><circle cx="547" cy="317" r="5" fill="#12b7a6" opacity="0.36000000000000004"/>
+  <rect x="122" y="92" width="250" height="142" rx="44" fill="#fffaf4" stroke="#315be8" stroke-width="8"/><path d="M198 230l-42 54 92-52" fill="#fffaf4" stroke="#315be8" stroke-width="8" stroke-linejoin="round"/><rect x="428" y="142" width="250" height="142" rx="44" fill="#fffaf4" stroke="#12b7a6" stroke-width="8"/><path d="M602 280l42 54-92-52" fill="#fffaf4" stroke="#12b7a6" stroke-width="8" stroke-linejoin="round"/><path d="M178 158h134M178 196h86M484 208h134M484 246h86" stroke="#15191d" stroke-width="14" stroke-linecap="round" opacity=".2"/>
+</svg>

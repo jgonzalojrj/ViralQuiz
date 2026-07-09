@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" role="img" aria-label="Ilustracion propia de pista de tenis para esta pregunta">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop stop-color="#e8fbf5"/>
+      <stop offset="1" stop-color="#f6bc42" stop-opacity="0.22"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <circle cx="501" cy="153" r="101" fill="#12b7a6" opacity="0.13"/>
+  <circle cx="221" cy="144" r="128" fill="#f6bc42" opacity="0.16"/>
+  <circle cx="641" cy="276" r="2" fill="#315be8" opacity="0.68"/><circle cx="334" cy="187" r="2" fill="#315be8" opacity="0.69"/><circle cx="539" cy="112" r="2" fill="#315be8" opacity="0.66"/><circle cx="232" cy="365" r="2" fill="#315be8" opacity="0.67"/><circle cx="437" cy="290" r="2" fill="#315be8" opacity="0.64"/><circle cx="130" cy="201" r="2" fill="#315be8" opacity="0.65"/><circle cx="335" cy="127" r="2" fill="#315be8" opacity="0.6200000000000001"/><circle cx="744" cy="37" r="2" fill="#315be8" opacity="0.63"/><circle cx="233" cy="305" r="2" fill="#315be8" opacity="0.6000000000000001"/>
+  <rect x="96" y="52" width="608" height="316" rx="28" fill="#f6bc42"/><path d="M400 52v316M96 210h608M170 110h460M170 310h460M170 110v200M630 110v200" stroke="#fff" stroke-width="7" opacity=".88"/><circle cx="558" cy="126" r="18" fill="#315be8"/><ellipse cx="190" cy="260" rx="36" ry="50" fill="none" stroke="#fffaf4" stroke-width="9" transform="rotate(-18 190 260)"/>
+</svg>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" role="img" aria-label="Ilustracion propia de gastronomia para esta pregunta">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop stop-color="#fff2df"/>
+      <stop offset="1" stop-color="#12b7a6" stop-opacity="0.22"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <circle cx="147" cy="338" r="123" fill="#f6bc42" opacity="0.13"/>
+  <circle cx="402" cy="132" r="71" fill="#ff4f6d" opacity="0.16"/>
+  <circle cx="419" cy="320" r="5" fill="#12b7a6" opacity="0.55"/><circle cx="112" cy="231" r="5" fill="#12b7a6" opacity="0.56"/><circle cx="521" cy="142" r="5" fill="#12b7a6" opacity="0.5700000000000001"/><circle cx="214" cy="53" r="5" fill="#12b7a6" opacity="0.5800000000000001"/><circle cx="623" cy="306" r="5" fill="#12b7a6" opacity="0.5900000000000001"/><circle cx="316" cy="217" r="5" fill="#12b7a6" opacity="0.6000000000000001"/><circle cx="725" cy="128" r="5" fill="#12b7a6" opacity="0.6100000000000001"/><circle cx="418" cy="38" r="5" fill="#12b7a6" opacity="0.6200000000000001"/><circle cx="111" cy="291" r="5" fill="#12b7a6" opacity="0.63"/>
+  <circle cx="400" cy="218" r="142" fill="#fffaf4" stroke="#15191d" stroke-width="8" opacity=".92"/><circle cx="400" cy="218" r="86" fill="#ff4f6d" opacity=".55"/><circle cx="358" cy="192" r="28" fill="#12b7a6"/><circle cx="414" cy="242" r="30" fill="#fffaf4"/><path d="M328 252c64-88 126-104 170-48" stroke="#15191d" stroke-width="12" stroke-linecap="round" fill="none" opacity=".6"/>
+</svg>

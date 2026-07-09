@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" role="img" aria-label="Ilustracion propia de mapa y geografia para esta pregunta">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop stop-color="#eaf9f6"/>
+      <stop offset="1" stop-color="#eaf9f6" stop-opacity="0.22"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <circle cx="615" cy="300" r="128" fill="#fffaf4" opacity="0.13"/>
+  <circle cx="385" cy="91" r="82" fill="#12b7a6" opacity="0.16"/>
+  <circle cx="560" cy="196" r="4" fill="#ff4f6d" opacity="0.6200000000000001"/><circle cx="151" cy="286" r="4" fill="#ff4f6d" opacity="0.6100000000000001"/><circle cx="662" cy="360" r="4" fill="#ff4f6d" opacity="0.64"/><circle cx="253" cy="107" r="4" fill="#ff4f6d" opacity="0.63"/><circle cx="356" cy="211" r="5" fill="#ff4f6d" opacity="0.5800000000000001"/><circle cx="663" cy="300" r="5" fill="#ff4f6d" opacity="0.5700000000000001"/><circle cx="458" cy="375" r="4" fill="#ff4f6d" opacity="0.6000000000000001"/><circle cx="49" cy="122" r="4" fill="#ff4f6d" opacity="0.5900000000000001"/><circle cx="252" cy="167" r="4" fill="#ff4f6d" opacity="0.7"/>
+  <path d="M100 84l170-42 160 50 170-42 100 42v244l-170 42-160-50-170 42-100-42z" fill="#12b7a6" stroke="#15191d" stroke-width="5" opacity=".94"/><path d="M270 42v286M430 92v286M600 50v286" stroke="#15191d" stroke-width="4" opacity=".16"/><path d="M126 200c80 22 106-36 176-8 72 28 94 88 182 48 86-40 128-8 184 44" fill="none" stroke="#ff4f6d" stroke-width="14" stroke-linecap="round"/><path d="M560 168c0 36-38 70-38 70s-38-34-38-70a38 38 0 0176 0z" fill="#fffaf4"/>
+</svg>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" role="img" aria-label="Ilustracion propia de cine y rodaje para esta pregunta">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop stop-color="#15191d"/>
+      <stop offset="1" stop-color="#15191d" stop-opacity="0.22"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <circle cx="502" cy="114" r="140" fill="#fffaf4" opacity="0.13"/>
+  <circle cx="371" cy="318" r="73" fill="#f6bc42" opacity="0.16"/>
+  <circle cx="563" cy="268" r="3" fill="#ff4f6d" opacity="0.66"/><circle cx="256" cy="179" r="3" fill="#ff4f6d" opacity="0.67"/><circle cx="665" cy="90" r="3" fill="#ff4f6d" opacity="0.68"/><circle cx="358" cy="343" r="3" fill="#ff4f6d" opacity="0.69"/><circle cx="359" cy="283" r="3" fill="#ff4f6d" opacity="0.6200000000000001"/><circle cx="52" cy="194" r="3" fill="#ff4f6d" opacity="0.63"/><circle cx="461" cy="105" r="3" fill="#ff4f6d" opacity="0.64"/><circle cx="154" cy="357" r="3" fill="#ff4f6d" opacity="0.65"/><circle cx="155" cy="298" r="3" fill="#ff4f6d" opacity="0.5800000000000001"/>
+  <rect width="800" height="420" fill="#fffaf4"/><circle cx="580" cy="116" r="120" fill="#ff4f6d" opacity=".42"/><rect x="190" y="182" width="420" height="198" rx="22" fill="#f6bc42"/><rect x="190" y="116" width="420" height="70" rx="18" fill="#fffaf4"/><path d="M228 116l58 70M330 116l58 70M432 116l58 70M534 116l58 70" stroke="#fffaf4" stroke-width="20"/><rect x="244" y="254" width="312" height="18" rx="9" fill="#fffaf4" opacity=".16"/>
+</svg>

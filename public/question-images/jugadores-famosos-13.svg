@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" role="img" aria-label="Ilustracion propia de cancha de baloncesto para esta pregunta">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop stop-color="#fff1df"/>
+      <stop offset="1" stop-color="#f6bc42" stop-opacity="0.22"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <circle cx="114" cy="173" r="126" fill="#f6bc42" opacity="0.13"/>
+  <circle cx="173" cy="183" r="91" fill="#d95a35" opacity="0.16"/>
+  <circle cx="278" cy="117" r="2" fill="#15191d" opacity="0.67"/><circle cx="585" cy="206" r="2" fill="#15191d" opacity="0.66"/><circle cx="176" cy="295" r="2" fill="#15191d" opacity="0.65"/><circle cx="483" cy="42" r="2" fill="#15191d" opacity="0.64"/><circle cx="74" cy="131" r="2" fill="#15191d" opacity="0.63"/><circle cx="381" cy="221" r="2" fill="#15191d" opacity="0.6200000000000001"/><circle cx="688" cy="310" r="2" fill="#15191d" opacity="0.6100000000000001"/><circle cx="279" cy="57" r="2" fill="#15191d" opacity="0.6000000000000001"/><circle cx="586" cy="146" r="2" fill="#15191d" opacity="0.5900000000000001"/>
+  <rect x="76" y="58" width="648" height="304" rx="30" fill="#d95a35"/><path d="M100 210h600M400 58v304" stroke="#fffaf4" stroke-width="8" opacity=".8"/><circle cx="400" cy="210" r="73" fill="none" stroke="#fffaf4" stroke-width="8" opacity=".8"/><circle cx="432" cy="222" r="42" fill="#15191d"/><path d="M390 222h84M432 180v84" stroke="#f6bc42" stroke-width="5" fill="none"/>
+</svg>

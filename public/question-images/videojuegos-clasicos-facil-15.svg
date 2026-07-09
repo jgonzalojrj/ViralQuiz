@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" role="img" aria-label="Ilustracion propia de videojuegos para esta pregunta">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop stop-color="#f4efff"/>
+      <stop offset="1" stop-color="#9b5cff" stop-opacity="0.22"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <circle cx="659" cy="249" r="111" fill="#15191d" opacity="0.13"/>
+  <circle cx="166" cy="228" r="109" fill="#9b5cff" opacity="0.16"/>
+  <circle cx="250" cy="291" r="2" fill="#12b7a6" opacity="0.7"/><circle cx="557" cy="38" r="2" fill="#12b7a6" opacity="0.69"/><circle cx="148" cy="127" r="2" fill="#12b7a6" opacity="0.68"/><circle cx="455" cy="216" r="2" fill="#12b7a6" opacity="0.67"/><circle cx="454" cy="276" r="2" fill="#12b7a6" opacity="0.29000000000000004"/><circle cx="45" cy="365" r="2" fill="#12b7a6" opacity="0.28"/><circle cx="352" cy="112" r="2" fill="#12b7a6" opacity="0.72"/><circle cx="659" cy="202" r="2" fill="#12b7a6" opacity="0.71"/><circle cx="658" cy="262" r="5" fill="#12b7a6" opacity="0.33"/>
+  <path d="M226 160c40-54 310-54 348 0l58 104c24 44-12 86-58 64l-74-36H300l-74 36c-46 22-82-20-58-64z" fill="#15191d"/><path d="M284 232h82M325 191v82" stroke="#fff" stroke-width="20" stroke-linecap="round"/><circle cx="530" cy="218" r="20" fill="#12b7a6"/><circle cx="578" cy="252" r="20" fill="#fffaf4"/><circle cx="456" cy="252" r="20" fill="#12b7a6"/>
+</svg>

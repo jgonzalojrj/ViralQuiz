@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" role="img" aria-label="Ilustracion propia de laboratorio cientifico para esta pregunta">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop stop-color="#edf9ff"/>
+      <stop offset="1" stop-color="#fffaf4" stop-opacity="0.22"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <circle cx="248" cy="100" r="124" fill="#fffaf4" opacity="0.13"/>
+  <circle cx="490" cy="138" r="91" fill="#12b7a6" opacity="0.16"/>
+  <circle cx="486" cy="106" r="5" fill="#ff4f6d" opacity="0.68"/><circle cx="77" cy="195" r="5" fill="#ff4f6d" opacity="0.67"/><circle cx="384" cy="284" r="5" fill="#ff4f6d" opacity="0.66"/><circle cx="691" cy="373" r="5" fill="#ff4f6d" opacity="0.65"/><circle cx="690" cy="91" r="4" fill="#ff4f6d" opacity="0.72"/><circle cx="281" cy="180" r="5" fill="#ff4f6d" opacity="0.71"/><circle cx="588" cy="270" r="5" fill="#ff4f6d" opacity="0.7"/><circle cx="179" cy="359" r="5" fill="#ff4f6d" opacity="0.69"/><circle cx="78" cy="135" r="5" fill="#ff4f6d" opacity="0.6000000000000001"/>
+  <path d="M370 74h116v28l-38 76v84c0 48-39 86-86 86h-8c-47 0-86-38-86-86v-84l-38-76V74h116z" fill="#12b7a6" stroke="#15191d" stroke-width="8"/><path d="M290 230h132v38c0 31-25 56-56 56h-20c-31 0-56-25-56-56z" fill="#ff4f6d" opacity=".85"/><circle cx="366" cy="250" r="12" fill="#fff"/><circle cx="344" cy="280" r="18" fill="#fff"/><path d="M528 118l68 118 68-118" fill="none" stroke="#fffaf4" stroke-width="15" stroke-linejoin="round"/>
+</svg>

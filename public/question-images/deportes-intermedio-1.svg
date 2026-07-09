@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" role="img" aria-label="Ilustracion propia de estadio y futbol generico para esta pregunta">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop stop-color="#eaf8f5"/>
+      <stop offset="1" stop-color="#f6bc42" stop-opacity="0.22"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <circle cx="677" cy="227" r="105" fill="#26b99f" opacity="0.13"/>
+  <circle cx="543" cy="297" r="79" fill="#f6bc42" opacity="0.16"/>
+  <circle cx="260" cy="334" r="5" fill="#15191d" opacity="0.39"/><circle cx="567" cy="81" r="5" fill="#15191d" opacity="0.38"/><circle cx="362" cy="156" r="5" fill="#15191d" opacity="0.41000000000000003"/><circle cx="669" cy="245" r="5" fill="#15191d" opacity="0.4"/><circle cx="464" cy="320" r="5" fill="#15191d" opacity="0.43000000000000005"/><circle cx="55" cy="67" r="5" fill="#15191d" opacity="0.42000000000000004"/><circle cx="566" cy="141" r="5" fill="#15191d" opacity="0.45000000000000007"/><circle cx="157" cy="230" r="5" fill="#15191d" opacity="0.44000000000000006"/><circle cx="668" cy="305" r="5" fill="#15191d" opacity="0.47000000000000003"/>
+  <path d="M92 270c130-94 486-94 616 0v92H92z" fill="#26b99f" opacity=".9"/><path d="M150 270c102-54 398-54 500 0" fill="none" stroke="#fff" stroke-width="14" opacity=".64"/><rect x="165" y="304" width="470" height="62" rx="16" fill="#f6bc42"/><path d="M400 304v62M165 335h470" stroke="#fff" stroke-width="4" opacity=".65"/><path d="M400 92l18 45h48l-38 29 14 48-42-28-42 28 14-48-38-29h48z" fill="#15191d"/>
+</svg>

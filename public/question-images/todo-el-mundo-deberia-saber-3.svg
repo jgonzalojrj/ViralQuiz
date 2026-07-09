@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 420" role="img" aria-label="Ilustracion propia de anatomia humana para esta pregunta">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop stop-color="#fff0f3"/>
+      <stop offset="1" stop-color="#ff4f6d" stop-opacity="0.22"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="420" fill="url(#bg)"/>
+  <circle cx="422" cy="157" r="75" fill="#ffb99c" opacity="0.13"/>
+  <circle cx="436" cy="109" r="75" fill="#ff4f6d" opacity="0.16"/>
+  <circle cx="271" cy="367" r="5" fill="#15191d" opacity="0.32"/><circle cx="680" cy="277" r="4" fill="#15191d" opacity="0.33"/><circle cx="373" cy="188" r="4" fill="#15191d" opacity="0.34"/><circle cx="66" cy="99" r="4" fill="#15191d" opacity="0.35000000000000003"/><circle cx="67" cy="39" r="5" fill="#15191d" opacity="0.28"/><circle cx="476" cy="292" r="5" fill="#15191d" opacity="0.29000000000000004"/><circle cx="169" cy="203" r="5" fill="#15191d" opacity="0.30000000000000004"/><circle cx="578" cy="114" r="5" fill="#15191d" opacity="0.31000000000000005"/><circle cx="679" cy="337" r="4" fill="#15191d" opacity="0.4"/>
+  <circle cx="400" cy="104" r="46" fill="#ff4f6d"/><path d="M322 352c10-122 28-184 78-184s68 62 78 184z" fill="#fffaf4" stroke="#15191d" stroke-width="8"/><path d="M400 168v184M330 230h140" stroke="#15191d" stroke-width="12" stroke-linecap="round" opacity=".72"/><path d="M316 208c-58 26-90 70-98 134M484 208c58 26 90 70 98 134" stroke="#15191d" stroke-width="18" stroke-linecap="round" opacity=".62"/>
+</svg>
