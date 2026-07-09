@@ -266,6 +266,13 @@ button {
   backdrop-filter: blur(14px);
 }
 
+.button-light {
+  border: 1px solid rgba(21, 25, 29, 0.1);
+  background: #ffffff;
+  color: var(--ink);
+  box-shadow: 0 12px 26px rgba(21, 25, 29, 0.08);
+}
+
 .button-small {
   min-height: 42px;
   padding: 0 18px;
@@ -399,6 +406,66 @@ button {
   font-weight: 900;
 }
 
+.seo-content-section {
+  padding: 0 0 78px;
+}
+
+.seo-link-grid,
+.seo-benefit-grid {
+  display: grid;
+  gap: 14px;
+}
+
+.seo-link-card,
+.seo-benefit-grid article {
+  display: grid;
+  gap: 8px;
+  padding: 18px;
+  border: 1px solid rgba(21, 25, 29, 0.08);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 12px 30px rgba(21, 25, 29, 0.07);
+}
+
+.seo-link-card {
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.seo-link-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 79, 109, 0.24);
+  box-shadow: 0 18px 38px rgba(21, 25, 29, 0.1);
+}
+
+.seo-link-card span {
+  color: var(--teal);
+  font-size: 0.78rem;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.seo-link-card h3,
+.seo-benefit-grid h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  line-height: 1.15;
+  letter-spacing: 0;
+}
+
+.seo-link-card p,
+.seo-benefit-grid p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.seo-benefits-section {
+  padding-bottom: 94px;
+}
+
 .section-grid {
   display: grid;
   gap: 26px;
@@ -410,7 +477,7 @@ button {
 
 .quiz-section-heading {
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   gap: 12px;
   margin-bottom: 14px;
 }
@@ -551,7 +618,7 @@ button {
 
 .quiz-card-art {
   display: flex;
-  align-items: end;
+  align-items: flex-end;
   gap: 7px;
   width: 86px;
   height: 52px;
@@ -641,6 +708,111 @@ button {
 
 .category-detail {
   padding-top: 20px;
+}
+
+.seo-test-hero {
+  padding: 18px 0 24px;
+}
+
+.seo-breadcrumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.seo-breadcrumbs a {
+  color: var(--ink);
+}
+
+.seo-test-layout {
+  display: grid;
+  gap: 16px;
+}
+
+.seo-test-copy,
+.seo-preview-panel {
+  border: 1px solid rgba(21, 25, 29, 0.08);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.84);
+  box-shadow: 0 14px 34px rgba(21, 25, 29, 0.08);
+}
+
+.seo-test-copy {
+  display: grid;
+  gap: 14px;
+  padding: clamp(20px, 4vw, 30px);
+}
+
+.seo-test-copy h1 {
+  max-width: 780px;
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 3.1rem);
+  line-height: 1;
+  letter-spacing: 0;
+  overflow-wrap: anywhere;
+}
+
+.seo-test-copy p:not(.section-kicker),
+.seo-preview-panel p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.58;
+}
+
+.seo-meta-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.seo-meta-list span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 0 12px;
+  border-radius: 999px;
+  background: #f5efe7;
+  color: #6d5f50;
+  font-size: 0.88rem;
+  font-weight: 900;
+}
+
+.seo-test-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.seo-preview-panel {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  padding: 18px;
+}
+
+.seo-preview-panel h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.15;
+  letter-spacing: 0;
+}
+
+.question-preview-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--ink);
+  font-weight: 850;
+  line-height: 1.4;
+}
+
+.test-runner-anchor {
+  scroll-margin-top: 18px;
 }
 
 .test-nav {
@@ -1138,6 +1310,19 @@ button {
     min-height: 270px;
   }
 
+  .seo-link-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .seo-benefit-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .seo-test-layout {
+    grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+    align-items: stretch;
+  }
+
   .quiz-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -1183,6 +1368,15 @@ button {
 
   .hero-actions .button {
     width: 100%;
+  }
+
+  .seo-test-actions .button {
+    width: 100%;
+  }
+
+  .seo-link-grid,
+  .seo-benefit-grid {
+    gap: 10px;
   }
 
   .section-heading h2,
